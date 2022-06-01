@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-cors = "*"
+flask-sqlalchemy = "*"
+python-dotenv = "*"
+gunicorn = "*"
+psycopg2 = "*"
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+init_db = "python init_db.py"
+dev = "flask run -p ${PORT}"
+start = "gunicorn uabout:app"

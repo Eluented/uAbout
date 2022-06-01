@@ -1,0 +1,58 @@
+* {
+    --background: #EEEEEE;
+    --text: #444444;
+    --accent: #E16036;
+}
+
+body {
+    margin: 40px auto;
+    max-width: 650px;
+    background-color: var(--background);
+    line-height: 1.6;
+    color: var(--text);
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+h1 {
+    color: var(--accent);
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+label {
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+fieldset {
+    border: none;
+    width: 45%;
+}
+
+textarea, input:not([type=submit]) {
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.listing {
+    cursor: pointer;
+}
+
+.contact-details {
+    visibility: hidden;
+}

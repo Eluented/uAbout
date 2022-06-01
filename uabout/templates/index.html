@@ -1,0 +1,36 @@
+{% extends 'default.html' %}
+{% block headers %}
+    <script src={{ url_for('static', filename='./scripts/index.js')}} defer></script>
+{% endblock %}
+{% block title %}Listings{% endblock %}
+{% block content %}
+    <h1>Ken's List</h1>
+    <em>You probably won't get murdered.</em>
+    <hr />
+    <ul>
+        {% for listing in listings %}
+            <li class="listing">
+                <h2>{{ listing.title }}</h3>
+                <p>{{ listing.body }}<em class="contact-details"> | {{ listing.email }}</em></p>
+                
+            </li>
+        {% endfor %}
+    </ul>
+    <hr />
+    <h2>Add new listing</h2>
+    <form method="POST">
+        <fieldset>
+            <label for="title-input">Title: </label>
+            <input type="text" id="title-input" name="title" required />
+        </fieldset>
+        <fieldset>
+            <label for="email-input">Email: </label>
+            <input type="email" id="email-input" name="email" required />
+        </fieldset>
+        <fieldset class="full-width">
+            <label for="body-input">Text: </label>
+            <textarea id="body-input" name="body" required></textarea>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+{% endblock %}
