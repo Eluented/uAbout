@@ -25,6 +25,7 @@ class Users(db.Model):
 
 class Friends(db.Model):
     __tablename__ = 'friends'
+    id = db.Column(db.Integer, primary_key=True)
     friend_request = db.Column(db.Integer, 
                               db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
                               nullable=False)
