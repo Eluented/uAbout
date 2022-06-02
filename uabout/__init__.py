@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from os import environ
+
 from flask import Flask
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin 
@@ -31,17 +32,16 @@ app.config.update(
 db.app = app
 db.init_app(app)
 
-@app.route('/api', endpoint='index', methods=["GET"])
-@cross_origin
+@app.route('/api', methods=['GET'])
+@cross_origin()
 def index():
     return {
-        "test": "test"
+        "tutorial": "Flask React Heroku"
     }
 
-@app.route('/', endpoint='serve')
-@cross_origin
+@app.route('/')
 def serve():
-    return send_from_directory(app.static_folder, "index.html")
+    return send_from_directory(app.static_folder, 'index.html')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
