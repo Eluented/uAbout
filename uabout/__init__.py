@@ -18,18 +18,20 @@ if 'postgres' in database_uri:
 # ----------------------------- Set up the app ----------------------------------------
 
 app = Flask(__name__, static_folder='my-app/build', static_url_path='')
+CORS(app)
+
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
     SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQL_ALCHEMY_TRACK_MODIFICATIONS')
 )
 # ------------------------------------ main routes ------------------------------------
 
-CORS(app)
+
 
 db.app = app
 db.init_app(app)
 
-@app.route('/', methods=["GET"])
+@app.route('/api', methods=["GET"])
 @cross_origin
 def index():
     return {
