@@ -26,16 +26,12 @@ class Users(db.Model):
 class Friends(db.Model):
     __tablename__ = 'friends'
     friend_request = db.Column(db.Integer, 
-                              db.ForeignKey('users.id'), 
-                              nullable=False, 
-                              ondelete='CASCADE', 
-                              onupdate='CASCADE')
+                              db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                              nullable=False)
 
     friend_accept = db.Column(db.Integer, 
-                             db.ForeignKey('users.id'), 
-                             nullable=False, 
-                             ondelete='CASCADE', 
-                             onupdate='CASCADE')
+                             db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                             nullable=False)
 
     # back-reference Users class
     # can use user.first_name idk - bidirectional - many to one
@@ -45,10 +41,8 @@ class Posts(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, 
-                       db.ForeignKey('users.id'), 
-                       nullable=False, 
-                       ondelete='CASCADE', 
-                       onupdate='CASCADE')
+                       db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       nullable=False)
                        
     post_title = db.Column(db.String(255), nullable=False)
     post_body = db.Column(db.String(500), nullable=False)
@@ -75,15 +69,11 @@ class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     user_id = db.Column(db.Integer, 
-                       db.ForeignKey('users.id'), 
-                       nullable=False, 
-                       ondelete='CASCADE', 
-                       onupdate='CASCADE')
+                       db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       nullable=False)
     post_id = db.Column(db.Integer, 
-                       db.ForeignKey('posts.id'), 
-                       nullable=False, 
-                       ondelete='CASCADE', 
-                       onupdate='CASCADE')
+                       db.ForeignKey('posts.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       nullable=False)
 
     comment = db.Column(db.String(100), nullable=False)
 
@@ -99,16 +89,13 @@ class Reactions(db.Model):
     __tablename__ = 'reactions'
     id = db.Column(db.Integer, primary_key=True)
     count = db.Column(db.Integer, default=0)
+
     user_id = db.Column(db.Integer, 
-                       db.ForeignKey('users.id'), 
-                       nullable=False, 
-                       ondelete='CASCADE', 
-                       onupdate='CASCADE')
+                       db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       nullable=False)
     post_id = db.Column(db.Integer, 
-                       db.ForeignKey('posts.id'), 
-                       nullable=False, 
-                       ondelete='CASCADE', 
-                       onupdate='CASCADE')
+                       db.ForeignKey('posts.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       nullable=False)
 
     # back-reference Users class
     # can use user.first_name idk - bidirectional - many to one
