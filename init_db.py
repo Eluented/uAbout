@@ -1,5 +1,4 @@
-from uabout import db
-from uabout.models.schema import User, Friendship
+from uabout.database.db_config import db, User
 
 # Clear it all out
 
