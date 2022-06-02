@@ -31,14 +31,14 @@ app.config.update(
 db.app = app
 db.init_app(app)
 
-@app.route('/api', methods=["GET"])
+@app.route('/api', endpoint='index', methods=["GET"])
 @cross_origin
 def index():
     return {
         "test": "test"
     }
 
-@app.route('/')
+@app.route('/', endpoint='serve')
 @cross_origin
 def serve():
     return send_from_directory(app.static_folder, "index.html")
