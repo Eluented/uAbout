@@ -63,8 +63,8 @@ def register_user():
     if user_exists:
         return jsonify({ "error": "User already exits"}), 409
 
-    # encrypts password
-    hashed_password = bcrypt.generate_password_hash(password)
+    # encrypts password - decodes utf-8 stuff (if it comes as unicode it messes up)
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     new_user = Users(first_name=first_name, 
                     username=username, 
