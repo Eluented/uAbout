@@ -1,13 +1,15 @@
 from dotenv import load_dotenv
 from os import environ
 
-from flask_session import Session
+from .config.redis_config import RedisConfig
+from .config.db_config import db, Users, Friends, Posts, Comments, Reactions
+
 from flask import Flask, jsonify, request, session
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin 
+from flask_session import Session
 from flask_bcrypt import Bcrypt
 
-from .database.db_config import db, Users, Friends, Posts, Comments, Reactions
 
 # ----------------------------------- Load environment variables -----------------------------------
 
@@ -27,6 +29,8 @@ app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
     SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQL_ALCHEMY_TRACK_MODIFICATIONS')
 )
+
+app.config.from_object(RedisConfig)
 
 db.app = app
 db.init_app(app)

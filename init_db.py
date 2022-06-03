@@ -1,4 +1,4 @@
-from uabout.database.db_config import db, Users
+from uabout.config.db_config import db, Users
 
 # Clear it all out
 
