@@ -1,4 +1,4 @@
-from uabout.database.db_config import db, User
+from uabout.database.db_config import db, Users
 
 # Clear it all out
 
@@ -10,8 +10,11 @@ db.create_all()
 
 # Seed data
 
-u = User(first_name="Jeff", last_name="Adonis", email="jeff@outlook.com", 
-password="bruh123", phone ="051232130123")
+u = Users(first_name="Jeff", 
+         username="sadadasd", 
+         email="jeff@outlook.com", 
+         password="bruh123", 
+         phone_number ="051232130123")
 
 db.session.add(u)
-db.session.commit(u)
+db.session.commit()

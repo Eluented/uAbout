@@ -1,19 +1,27 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from uuid import uuid4
 
 db = SQLAlchemy()
+
+def get_uuid():
+    return uuid4().hex
 
 # Classes (tables) will be in UPPERCASE here...
 # But in the database the tables will be LOWERCASE
 
 class Users(db.Model):
     __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(32), 
+                  primary_key=True, 
+                  unique=True, 
+                  default=get_uuid)
+
     first_name = db.Column(db.String(80), nullable=False)
-    last_name = db.Column(db.String(200), nullable=False)
-    email = db.Column(db.String(120), nullable=False)
-    password = db.Column(db.String(300), nullable=False)
-    phone = db.Column(db.String(200), nullable=False)
+    username = db.Column(db.String(200), nullable=False, unique=True)
+    email = db.Column(db.String(345), nullable=False, unique=True)
+    password = db.Column(db.Text, nullable=False)
+    phone_number = db.Column(db.String(200), nullable=False)
 
     # back-reference Posts class 
     # can use poster.name, poster.email for each post
@@ -26,13 +34,9 @@ class Users(db.Model):
 class Friends(db.Model):
     __tablename__ = 'friends'
     id = db.Column(db.Integer, primary_key=True)
-    friend_request = db.Column(db.Integer, 
+    friend_request = db.Column(db.String(32), 
                               db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
                               nullable=False)
-
-    friend_accept = db.Column(db.Integer, 
-                             db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
-                             nullable=False)
 
     # back-reference Users class
     # can use user.first_name idk - bidirectional - many to one
@@ -41,7 +45,7 @@ class Friends(db.Model):
 class Posts(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, 
+    user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
                        
@@ -69,7 +73,7 @@ class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
 
-    user_id = db.Column(db.Integer, 
+    user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
     post_id = db.Column(db.Integer, 
@@ -84,14 +88,14 @@ class Comments(db.Model):
 
     # back-reference Users class
     # can use user.first_name idk - bidirectional - many to one
-    user = db.relationship('Users', backref='user')
+    user = db.relationship('Users', backref='comment_poster')
     
 class Reactions(db.Model):
     __tablename__ = 'reactions'
     id = db.Column(db.Integer, primary_key=True)
     count = db.Column(db.Integer, default=0)
 
-    user_id = db.Column(db.Integer, 
+    user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
     post_id = db.Column(db.Integer, 
@@ -100,4 +104,4 @@ class Reactions(db.Model):
 
     # back-reference Users class
     # can use user.first_name idk - bidirectional - many to one
-    user = db.relationship('Users', backref='user')
+    user = db.relationship('Users', backref='reaction_user')

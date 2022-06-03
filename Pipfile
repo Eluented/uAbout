@@ -11,6 +11,7 @@ python-dotenv = "*"
 gunicorn = "*"
 psycopg2 = "*"
 colorama = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.10"
