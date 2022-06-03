@@ -23,7 +23,7 @@ if 'postgres' in database_uri:
 # ----------------------------- Set up the app (with React) and Database ---------------------------
 
 app = Flask(__name__, static_folder='client/build', static_url_path='')
-CORS(app)
+CORS(app, supports_credentials=True)
 
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
@@ -46,7 +46,6 @@ def serve():
 
 # ---------------------------------------- API ROUTES --------------------------------------------
 @app.route('/api', methods=['GET'])
-@cross_origin()
 def index():
     return """
     <h1>Welcome to the Uabout API!</h1>
@@ -55,7 +54,6 @@ def index():
     """
 
 @app.route('/api/register', methods=['POST'])
-@cross_origin()
 def register_user():
     # fetching form details
     first_name = request.json["first_name"]
@@ -89,7 +87,6 @@ def register_user():
     })
 
 @app.route('/api/login', methods=['POST'])
-@cross_origin()
 def login_user():
     email = request.json["email"]
     password = request.json["password"]
