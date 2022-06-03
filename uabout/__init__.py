@@ -96,11 +96,11 @@ def login_user():
     # if the entered password doesn't match password in database...
     if not bcrypt.check_password_hash(user.password, password):
         return jsonify({ "error": "Incorrect Password"}), 401
-    else:
-        return jsonify({
-            "id": user.id,
-            "username": user.username
-        })
+
+    return jsonify({
+        "id": user.id,
+        "username": user.username
+    })
 
 
 
