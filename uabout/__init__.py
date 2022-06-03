@@ -109,7 +109,7 @@ def login_user():
     })
 
 @app.route('/api/logout', methods=['POST'])
-def login_user():
+def logout_user():
     # Gets rid of session
     session.pop("user_id")
 
