@@ -111,6 +111,22 @@ def login_user():
         "username": user.username
     })
 
+# if you're logged in it will return info - current logged in user
+@app.route('/@me')
+def get_current_user():
+
+    # if there is no session this will return None
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({ "error": "Unauthorized"}), 401
+
+    user = Users.query.filter_by(id=user_id).first()
+
+    return jsonify({
+        "id": user.id,
+        "username": user.username
+    })
 
 
 if __name__ == '__main__':
