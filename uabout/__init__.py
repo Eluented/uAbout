@@ -57,11 +57,11 @@ def register_user():
     password = request.json["password"]
     phone_number = request.json["phone_number"]
 
-    # checks for user in db - returns true if user exists
+    # checks for user in db - returns false if user does not exist (not empty)
     user_exists = Users.query.filter_by(email=email).first() is not None
 
     if user_exists:
-        return jsonify({ "error": "User alreadyd exits"}), 409
+        return jsonify({ "error": "User already exits"}), 409
 
     # encrypts password
     hashed_password = bcrypt.generate_password_hash(password)
@@ -80,6 +80,28 @@ def register_user():
         "id": new_user.id,
         "username": new_user.username
     })
+
+@app.route('/api/login', methods=['POST'])
+@cross_origin()
+def login_user():
+    email = request.json["email"]
+    password = request.json["password"]
+
+    user = Users.query.filter_by(email=email).first()
+
+    # if user doesn't exist
+    if user is None:
+        return jsonify({ "error": "Couldn't find your uAbout Account"}), 401
+    
+    # if the entered password doesn't match password in database...
+    if not bcrypt.check_password_hash(user.password, password):
+        return jsonify({ "error": "Incorrect Password"}), 401
+    else:
+        return jsonify({
+            "id": user.id,
+            "username": user.username
+        })
+
 
 
 if __name__ == '__main__':
