@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 from os import environ
 
-from flask import Flask, jsonify, request
+from flask_session import Session
+from flask import Flask, jsonify, request, session
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin 
 from flask_bcrypt import Bcrypt
@@ -31,6 +32,8 @@ db.app = app
 db.init_app(app)
 
 bcrypt = Bcrypt(app)
+
+server_session = Session(app)
 # --------------------------------------- React Served -------------------------------------------
 
 @app.route('/')
@@ -96,6 +99,8 @@ def login_user():
     # if the entered password doesn't match password in database...
     if not bcrypt.check_password_hash(user.password, password):
         return jsonify({ "error": "Incorrect Password"}), 401
+    
+    session["user_id"] = user.id
 
     return jsonify({
         "id": user.id,
