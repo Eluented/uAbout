@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from os import environ
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin 
 from flask_bcrypt import Bcrypt
@@ -61,7 +61,7 @@ def register_user():
     user_exists = Users.query.filter_by(email=email).first() is not None
 
     if user_exists:
-        abort(409)
+        return jsonify({ "error": "User alreadyd exits"}), 409
 
     # encrypts password
     hashed_password = bcrypt.generate_password_hash(password)
@@ -71,6 +71,10 @@ def register_user():
                     email=email, 
                     password=hashed_password, 
                     phone_number=phone_number)
+
+    # add to database
+    db.session.add(new_user)
+    db.session.commit()
 
     return jsonify({
         "id": new_user.id,
