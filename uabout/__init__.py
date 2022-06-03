@@ -108,6 +108,13 @@ def login_user():
         "username": user.username
     })
 
+@app.route('/api/logout', methods=['POST'])
+def login_user():
+    # Gets rid of session
+    session.pop("user_id")
+
+    return 200
+
 # if you're logged in it will return info - current logged in user
 @app.route('/@me')
 def get_current_user():

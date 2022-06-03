@@ -11,7 +11,9 @@ import {
 
 
 export const LoginPage = () => {
+
     const [formData, setFormData] = useState({});
+    const [user, setUser] = useState('')
 
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -20,14 +22,24 @@ export const LoginPage = () => {
     const logInUser = async () => {
         console.log(formData)
 
-        const resp = await httpClient.post("https://uabout.herokuapp.com/api/login", formData)
+        try {
+            const resp = await httpClient.get("https://uabout.herokuapp.com/api/login", formData)
+            setUser(`${resp.data.username}`)
+            
+            console.log(resp.data)
+        } catch(e){
+            console.log(e)
+        }
 
-        console.log(resp.data)
     }
 
   return (
     <Container maxWidth="md" style={{ backgroundColor: "white" }}>
         <Typography>Log in to your account!</Typography>
+
+        {user.length > 0
+            && <h1>Hello {user}</h1>
+        }
 
         <Box sx={{ mt: "2%", mb: "2%" }} width="100%">
             <FormControl fullWidth>
