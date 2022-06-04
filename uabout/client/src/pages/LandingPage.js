@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import httpClient from '../httpClient'
 
+
 export const LandingPage = () => {
+  const navigate = useNavigate();
+
+
   const [user, setUser] = useState({
     id: null,
     username: ""
   })
+  
 
   useEffect(() => {
 
     const checkLoggedIn = async () => {
+
+
 
       try {
         const resp = await httpClient.get("https://uabout.herokuapp.com/@me");
@@ -30,13 +38,12 @@ export const LandingPage = () => {
     {user.length > 0
             && <h1>Hello {user}</h1>
     }
-    <a href="/login">
-        <button >Login</button>
-    </a>
 
-    <a href="/register">
-        <button >Register</button>
-    </a>
+    <button onClick={() => navigate("/login")}>Login</button>
+
+
+
+    <button onClick={() => navigate("/register")}>Register</button>
     </>
   )
 }

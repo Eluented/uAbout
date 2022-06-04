@@ -116,7 +116,7 @@ def logout_user():
     return 200
 
 # if you're logged in it will return info - current logged in user
-@app.route('/@me')
+@app.route('/api/@me')
 def get_current_user():
 
     # if there is no session this will return None
