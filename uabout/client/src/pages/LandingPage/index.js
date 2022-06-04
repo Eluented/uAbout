@@ -7,10 +7,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
 
-  const [user, setUser] = useState({
-    id: null,
-    username: null
-  })
+  const [user, setUser] = useState("")
   
 
   useEffect(() => {
@@ -19,7 +16,7 @@ const LandingPage = () => {
       try {
         const resp = await httpClient.get("https://uabout.herokuapp.com/api/@me");
 
-        setUser(resp.data)
+        setUser(`${resp.data.username}`)
       } catch(e) {
         console.log(e)
       }
@@ -30,10 +27,10 @@ const LandingPage = () => {
   return (
     <>
     <h1>This is the landing page smiley face</h1>
-    {user.username != null ?
-              <h1>Hello {user} </h1>: <h1>Hey! Let's get started</h1>
-    }
-
+    {user.length > 0
+            && <h1>Hello {user}</h1>
+        }
+        
     <button onClick={() => navigate("/login")}>Login</button>
 
     <br/>
@@ -42,7 +39,7 @@ const LandingPage = () => {
     <button onClick={() => navigate("/register")}>Register</button>
     <br/>
     <br/>
-    
+
     <button onClick={() => navigate("/search")}>Search Friends</button>
     <button onClick={() => navigate("/allfriends")}>Friend's List</button>
     
