@@ -19,12 +19,13 @@ const SearchFriendsPage = () => {
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
-
+    
     // posts to API to search for user in Database
     const searchFriends = async () => {
       console.log(formData)
 
       try {
+          console.log(formData)
           const resp = await httpClient.post("https://uabout.herokuapp.com/api/friends", formData)
           
           console.log(resp.data)
@@ -41,7 +42,7 @@ const SearchFriendsPage = () => {
             <TextField
             type="text"
             label="Search"
-            name='search'
+            name='username'
             onChange={(e) => setData(e)}
             />
         </FormControl>
