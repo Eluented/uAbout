@@ -9,7 +9,7 @@ export const LandingPage = () => {
 
   const [user, setUser] = useState({
     id: null,
-    username: ""
+    username: null
   })
   
 
@@ -35,8 +35,8 @@ export const LandingPage = () => {
   return (
     <>
     <h1>This is the landing page smiley face</h1>
-    {user.length > 0
-            && <h1>Hello {user}</h1>
+    {user.username != null ?
+              <h1>Hello {user} </h1>: <h1>Hey! Let's get started</h1>
     }
 
     <button onClick={() => navigate("/login")}>Login</button>
