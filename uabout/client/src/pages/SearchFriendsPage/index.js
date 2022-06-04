@@ -17,7 +17,7 @@ const SearchFriendsPage = () => {
     }
 
     const setData = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+        setFormData({ ...formData, [e.target.name]: e.target.value.trim() })
     }
     
     // posts to API to search for user in Database

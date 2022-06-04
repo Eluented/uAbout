@@ -141,7 +141,6 @@ def get_current_user():
 @app.route('/api/friends', methods=['POST'])
 def search_friends():
     username = request.json["username"]
-    print(username)
 
     user = Users.query.filter_by(username=username).all()
 
@@ -150,7 +149,7 @@ def search_friends():
     if user is None:
         return jsonify({ "error": "Couldn't find a user with that username"}), 401
 
-    return jsonify(user)
+    return jsonify(user.serialize())
 
 if __name__ == '__main__':
     app.run()
