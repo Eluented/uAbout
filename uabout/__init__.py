@@ -9,6 +9,7 @@ from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin 
 from flask_session import Session
 from flask_bcrypt import Bcrypt
+from flask_marshmallow import Marshmallow
 
 from werkzeug import exceptions
 
@@ -36,6 +37,21 @@ app.config.from_object(RedisConfig)
 
 db.app = app
 db.init_app(app)
+
+ma = Marshmallow(app)
+
+# utilising marshmallow to parse unreadable python objects into json data
+class UsersSchema(ma.Schema):
+    class Meta:
+        fields = ("first_name", 
+                "last_name", 
+                "username", 
+                "email", 
+                "password", 
+                "phone_number") 
+
+user_schema = UsersSchema()
+users_schema = UsersSchema(many=True)
 
 bcrypt = Bcrypt(app)
 
@@ -142,14 +158,18 @@ def get_current_user():
 def search_friends():
     username = request.json["username"]
 
-    user = Users.query.filter_by(username=username).all().to_dict()
+    find_user_by_username = Users.query.filter_by(username=username).all()
 
-    print(user)
     # if user doesn't exist
-    if user is None:
+    if find_user_by_username is None:
         return jsonify({ "error": "Couldn't find a user with that username"}), 401
+    
+    # parse unreadable python object into json format
+    result = users_schema.dump(find_user_by_username)
 
-    return jsonify(user)
+    print(result)
+
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run()
