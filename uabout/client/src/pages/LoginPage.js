@@ -23,7 +23,7 @@ export const LoginPage = () => {
         console.log(formData)
 
         try {
-            const resp = await httpClient.get("https://uabout.herokuapp.com/api/login", formData)
+            const resp = await httpClient.post("https://uabout.herokuapp.com/api/login", formData)
             setUser(`${resp.data.username}`)
             
             console.log(resp.data)
