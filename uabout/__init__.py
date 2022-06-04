@@ -52,7 +52,6 @@ class UsersSchema(ma.Schema):
                 "last_name", 
                 "username", 
                 "email", 
-                "password", 
                 "phone_number") 
 
 user_schema = UsersSchema()
