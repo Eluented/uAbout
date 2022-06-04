@@ -20,7 +20,7 @@ class Users(db.Model):
 
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    username = db.Column(db.String(200), nullable=False, unique=True)
+    username = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(345), nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
     phone_number = db.Column(db.String(200), nullable=False)

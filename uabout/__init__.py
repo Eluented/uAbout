@@ -38,6 +38,11 @@ app.config.from_object(RedisConfig)
 db.app = app
 db.init_app(app)
 
+bcrypt = Bcrypt(app)
+
+server_session = Session(app)
+
+# ----------------------------------- Setting up Marshmallow -----------------------------
 ma = Marshmallow(app)
 
 # utilising marshmallow to parse unreadable python objects into json data
@@ -53,9 +58,6 @@ class UsersSchema(ma.Schema):
 user_schema = UsersSchema()
 users_schema = UsersSchema(many=True)
 
-bcrypt = Bcrypt(app)
-
-server_session = Session(app)
 # ----------------------------------- React Served on all 404 Routes -----------------------------
 
 @app.errorhandler(exceptions.NotFound)
@@ -170,6 +172,8 @@ def search_friends():
     print(result)
 
     return jsonify(result)
+
+    
 
 if __name__ == '__main__':
     app.run()
