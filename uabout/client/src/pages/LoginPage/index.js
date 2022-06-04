@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box } from "@mui/system";
-import httpClient from '../httpClient'
+import httpClient from '../../httpClient'
 import {
     FormControl,
     Button,
@@ -9,8 +9,7 @@ import {
     Container
 } from "@mui/material";
 
-
-export const LoginPage = () => {
+const LoginPage = () => {
 
     const [formData, setFormData] = useState({});
     const [user, setUser] = useState('')
@@ -74,3 +73,5 @@ export const LoginPage = () => {
     </Container >
   )
 }
+
+export default LoginPage;

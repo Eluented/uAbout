@@ -55,10 +55,12 @@ def index():
     <button onclick="location.href = 'https://uabout.herokuapp.com/';"> Go Back! </button>
     """
 
+# --------------------------------------- AUTH ROUTES --------------------------------------------
 @app.route('/api/register', methods=['POST'])
 def register_user():
     # fetching form details
     first_name = request.json["first_name"]
+    last_name = request.json["last_name"]
     username = request.json["username"]
     email = request.json["email"]
     password = request.json["password"]
@@ -74,6 +76,7 @@ def register_user():
     hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     new_user = Users(first_name=first_name, 
+                    last_name=last_name,
                     username=username, 
                     email=email, 
                     password=hashed_password, 
@@ -134,6 +137,22 @@ def get_current_user():
         "username": user.username
     })
 
+# ------------------------------------- FRIENDS ROUTES ----------------------------------------
+@app.route('/api/friends', methods=['POST'])
+def search_friends():
+    username = request.json["username"]
+
+    user = Users.query.filter_by(username=username)
+
+    # if user doesn't exist
+    if user is None:
+        return jsonify({ "error": "Couldn't find a user with that username"}), 401
+
+    return jsonify({
+        "username": user.username,
+        "first_name": user.first_name,
+        "last_name": user.last_name
+    })
 
 if __name__ == '__main__':
     app.run()

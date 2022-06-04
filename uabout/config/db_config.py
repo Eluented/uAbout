@@ -18,6 +18,7 @@ class Users(db.Model):
                   default=get_uuid)
 
     first_name = db.Column(db.String(80), nullable=False)
+    last_name = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(200), nullable=False, unique=True)
     email = db.Column(db.String(345), nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)

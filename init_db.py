@@ -10,10 +10,11 @@ db.create_all()
 
 # Seed data
 
-u = Users(first_name="Jeff", 
-         username="sadadasd", 
-         email="jeff@outlook.com", 
-         password="bruh123", 
+u = Users(first_name="Jeff",
+         last_name="Bezos",
+         username="Jeffy", 
+         email="jeffy@outlook.com", 
+         password="bruh1235", 
          phone_number ="051232130123")
 
 db.session.add(u)

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import httpClient from '../httpClient'
+import httpClient from '../../httpClient'
 
 
-export const LandingPage = () => {
+const LandingPage = () => {
   const navigate = useNavigate();
 
 
@@ -16,20 +16,15 @@ export const LandingPage = () => {
   useEffect(() => {
 
     const checkLoggedIn = async () => {
-
-
-
       try {
-        const resp = await httpClient.get("https://uabout.herokuapp.com/@me");
+        const resp = await httpClient.get("https://uabout.herokuapp.com/api/@me");
 
         setUser(resp.data)
       } catch(e) {
         console.log(e)
       }
     }
-
     checkLoggedIn()
-
   }, [])
   
   return (
@@ -41,9 +36,18 @@ export const LandingPage = () => {
 
     <button onClick={() => navigate("/login")}>Login</button>
 
-
+    <br/>
+    <br/>
 
     <button onClick={() => navigate("/register")}>Register</button>
+    <br/>
+    <br/>
+    
+    <button onClick={() => navigate("/search")}>Search Friends</button>
+    <button onClick={() => navigate("/allfriends")}>Friend's List</button>
+    
     </>
   )
 }
+
+export default LandingPage;

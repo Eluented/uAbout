@@ -1,10 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'
 import './App.css';
-import { LandingPage } from './pages/LandingPage';
-import { LoginPage } from './pages/LoginPage';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { RegisterPage } from './pages/RegisterPage';
+import { 
+  LandingPage, 
+  LoginPage,
+  SearchFriendsPage, 
+  RegisterPage,
+  NotFoundPage,
+  FriendsPage,
+  SearchResultsPage
+  } from './pages'
 
 function App() {
   return (
@@ -13,6 +18,12 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='*' element={<NotFoundPage />} />
+        <Route path='/allfriends' element={<FriendsPage />} />
+
+        <Route path="/search" >
+                <Route path="/search" element={<SearchFriendsPage />} />
+                <Route path=":username" element={<SearchResultsPage />} />
+        </Route>
     </Routes>
   );
 }
