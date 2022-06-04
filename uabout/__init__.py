@@ -10,6 +10,7 @@ from flask_cors import CORS, cross_origin
 from flask_session import Session
 from flask_bcrypt import Bcrypt
 
+from werkzeug import exceptions
 
 # ----------------------------------- Load environment variables -----------------------------------
 
@@ -27,7 +28,8 @@ CORS(app, supports_credentials=True)
 
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
-    SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQL_ALCHEMY_TRACK_MODIFICATIONS')
+    SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQL_ALCHEMY_TRACK_MODIFICATIONS'),
+    FLASK_ENV=environ.get('FLASK_ENV')
 )
 
 app.config.from_object(RedisConfig)
@@ -38,10 +40,10 @@ db.init_app(app)
 bcrypt = Bcrypt(app)
 
 server_session = Session(app)
-# --------------------------------------- React Served -------------------------------------------
+# ----------------------------------- React Served on all 404 Routes -----------------------------
 
-@app.route('/')
-def serve():
+@app.errorhandler(exceptions.NotFound)
+def serve(err):
     return send_from_directory(app.static_folder, 'index.html')
 
 # ---------------------------------------- API ROUTES --------------------------------------------
@@ -134,4 +136,4 @@ def get_current_user():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
