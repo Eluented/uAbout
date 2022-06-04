@@ -149,7 +149,7 @@ def search_friends():
     if user is None:
         return jsonify({ "error": "Couldn't find a user with that username"}), 401
 
-    return jsonify(user.serialize())
+    return jsonify(user.to_dict())
 
 if __name__ == '__main__':
     app.run()
