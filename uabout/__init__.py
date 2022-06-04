@@ -143,7 +143,7 @@ def search_friends():
     username = request.json["username"]
     print(username)
 
-    user = Users.query.filter_by(username=username)
+    user = Users.query.filter_by(username=username).all()
 
     print(user)
     # if user doesn't exist
