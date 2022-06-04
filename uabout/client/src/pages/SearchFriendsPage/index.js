@@ -1,39 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Box } from "@mui/system";
-import httpClient from '../../httpClient'
 import {
-    FormControl,
-    Button,
-    Typography,
-    TextField,
-    Container
+  FormControl,
+  Button,
+  Typography,
+  TextField,
+  Container
 } from "@mui/material";
 
+import { useNavigate } from 'react-router';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers } from '../../reducers/mainSlice'
+
 const SearchFriendsPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({});
 
+    // posts to API to search for user in Database
     function handleSubmit(e) {
-      return e.preventDefault();
+      e.preventDefault();
+      navigate(`/search/${formData.username}`)
+      return dispatch(fetchUsers(formData))
     }
 
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value.trim() })
     }
     
-    // posts to API to search for user in Database
-    const searchFriends = async () => {
-      console.log(formData)
-
-      try {
-          console.log(formData)
-          const resp = await httpClient.post("https://uabout.herokuapp.com/api/friends", formData)
-          
-          console.log(resp.data)
-      } catch(e){
-          console.log(e)
-      }
-  }
-
   return (
     <>
     <form onSubmit={handleSubmit}>
@@ -52,7 +47,6 @@ const SearchFriendsPage = () => {
         fullWidth
         variant="contained"
         type="submit"
-        onClick={searchFriends}
         >Search Users
         </Button>
     </form>

@@ -103,6 +103,8 @@ def register_user():
     db.session.add(new_user)
     db.session.commit()
 
+    session["user_id"] = new_user.id
+
     return jsonify({
         "id": new_user.id,
         "username": new_user.username
@@ -166,7 +168,7 @@ def search_friends():
         return jsonify({ "error": "Couldn't find a user with that username"}), 401
     
     # parse unreadable python object into json format
-    result = users_schema.dump(find_user_by_username)
+    result = users_schema.dumps(find_user_by_username)
 
     print(result)
 
