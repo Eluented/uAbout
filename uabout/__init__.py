@@ -142,14 +142,14 @@ def get_current_user():
 def search_friends():
     username = request.json["username"]
 
-    user = Users.query.filter_by(username=username).all()
+    user = Users.query.filter_by(username=username).all().to_dict()
 
     print(user)
     # if user doesn't exist
     if user is None:
         return jsonify({ "error": "Couldn't find a user with that username"}), 401
 
-    return jsonify(user.to_dict())
+    return jsonify(user)
 
 if __name__ == '__main__':
     app.run()
