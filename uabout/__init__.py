@@ -156,7 +156,7 @@ def get_current_user():
     return jsonify({
         "id": user.id,
         "username": user.username
-    })
+    }), 200
 
 # ------------------------------------- FRIENDS ROUTES ----------------------------------------
 @app.route('/api/friends', methods=['POST'])
@@ -172,12 +172,12 @@ def search_friends():
     result = users_schema.dump(find_user_by_username)
 
     if result == []:
-        return jsonify({ "error": "Couldn't find a user with that username"}), 401
+        return jsonify({ "error": "Couldn't find a user with that username"}), 204
 
     print(result)
     print(json.dumps(result))
 
-    return json.dumps(result)
+    return jsonify({ "data": json.dumps(result) }), 200
 
     
 
