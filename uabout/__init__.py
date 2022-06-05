@@ -176,7 +176,7 @@ def search_friends():
 
     print(result)
 
-    return { "data": result }, 200
+    return jsonify({ "results": result }), 200
 
     
 

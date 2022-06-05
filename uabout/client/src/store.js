@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import mainSlice from "./reducers/mainSlice";
+import mainReducer from "./reducers/mainSlice";
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 // don't delete
 export default configureStore({
   reducer: {
-    main: mainSlice.reducer
-  }
+    main: mainReducer
+  },
+  middleware: getDefaultMiddleware({serializableCheck: false})
 });

@@ -20,7 +20,7 @@ export const logout = createAsyncThunk(
 export const mainSlice = createSlice({
   name: "main",
   initialState: {
-    users: [],
+    users: null,
     status: "idle",
     searchError: null
   },
@@ -31,7 +31,7 @@ export const mainSlice = createSlice({
     },
     [fetchUsers.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.users = state.users.concat(action.payload);
+      state.users = state.users = action.payload;
     },
     [fetchUsers.rejected]: (state, action) => {
       state.status = "failed";
@@ -50,6 +50,6 @@ export const mainSlice = createSlice({
   }
 });
 
-export const users = state => state.main.users;
+export const userSearchResult = state => state.main.users;
 
-export default mainSlice;
+export default mainSlice.reducer;

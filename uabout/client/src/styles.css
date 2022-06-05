@@ -1,0 +1,17 @@
+/***************************************************************************************/
+
+/* Generic */
+
+:root {
+    --primary: ;
+    --background-colour: linear-gradient(180deg, #EAE5C9 0%, #C9E4EA 67.71%, #76C4CD 100%);
+    --secondary: ;
+    --secondary: ;
+}
+
+html {
+margin: 0;
+height: 100%;
+font-family: "Poppins", sans-serif !important;
+background: var(--background-colour);
+}
