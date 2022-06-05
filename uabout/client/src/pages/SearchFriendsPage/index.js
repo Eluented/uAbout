@@ -16,21 +16,30 @@ const SearchFriendsPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const searchFriendsStatus = useSelector(state => state.main.status);
+    const searchFriendsError = useSelector(state => state.main.searchError);
+
     const [formData, setFormData] = useState({});
 
     // posts to API to search for user in Database
     function handleSubmit(e) {
       e.preventDefault();
-      navigate(`/search/${formData.username}`)
-      return dispatch(fetchUsers(formData))
-    }
+      dispatch(fetchUsers(formData))
+      // if search succeeds... changes url to searched user (fool the user)
+      if (searchFriendsStatus === "succeeded"){
+        return navigate(`/search/${formData.username}`)     
+      }
+    };
 
+    // when user types sets form data based on name
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value.trim() })
-    }
+    };
     
   return (
     <>
+    { searchFriendsStatus === "failed" 
+            &&    <h1>{searchFriendsError}</h1>}
     <form onSubmit={handleSubmit}>
         <Box sx={{ mt: "2%", mb: "2%" }} width="100%">
         <FormControl fullWidth>

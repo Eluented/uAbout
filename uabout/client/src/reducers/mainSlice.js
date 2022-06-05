@@ -20,7 +20,9 @@ export const logout = createAsyncThunk(
 export const mainSlice = createSlice({
   name: "main",
   initialState: {
-    users: []
+    users: [],
+    status: "idle",
+    searchError: null
   },
   reducers: {},
   extraReducers: {
@@ -29,18 +31,17 @@ export const mainSlice = createSlice({
     },
     [fetchUsers.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.categories = state.users.concat(action.payload);
+      state.users = state.users.concat(action.payload);
     },
     [fetchUsers.rejected]: (state, action) => {
       state.status = "failed";
-      state.error = action.error.message;
+      state.searchError = action.error.message;
     },
     [logout.pending]: (state, action) => {
       state.status = "loading";
     },
     [logout.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.categories = state.users.concat(action.payload);
     },
     [logout.rejected]: (state, action) => {
       state.status = "failed";

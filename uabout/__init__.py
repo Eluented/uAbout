@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from os import environ
+import json
 
 from .config.redis_config import RedisConfig
 from .config.db_config import db, Users, Friends, Posts, Comments, Reactions
@@ -12,6 +13,7 @@ from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
 
 from werkzeug import exceptions
+
 
 # ----------------------------------- Load environment variables -----------------------------------
 
@@ -164,15 +166,17 @@ def search_friends():
     find_user_by_username = Users.query.filter_by(username=username).all()
 
     # if user doesn't exist
-    if find_user_by_username is None:
-        return jsonify({ "error": "Couldn't find a user with that username"}), 401
+
     
-    # parse unreadable python object into json format
-    result = users_schema.dumps(find_user_by_username)
+    # parse unreadable python object into a json equilavent 
+    result = users_schema.dump(find_user_by_username)
+
+    if result == []:
+        return jsonify({ "error": "Couldn't find a user with that username"}), 401
 
     print(result)
 
-    return jsonify(result)
+    return result
 
     
 
