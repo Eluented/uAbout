@@ -169,14 +169,14 @@ def search_friends():
 
     
     # parse unreadable python object into a json equilavent 
-    result = users_schema.dumps(find_user_by_username)
+    result = users_schema.dump(find_user_by_username)
 
     if result == []:
         return jsonify({ "error": "Couldn't find a user with that username"}), 204
 
     print(result)
 
-    return { "results": result }, 200
+    return { "data": result }, 200
 
     
 
