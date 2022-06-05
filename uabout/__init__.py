@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from os import environ
-import json
+import json 
 
 from .config.redis_config import RedisConfig
 from .config.db_config import db, Users, Friends, Posts, Comments, Reactions
@@ -175,8 +175,9 @@ def search_friends():
         return jsonify({ "error": "Couldn't find a user with that username"}), 401
 
     print(result)
+    print(json.dumps(result))
 
-    return result
+    return json.dumps(result)
 
     
 
