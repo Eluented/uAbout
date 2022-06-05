@@ -176,7 +176,7 @@ def search_friends():
 
     print(result)
 
-    return result, 200
+    return { "results": result }, 200
 
     
 
