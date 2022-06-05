@@ -16,12 +16,12 @@ const SearchResultsPage = () => {
   const { username } = useParams();
 
   const searchResult = useSelector(userSearchResult);
-  const results = searchResult.data;
+  const results = searchResult.data.results;
   console.log(results)
   return (
     <>
       <Container maxWidth="md" style={{ backgroundColor: "white" }}>
-        <Box sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
+        <Box sx={{ pt: "2%", pb: "5%", mb: "5%" }}>
           <h1>Search Results for {username}</h1>
         </Box>
 
@@ -35,8 +35,12 @@ const SearchResultsPage = () => {
 
         {searchResult.status === 200
           && 
-          results.map((data, idx) => (
-          console.log(data.username, data.first_name, data.last_name, idx)
+          results.map(({username, first_name, last_name }, idx) => (
+            <Box key={idx} sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
+            <h3>{username}</h3>
+            <h3>{first_name}</h3>
+            <h3>{last_name}</h3>
+            </Box>
           ))}
 
 
