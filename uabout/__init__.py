@@ -1,19 +1,21 @@
+# Env Imports
 from dotenv import load_dotenv
 from os import environ
-import json 
 
+# Database Imports
+from .config.db_config import db, Users, Posts, Comments, Reactions
+from .config.friends_config import is_friends_or_pending, get_friend_requests, get_friends
 from .config.redis_config import RedisConfig
-from .config.db_config import db, Users, Friends, Posts, Comments, Reactions
 
+# Flask Imports
 from flask import Flask, jsonify, request, session
 from flask.helpers import send_from_directory
-from flask_cors import CORS, cross_origin 
+from flask_cors import CORS
 from flask_session import Session
 from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
 
 from werkzeug import exceptions
-
 
 # ----------------------------------- Load environment variables -----------------------------------
 
@@ -181,4 +183,7 @@ def search_friends():
     
 
 if __name__ == '__main__':
-    app.run()
+    
+        PORT = int(environ.get("PORT", 5000))
+
+        app.run(host="0.0.0.0", port=PORT, debug=True)

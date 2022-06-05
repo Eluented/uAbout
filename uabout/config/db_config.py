@@ -3,16 +3,23 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from uuid import uuid4
 
+from sqlalchemy_searchable import make_searchable
+from sqlalchemy_utils.types import TSVectorType
+
 db = SQLAlchemy()
+
+make_searchable(db.metadata)
 
 def get_uuid():
     return uuid4().hex
 
-# Classes (tables) will be in UPPERCASE here...
-# But in the database the tables will be LOWERCASE
+
+########################################## Models ###################################################
 
 class Users(db.Model):
+    """ Users of 4About """
     __tablename__ = 'users'
+
     id = db.Column(db.String(32), 
                   primary_key=True, 
                   unique=True, 
@@ -25,33 +32,40 @@ class Users(db.Model):
     password = db.Column(db.Text, nullable=False)
     phone_number = db.Column(db.String(200), nullable=False)
 
-    # back-reference Posts class 
-    # can use poster.name, poster.email for each post
-    posts = db.relationship('Posts', backref='poster')
+    image_url = db.Column(db.String(200), nullable=True)
+
+    # Put name inside TSVectorType definition for it to be fulltext-indexed (searchable)
+    search_vector = db.Column(TSVectorType('first_name', 'last_name', 'username'))
+
+    posts = db.relationship('Posts', backref=db.backref('poster'))
 
     # back-reference Friends class - one to many
     # can use friends.something idk?
-    friends = db.relationship('Friends', backref='friends')
+    friends = db.relationship('Friends', backref=db.backref('friends'))
 
-    # constructor
-    def __init__(self, first_name, last_name, username, email, password, phone_number):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.username = username
-        self.email = email
-        self.password = password
-        self.phone_number = phone_number
 
-class Friends(db.Model):
-    __tablename__ = 'friends'
-    id = db.Column(db.Integer, primary_key=True)
-    friend_request = db.Column(db.String(32), 
-                              db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
-                              nullable=False)
+class Connection(db.Model):
+    """Connection between two users to establish a friendship and can see each other's info."""
 
-    # back-reference Users class
-    # can use user.first_name idk - bidirectional - many to one
-    user = db.relationship('Users', backref='user')
+    __tablename__ = "connections"
+
+    connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_a_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    user_b_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    status = db.Column(db.String(100), nullable=False)
+
+    # When both columns have a relationship with the same table, need to specify how
+    # to handle multiple join paths in the square brackets of foreign_keys per below
+    user_a = db.relationship("User", foreign_keys=[user_a_id], backref=db.backref("sent_connections"))
+    user_b = db.relationship("User", foreign_keys=[user_b_id], backref=db.backref("received_connections"))
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "<Connection connection_id=%s user_a_id=%s user_b_id=%s status=%s>" % (self.connection_id,
+                                                                                      self.user_a_id,
+                                                                                      self.user_b_id,
+                                                                                      self.status)
 
 class Posts(db.Model):
     __tablename__ = 'posts'

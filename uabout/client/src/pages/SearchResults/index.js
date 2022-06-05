@@ -17,7 +17,8 @@ const SearchResultsPage = () => {
 
   const searchResult = useSelector(userSearchResult);
   const results = searchResult.data.results;
-  console.log(results)
+
+
   return (
     <>
       <Container maxWidth="md" style={{ backgroundColor: "white" }}>
@@ -42,9 +43,6 @@ const SearchResultsPage = () => {
             <h3>{last_name}</h3>
             </Box>
           ))}
-
-
-
 
       </Container>
     </>

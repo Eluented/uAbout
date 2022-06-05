@@ -17,6 +17,8 @@ redis = "*"
 werkzeug = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+sqlalchemy-searchable = "*"
+sqlalchemy-utils = "*"
 
 [requires]
 python_version = "3.10"
