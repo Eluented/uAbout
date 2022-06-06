@@ -192,7 +192,7 @@ def get_current_user():
 def all_users():
 
     # gets all users from db
-    users = db.query(Users).all()
+    users = Users.query.all()
     
     result = users_schema.dump(users)
 
