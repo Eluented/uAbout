@@ -35,7 +35,8 @@ CORS(app, supports_credentials=True)
 
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
-    FLASK_ENV=environ.get('FLASK_ENV'),
+    FLASK_ENV='development',
+    FLASK_APP='uabout',
     SQLALCHEMY_ECHO = True,
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 )

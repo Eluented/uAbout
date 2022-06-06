@@ -11,7 +11,7 @@ db = SQLAlchemy()
 
 Base = declarative_base()
 
-make_searchable()
+make_searchable(db.metadata)
 
 def get_uuid():
     return uuid4().hex
