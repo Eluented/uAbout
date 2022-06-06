@@ -4,6 +4,13 @@ from uabout.config.db_config import db, Users
 
 db.drop_all()
 
+
+# Configure mappers before creating tables in order for search trigger in
+# SQLAlchemy-Searchable to work properly
+
+db.configure_mappers()
+
+
 # Set it back up
 
 db.create_all()
