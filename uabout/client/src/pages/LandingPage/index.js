@@ -31,12 +31,12 @@ const LandingPage = () => {
             && <h1>Hello {user}</h1>
         }
         
-    <button onClick={() => navigate("/login")}>Login</button>
+    { /* <button onClick={() => navigate("/login")}>Login</button> */}
 
     <br/>
     <br/>
 
-    <button onClick={() => navigate("/register")}>Register</button>
+    { /* <button onClick={() => navigate("/register")}>Register</button> */}
     <br/>
     <br/>
 
