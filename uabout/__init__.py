@@ -175,12 +175,12 @@ def logout_user():
 def get_current_user():
 
     # if there is no session this will return None
-    user_id = session.get("current_user")
+    session = session.get("current_user")
 
-    if not user_id:
+    if not session:
         return jsonify({ "error": "Unauthorized"}), 401
 
-    user = Users.query.filter_by(id=user_id).first()
+    user = Users.query.filter_by(user_id=session.user_id).first()
 
     return jsonify({
         "id": user.id,
@@ -191,9 +191,16 @@ def get_current_user():
 @app.route('/api/users', methods=['GET'])
 def all_users():
 
-    users = db.session.query(Users).all()
+    # gets all users from db
+    users = db.query(Users).all()
     
-    return jsonify({ "results": users })
+    result = users_schema.dump(users)
+
+    # if no results...
+    if result == []:
+        return jsonify({ "error": "No Users Found"}), 204
+
+    return jsonify({ "results": result })
 
 # ------------------------------------- FRIENDS ROUTES ----------------------------------------
 @app.route('/api/friends', methods=['POST'])
