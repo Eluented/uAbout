@@ -191,7 +191,10 @@ def get_current_user():
 @app.route('/api/users', methods=['GET'])
 def all_users():
 
-      users = db.session.query(Users).all()
+    users = db.session.query(Users).all()
+    
+    return jsonify({ "results": users })
+
 # ------------------------------------- FRIENDS ROUTES ----------------------------------------
 @app.route('/api/friends', methods=['POST'])
 def search_friends():
