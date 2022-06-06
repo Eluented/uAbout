@@ -209,7 +209,7 @@ html {
 }
 
 /* Post form Styling */
-.postform-parent-container {
+.eventform-parent-container {
   background-color: rgba(241, 241, 241, 0.41);
   width: 90%;
   height: 300px;
@@ -217,10 +217,17 @@ html {
   top: 50px;
 }
 
+.homepage-section {
+  display: block;
+}
 .form-container {
   display: flex;
   top: 10px;
   /* background-color: red; */
+}
+
+.eventrender-container {
+  top: 200px;
 }
 
 /* All responsive styling */

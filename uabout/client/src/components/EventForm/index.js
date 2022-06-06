@@ -19,8 +19,7 @@ function EventForm() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("It works!");
+    return e.preventDefault();
   };
 
   return (
@@ -41,14 +40,14 @@ function EventForm() {
             Start Date:
             <DatePicker
               selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
+              onChange={(date) => setStartDate(date)}
             />
           </label>
           <label>
             End Date:
             <DatePicker
               selected={endDate}
-              onChange={(date: Date) => setEndDate(date)}
+              onChange={(date) => setEndDate(date)}
             />
           </label>
           <input
