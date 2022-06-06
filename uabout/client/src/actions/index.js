@@ -2,7 +2,7 @@ import httpClient from '../httpClient'
 
 async function searchFriends(formData) {
     try {
-        const resp = await httpClient.post("https://uabout.herokuapp.com/api/friends", formData)
+        const resp = await httpClient.post("https://uabout.herokuapp.com/api/friends/search", formData)
         // console.log(resp)
       return resp
     } catch (e) {

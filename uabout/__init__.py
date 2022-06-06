@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from os import environ
 
 # Database Imports
-from .config.db_config import db, Users, Posts, Comments, Reactions
+from .config.db_config import db, Users, Posts, Comments, Reactions, Connection
 from .config.friends_config import is_friends_or_pending, get_friend_requests, get_friends
 from .config.redis_config import RedisConfig
 
@@ -192,12 +192,11 @@ def get_current_user():
         "id": user.user_id,
         "username": user.username
     }), 200
+# ------------------------------------- USERS ROUTES ----------------------------------------
 
-# shows all users from db
 @app.route('/api/users', methods=['GET'])
 def all_users():
-
-    # gets all users from db
+    """ Shows all users from the DB """
     users = Users.query.all()
     
     result = users_schema.dump(users)
@@ -208,14 +207,33 @@ def all_users():
 
     return jsonify({ "results": result })
 
+# @app.route("/api/users/<int:user_id>")
+# def user_profile(user_id):
+#     """ Show a specific user profile """
+
+
 # ------------------------------------- FRIENDS ROUTES ----------------------------------------
-@app.route('/api/friends', methods=['POST'])
+
+@app.route("/api/friends")
+def show_friends_and_requests():
+    """ Show friend requests and list of all friends """
+
+    # This returns User objects for current user's friend requests
+    received_friend_requests, sent_friend_requests = get_friend_requests(session["current_user"]["user_id"])
+
+    # This returns a query for current user's friends (not User objects), but adding .all() to the end gets list of User objects
+    friends = get_friends(session["current_user"]["user_id"]).all()
+
+    return jsonify({ "received_friend_requests" : received_friend_requests,
+                    "sent_friend_requests" : sent_friend_requests,
+                    "friends" : friends })
+
+
+@app.route('/api/friends/search', methods=['POST'])
 def search_friends():
+    """ Search for friends by username, first_name and last_name """
+
     username = request.json["username"]
-
-    # find_user_by_username = Users.query.filter_by(username=username).all()
-
-
 
     search_results = search(db.session.query(Users), username).all()
 
@@ -225,13 +243,43 @@ def search_friends():
     print(search_results)
 
     # parse unreadable python object into a json equilavent 
-
     result = users_schema.dump(search_results)
 
     print(result)
 
     return jsonify({ "results": result }), 200
 
+
+@app.route("/api/add-friend", methods=["POST"])
+def add_friend():
+    """Send a friend request to another user."""
+
+    # gets the user_id of the person sending friend request
+    user_a_id = session["current_user"]["user_id"]
+
+    # retrieves the other user_id of the other person within post request
+    user_b_id = request.json["user_b_id"]
+
+    # Check connection status between user_a and user_b
+    is_friends, is_pending = is_friends_or_pending(user_a_id, user_b_id)
+
+    if user_a_id == user_b_id:
+        return "You cannot add yourself as a friend."
+    elif is_friends:
+        return "You are already friends."
+    elif is_pending:
+        return "Your friend request is pending."
+    else:
+        requested_connection = Connection(user_a_id=user_a_id,
+                                          user_b_id=user_b_id,
+                                          status="Requested")
+        db.session.add(requested_connection)
+        db.session.commit()
+
+        return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
+
+
+    
 @app.route('/api/posts', methods = ["POST"])
 def create_post():
 
