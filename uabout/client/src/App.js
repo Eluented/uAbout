@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -11,17 +10,15 @@ import {
   NotFoundPage,
   FriendsPage,
   SearchResultsPage,
-
   MyEventsPage,
   HomePage,
+  ProfileSettingsPage,
 } from "./pages";
-
 
 function App() {
   return (
     <Routes>
-
-      <Route path='/' element={<WelcomePage />} />
+      <Route path="/" element={<WelcomePage />} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
@@ -29,9 +26,9 @@ function App() {
       <Route path="/allfriends" element={<FriendsPage />} />
       <Route path="/myevents" element={<MyEventsPage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/profile" element={<ProfileSettingsPage />} />
 
       <Route path="/search">
-
         <Route path="/search" element={<SearchFriendsPage />} />
         <Route path=":username" element={<SearchResultsPage />} />
       </Route>
