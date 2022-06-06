@@ -1,17 +1,100 @@
 /***************************************************************************************/
 
 /* Generic */
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 
 :root {
-    --primary: ;
-    --background-colour: linear-gradient(180deg, #EAE5C9 0%, #C9E4EA 67.71%, #76C4CD 100%);
-    --secondary: ;
-    --secondary: ;
+  --background-primary: #e1e3cd;
+  --background-secondary: #76c4cd;
+  --text-primary: #072a48;
+  --text-secondary: #072a48;
+  --triangle: #f1f1f1;
 }
 
 html {
-margin: 0;
-height: 100%;
-font-family: "Poppins", sans-serif !important;
-background: var(--background-colour);
+  margin: 0;
+  height: 100%;
+  font-family: "Abril Fatface", cursive !important;
+  background: linear-gradient(
+    180deg,
+    var(--background-primary) 0%,
+    var(--background-secondary) 100%
+  );
+}
+
+/* Navbar component styling */
+.Navbar {
+  position: fixed;
+  top: 20%;
+}
+
+.Navbar li {
+  list-style: none;
+  padding: 30px 0px;
+}
+
+/* Footer component styling */
+.footer-container {
+  display: flex;
+}
+
+.Footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.Footer h2 {
+  font-size: 36px;
+  display: flex;
+  margin: 0%;
+  position: relative;
+  left: 10%;
+  top: 90px;
+}
+
+.triangle {
+  width: 100%;
+  height: 20vh;
+  background-color: var(--triangle);
+  clip-path: polygon(100% 0%, 100% 100%, -10% 100%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.triangle h3 {
+  margin: 20%;
+}
+
+.username {
+  color: var(--text-secondary);
+}
+
+/* Calendar component styling */
+
+@media (max-width: 600px) {
+  /* Navbar Responsive */
+  .Navbar {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+  }
+
+  .Navbar ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+
+  .Navbar li {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  /* Footer Responsive */
+
+  .Footer {
+    width: 100%;
+  }
 }
