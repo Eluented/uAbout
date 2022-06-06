@@ -58,10 +58,6 @@ html {
   top: 90px;
 }
 
-.Footer h2:hover {
-  cursor: pointer;
-}
-
 .triangle {
   width: 100%;
   height: 20vh;
@@ -73,11 +69,18 @@ html {
 }
 
 .triangle h3 {
-  margin: 20%;
+  margin: 5%;
 }
 
 .username {
   color: var(--text-secondary);
+}
+
+.avatar-icon {
+  border-style: none;
+}
+.avatar-icon:hover {
+  cursor: pointer;
 }
 
 /* Calendar component styling */
@@ -292,6 +295,8 @@ hr {
 .eventrender-container {
   top: 200px;
 }
+
+/* Profile Settings page */
 
 /* All responsive styling */
 
