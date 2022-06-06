@@ -10,10 +10,12 @@ from .config.redis_config import RedisConfig
 # Flask Imports
 from flask import Flask, jsonify, flash, request, session
 from flask.helpers import send_from_directory
+from sqlalchemy_searchable import search
 from flask_cors import CORS
 from flask_session import Session
 from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
+
 
 from werkzeug import exceptions
 
@@ -179,14 +181,14 @@ def get_current_user():
     user_key = session.get("current_user")
 
     print(user_key)
-    
+
     if not user_key:
         return jsonify({ "error": "Unauthorized"}), 401
 
     user = Users.query.filter_by(user_id=user_key["user_id"]).first()
 
     return jsonify({
-        "id": user.id,
+        "id": user.user_id,
         "username": user.username
     }), 200
 
@@ -210,13 +212,14 @@ def all_users():
 def search_friends():
     username = request.json["username"]
 
-    find_user_by_username = Users.query.filter_by(username=username).all()
+    # find_user_by_username = Users.query.filter_by(username=username).all()
 
     # if user doesn't exist
 
+    search_results = search(Users.query, username).all()
     
     # parse unreadable python object into a json equilavent 
-    result = users_schema.dump(find_user_by_username)
+    result = users_schema.dump(search_results)
 
     if result == []:
         return jsonify({ "error": "Couldn't find a user with that username"}), 204
