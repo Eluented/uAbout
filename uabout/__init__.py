@@ -239,17 +239,18 @@ def create_post():
     post_title = request.json['title']
     post_body = request.json['body']
 
-    # user_session = session.get("current_user")
+    user_session = session.get("current_user")
 
-    # user_id = user_session["user_id"]
-
+    user_id = user_session["user_id"]
+    
     new_post = Posts(post_title=post_title, 
-                     post_body=post_body)
+                     post_body=post_body,
+                     user_id = user_id)
 
     db.session.add(new_post)
     db.session.commit()
 
-    return jsonify({ "post_title": post_title })
+    return jsonify({"post_title": post_title, "post_body": post_body})
 
     
 
