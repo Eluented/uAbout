@@ -237,11 +237,14 @@ def create_post():
 
     post_title = request.form['title']
     post_body = request.form['body']
-    # username = request.json["username"]
-    # user_id = session.get("user_id")
+
+    user_session = session.get("current_user")
+
+    user_id = user_session["user_id"]
 
     new_post = Posts(post_title=post_title, 
-                     post_body=post_body)
+                     post_body=post_body,
+                     user_id = user_id)
 
     db.session.add(new_post)
     db.session.commit()
