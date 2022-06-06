@@ -203,7 +203,23 @@ def search_friends():
 
     return jsonify({ "results": result }), 200
 
-    
+@app.route('/api/posts', methods = ["POST"])
+def create_post():
+
+    post_title = request.form['title']
+    post_body = request.form['body']
+    # username = request.json["username"]
+    # user_id = session.get("user_id")
+
+    new_post = Posts(post_title=post_title, 
+                     post_body=post_body)
+
+    db.session.add(new_post)
+    db.session.commit()
+
+    return jsonify({"post_title": post_title, "post_body": post_body})
+
+
 
 if __name__ == '__main__':
     
