@@ -178,10 +178,12 @@ def get_current_user():
     # if there is no session this will return None
     user_key = session.get("current_user")
 
+    print(user_key)
+    
     if not user_key:
         return jsonify({ "error": "Unauthorized"}), 401
 
-    user = Users.query.filter_by(user_id=user_key.user_id).first()
+    user = Users.query.filter_by(user_id=user_key["user_id"]).first()
 
     return jsonify({
         "id": user.id,
