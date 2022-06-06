@@ -10,10 +10,12 @@ from .config.redis_config import RedisConfig
 # Flask Imports
 from flask import Flask, jsonify, flash, request, session
 from flask.helpers import send_from_directory
+from sqlalchemy_searchable import search
 from flask_cors import CORS
 from flask_session import Session
 from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
+
 
 from werkzeug import exceptions
 
@@ -33,8 +35,9 @@ CORS(app, supports_credentials=True)
 
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
-    SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQL_ALCHEMY_TRACK_MODIFICATIONS'),
-    FLASK_ENV=environ.get('FLASK_ENV')
+    FLASK_ENV=environ.get('FLASK_ENV'),
+    SQLALCHEMY_ECHO = True,
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 )
 
 app.config.from_object(RedisConfig)
@@ -88,36 +91,37 @@ def register_user():
     phone_number = request.json["phone_number"]
 
 
-    try:
-        # checks for user in db - returns false if user does not exist (not empty)
-        user_exists = Users.query.filter_by(email=email).first() is not None
-        if user_exists:
-            return jsonify({ "error": "User already exits"}), 409
+
+    # checks for user in db - returns false if user does not exist (not empty)
+    user_exists = Users.query.filter_by(email=email).first() is not None
+
+    if user_exists:
+        return jsonify({ "error": "User already exits"}), 409
     
-    except:
-        # encrypts password - decodes utf-8 stuff (if it comes as unicode it messes up)
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-        new_user = Users(first_name=first_name, 
-                        last_name=last_name,
-                        username=username, 
-                        email=email, 
-                        password=hashed_password, 
-                        phone_number=phone_number)
-        # add to database
-        db.session.add(new_user)
-        db.session.commit()
+    # encrypts password - decodes utf-8 stuff (if it comes as unicode it messes up)
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-        # Add same info to session for new user as per /login route
-        session["current_user"] = {
-            "first_name": new_user.first_name,
-            "user_id": new_user.user_id,
-            "num_received_requests": 0,
-            "num_sent_requests": 0,
-            "num_total_requests": 0
-        }
+    new_user = Users(first_name=first_name, 
+                    last_name=last_name,
+                    username=username, 
+                    email=email, 
+                    password=hashed_password, 
+                    phone_number=phone_number)
+    # add to database
+    db.session.add(new_user)
+    db.session.commit()
 
-        flash("You have succesfully signed up for an account, and you are now logged in.", "success")
+    # Add same info to session for new user as per /login route
+    session["current_user"] = {
+        "first_name": new_user.first_name,
+        "user_id": new_user.user_id,
+        "num_received_requests": 0,
+        "num_sent_requests": 0,
+        "num_total_requests": 0
+    }
+
+    flash("You have succesfully signed up for an account, and you are now logged in.", "success")
 
     return jsonify({
         "id": new_user.user_id,
@@ -128,7 +132,7 @@ def register_user():
 def login_user():
     email = request.json["email"]
     password = request.json["password"]
-     
+
     current_user = Users.query.filter_by(email=email).first()
 
     # if user doesn't exist
@@ -161,8 +165,11 @@ def login_user():
 
 @app.route('/api/logout', methods=['POST'])
 def logout_user():
+
     # Gets rid of session
-    session.pop("user_id")
+    del session["current_user"]
+
+    flash("You have successfully logged out.")
 
     return 200
 
@@ -171,30 +178,52 @@ def logout_user():
 def get_current_user():
 
     # if there is no session this will return None
-    user_id = session.get("user_id")
+    user_key = session.get("current_user")
 
-    if not user_id:
+    print(user_key)
+
+    if not user_key:
         return jsonify({ "error": "Unauthorized"}), 401
 
-    user = Users.query.filter_by(id=user_id).first()
+    user = Users.query.filter_by(user_id=user_key["user_id"]).first()
 
     return jsonify({
-        "id": user.id,
+        "id": user.user_id,
         "username": user.username
     }), 200
+
+# shows all users from db
+@app.route('/api/users', methods=['GET'])
+def all_users():
+
+    # gets all users from db
+    users = Users.query.all()
+    
+    result = users_schema.dump(users)
+
+    # if no results...
+    if result == []:
+        return jsonify({ "error": "No Users Found"}), 204
+
+    return jsonify({ "results": result })
 
 # ------------------------------------- FRIENDS ROUTES ----------------------------------------
 @app.route('/api/friends', methods=['POST'])
 def search_friends():
     username = request.json["username"]
 
-    find_user_by_username = Users.query.filter_by(username=username).all()
+    # find_user_by_username = Users.query.filter_by(username=username).all()
 
     # if user doesn't exist
 
+    search_results = search(db.session.query(Users), username).all()
     
+    print(search_results)
     # parse unreadable python object into a json equilavent 
-    result = users_schema.dump(find_user_by_username)
+
+    result = users_schema.dump(search_results)
+
+    print(result)
 
     if result == []:
         return jsonify({ "error": "Couldn't find a user with that username"}), 204

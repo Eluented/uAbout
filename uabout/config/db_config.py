@@ -116,7 +116,7 @@ class Reactions(db.Model):
     __tablename__ = 'reactions'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     count = db.Column(db.Integer, default=0)
-
+    
     user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
