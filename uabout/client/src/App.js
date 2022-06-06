@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import {
+  WelcomePage,
   LandingPage,
   LoginPage,
   SearchFriendsPage,
