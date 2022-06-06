@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Footer, Navbar, PostForm } from "../../components";
+import { Footer, Navbar, EventForm } from "../../components";
 
 const HomePage = () => {
   return (
     <div className="homepage-container">
       <Navbar />
       <div className="homepage-section">
-        <div className="postform-container">
-          <PostForm />
+        <div className="postform-parent-container">
+          <EventForm />
         </div>
         <div className="postrender-container"></div>
       </div>
