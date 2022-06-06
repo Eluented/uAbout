@@ -215,19 +215,18 @@ def search_friends():
 
     # find_user_by_username = Users.query.filter_by(username=username).all()
 
-    # if user doesn't exist
+
 
     search_results = search(db.session.query(Users), username).all()
-    
+
+    # if user doesn't exist
+    if search_results == []:
+        return jsonify({ "error": "Couldn't find a user with that username"}), 204
     print(search_results)
+
     # parse unreadable python object into a json equilavent 
 
     result = users_schema.dump(search_results)
-
-    print(result)
-
-    if result == []:
-        return jsonify({ "error": "Couldn't find a user with that username"}), 204
 
     print(result)
 
