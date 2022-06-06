@@ -20,7 +20,7 @@ class Users(db.Model):
     """ Users of 4About """
     __tablename__ = 'users'
 
-    id = db.Column(db.String(32), 
+    user_id = db.Column(db.String(32), 
                   primary_key=True, 
                   unique=True, 
                   default=get_uuid)
@@ -37,7 +37,7 @@ class Users(db.Model):
     # Put name inside TSVectorType definition for it to be fulltext-indexed (searchable)
     search_vector = db.Column(TSVectorType('first_name', 'last_name', 'username'))
 
-    posts = db.relationship('Posts', backref=db.backref('poster'))
+    posts = db.relationship('Posts', backref='poster')
 
 
 
@@ -47,14 +47,14 @@ class Connection(db.Model):
     __tablename__ = "connections"
 
     connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_a_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    user_b_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    user_a_id = db.Column(db.String(32), db.ForeignKey('users.user_id'), nullable=False)
+    user_b_id = db.Column(db.String(32), db.ForeignKey('users.user_id'), nullable=False)
     status = db.Column(db.String(100), nullable=False)
 
     # When both columns have a relationship with the same table, need to specify how
     # to handle multiple join paths in the square brackets of foreign_keys per below
-    user_a = db.relationship("User", foreign_keys=[user_a_id], backref=db.backref("sent_connections"))
-    user_b = db.relationship("User", foreign_keys=[user_b_id], backref=db.backref("received_connections"))
+    user_a = db.relationship("Users", foreign_keys=[user_a_id], backref="sent_connections")
+    user_b = db.relationship("Users", foreign_keys=[user_b_id], backref="received_connections")
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -66,9 +66,9 @@ class Connection(db.Model):
 
 class Posts(db.Model):
     __tablename__ = 'posts'
-    id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.String(32), 
-                       db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
                        
     post_title = db.Column(db.String(255), nullable=False)
@@ -93,13 +93,13 @@ class Posts(db.Model):
 
 class Comments(db.Model):
     __tablename__ = 'comments'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     user_id = db.Column(db.String(32), 
-                       db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
     post_id = db.Column(db.Integer, 
-                       db.ForeignKey('posts.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       db.ForeignKey('posts.post_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
 
     comment = db.Column(db.String(100), nullable=False)
@@ -114,14 +114,14 @@ class Comments(db.Model):
     
 class Reactions(db.Model):
     __tablename__ = 'reactions'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     count = db.Column(db.Integer, default=0)
 
     user_id = db.Column(db.String(32), 
-                       db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
     post_id = db.Column(db.Integer, 
-                       db.ForeignKey('posts.id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       db.ForeignKey('posts.post_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
 
     # back-reference Users class
