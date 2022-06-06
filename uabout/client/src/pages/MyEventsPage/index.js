@@ -4,7 +4,7 @@ import { Navbar, Footer, ReactCalendar } from "../../components";
 const MyEventsPage = () => {
   return (
     <div className="myevents-container">
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="homepage-section">
         <div className="calendar-parent-container">
           <ReactCalendar />

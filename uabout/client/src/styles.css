@@ -78,9 +78,6 @@ html {
   align-items: center;
 }
 
-.events-parent-container {
-}
-
 /* Calendar component styling */
 .react-calendar {
   width: 700px;
