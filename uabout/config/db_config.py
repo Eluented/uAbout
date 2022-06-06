@@ -39,9 +39,6 @@ class Users(db.Model):
 
     posts = db.relationship('Posts', backref=db.backref('poster'))
 
-    # back-reference Friends class - one to many
-    # can use friends.something idk?
-    friends = db.relationship('Friends', backref=db.backref('friends'))
 
 
 class Connection(db.Model):
