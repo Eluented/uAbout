@@ -33,8 +33,9 @@ CORS(app, supports_credentials=True)
 
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
-    SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQL_ALCHEMY_TRACK_MODIFICATIONS'),
-    FLASK_ENV=environ.get('FLASK_ENV')
+    FLASK_ENV=environ.get('FLASK_ENV'),
+    SQLALCHEMY_ECHO = True,
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 )
 
 app.config.from_object(RedisConfig)
@@ -175,12 +176,12 @@ def logout_user():
 def get_current_user():
 
     # if there is no session this will return None
-    session = session.get("current_user")
+    user_key = session.get("current_user")
 
-    if not session:
+    if not user_key:
         return jsonify({ "error": "Unauthorized"}), 401
 
-    user = Users.query.filter_by(user_id=session.user_id).first()
+    user = Users.query.filter_by(user_id=user_key.user_id).first()
 
     return jsonify({
         "id": user.id,

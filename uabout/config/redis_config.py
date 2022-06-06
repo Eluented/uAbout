@@ -6,8 +6,6 @@ load_dotenv()
 
 class RedisConfig:
     SECRET_KEY = os.environ["SECRET_KEY"]
-    SQLALCHEMY_ECHO = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     SESSION_TYPE = "redis"
     SESSION_PERMANENT = False
