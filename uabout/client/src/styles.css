@@ -323,8 +323,13 @@ hr {
   /* event form */
   .eventform-parent-container {
     background-color: rgba(241, 241, 241, 0.41);
-    width: 90%;
+    width: 80%;
     top: 80px;
     text-align: center;
+  }
+
+  .openModalBtn {
+    font-size: 20px;
+    padding: 10px 5px;
   }
 }
