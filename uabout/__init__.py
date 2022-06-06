@@ -8,7 +8,7 @@ from .config.friends_config import is_friends_or_pending, get_friend_requests, g
 from .config.redis_config import RedisConfig
 
 # Flask Imports
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, flash, request, session
 from flask.helpers import send_from_directory
 from flask_cors import CORS
 from flask_session import Session
@@ -87,30 +87,40 @@ def register_user():
     password = request.json["password"]
     phone_number = request.json["phone_number"]
 
-    # checks for user in db - returns false if user does not exist (not empty)
-    user_exists = Users.query.filter_by(email=email).first() is not None
 
-    if user_exists:
-        return jsonify({ "error": "User already exits"}), 409
+    try:
+        # checks for user in db - returns false if user does not exist (not empty)
+        user_exists = Users.query.filter_by(email=email).first() is not None
+        if user_exists:
+            return jsonify({ "error": "User already exits"}), 409
+    
+    except:
+        # encrypts password - decodes utf-8 stuff (if it comes as unicode it messes up)
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-    # encrypts password - decodes utf-8 stuff (if it comes as unicode it messes up)
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        new_user = Users(first_name=first_name, 
+                        last_name=last_name,
+                        username=username, 
+                        email=email, 
+                        password=hashed_password, 
+                        phone_number=phone_number)
+        # add to database
+        db.session.add(new_user)
+        db.session.commit()
 
-    new_user = Users(first_name=first_name, 
-                    last_name=last_name,
-                    username=username, 
-                    email=email, 
-                    password=hashed_password, 
-                    phone_number=phone_number)
+        # Add same info to session for new user as per /login route
+        session["current_user"] = {
+            "first_name": new_user.first_name,
+            "user_id": new_user.user_id,
+            "num_received_requests": 0,
+            "num_sent_requests": 0,
+            "num_total_requests": 0
+        }
 
-    # add to database
-    db.session.add(new_user)
-    db.session.commit()
-
-    session["user_id"] = new_user.id
+        flash("You have succesfully signed up for an account, and you are now logged in.", "success")
 
     return jsonify({
-        "id": new_user.id,
+        "id": new_user.user_id,
         "username": new_user.username
     })
 
@@ -118,22 +128,35 @@ def register_user():
 def login_user():
     email = request.json["email"]
     password = request.json["password"]
-
-    user = Users.query.filter_by(email=email).first()
+     
+    current_user = Users.query.filter_by(email=email).first()
 
     # if user doesn't exist
-    if user is None:
+    if current_user is None:
         return jsonify({ "error": "Couldn't find your uAbout Account"}), 401
     
     # if the entered password doesn't match password in database...
-    if not bcrypt.check_password_hash(user.password, password):
+    if not bcrypt.check_password_hash(current_user.password, password):
         return jsonify({ "error": "Incorrect Password"}), 401
-    
-    session["user_id"] = user.id
+
+    # Get current user's friend requests and number of requests to display in badges
+    received_friend_requests, sent_friend_requests = get_friend_requests(current_user.user_id)
+    num_received_requests = len(received_friend_requests)
+    num_sent_requests = len(sent_friend_requests)
+    num_total_requests = num_received_requests + num_sent_requests
+
+    # Use a nested dictionary for session["current_user"] to store more than just user_id
+    session["current_user"] = {
+        "first_name": current_user.first_name,
+        "user_id": current_user.user_id,
+        "num_received_requests": num_received_requests,
+        "num_sent_requests": num_sent_requests,
+        "num_total_requests": num_total_requests
+    }
 
     return jsonify({
-        "id": user.id,
-        "username": user.username
+        "user_id": current_user.user_id,
+        "username": current_user.username
     })
 
 @app.route('/api/logout', methods=['POST'])
