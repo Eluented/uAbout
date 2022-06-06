@@ -6,3 +6,4 @@ export { default as SearchFriendsPage } from "./SearchFriendsPage";
 export { default as SearchResultsPage } from "./SearchResults";
 export { default as FriendsPage } from "./FriendsPage";
 export { default as HomePage } from "./HomePage";
+export { default as MyEventsPage } from "./MyEventsPage";
