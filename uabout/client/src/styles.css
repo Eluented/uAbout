@@ -34,6 +34,10 @@ html {
   padding: 30px 0px;
 }
 
+.Navbar li:hover {
+  cursor: pointer;
+}
+
 /* Footer component styling */
 .footer-container {
   display: flex;
@@ -54,6 +58,10 @@ html {
   top: 90px;
 }
 
+.Footer h2:hover {
+  cursor: pointer;
+}
+
 .triangle {
   width: 100%;
   height: 20vh;
@@ -70,12 +78,6 @@ html {
 
 .username {
   color: var(--text-secondary);
-}
-/* myevents page styling */
-.homepage-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Calendar component styling */
@@ -211,19 +213,80 @@ html {
 /* Post form Styling */
 .eventform-parent-container {
   background-color: rgba(241, 241, 241, 0.41);
-  width: 90%;
-  height: 300px;
+  width: 70%;
+  padding: 30px;
   position: relative;
   top: 50px;
+  margin: auto;
+  text-align: center;
+}
+
+#event-form {
+  margin: 10px;
+  text-align: center;
+  position: relative;
+}
+
+#post-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: var(--text-primary);
+}
+
+.date-input-field {
+  text-align: center;
+  background: none;
+  border-width: thin;
+  border-color: var(--text-primary);
+}
+
+.openModalBtn {
+  padding: px;
+  font-family: var(--font-primary);
+  width: 80%;
+  font-size: 28px;
+  border-radius: 25px;
+  background-color: lightgrey;
+  border-style: none;
+  color: darkslategrey;
+  margin-bottom: 10px;
+}
+
+.openModalBtn:hover {
+  cursor: pointer;
+}
+
+.modalCloseBtn {
+  background: none;
+  border-style: none;
+  font-size: large;
+  font-weight: 300;
+}
+
+.modalCloseBtn:hover {
+  cursor: pointer;
+}
+
+hr {
+  margin-top: 10px;
+  color: grey;
+}
+
+.date-container {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding: 10px 0px;
+  justify-content: center;
 }
 
 .homepage-section {
   display: block;
 }
 .form-container {
-  display: flex;
+  display: block;
   top: 10px;
-  /* background-color: red; */
 }
 
 .eventrender-container {
@@ -255,5 +318,13 @@ html {
 
   .Footer {
     width: 100%;
+  }
+
+  /* event form */
+  .eventform-parent-container {
+    background-color: rgba(241, 241, 241, 0.41);
+    width: 90%;
+    top: 80px;
+    text-align: center;
   }
 }
