@@ -72,3 +72,29 @@ html {
 }
 
 /* Calendar component styling */
+
+@media (max-width: 600px) {
+  /* Navbar Responsive */
+  .Navbar {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+  }
+
+  .Navbar ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+
+  .Navbar li {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  /* Footer Responsive */
+
+  .Footer {
+    width: 100%;
+  }
+}
