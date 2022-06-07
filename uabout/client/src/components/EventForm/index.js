@@ -41,7 +41,7 @@ function EventForm({ setOpenModal }) {
       <div className="form-container">
         <div>
           <button className="modalCloseBtn" onClick={() => setOpenModal(false)}>
-            X
+            x
           </button>
         </div>
         <form

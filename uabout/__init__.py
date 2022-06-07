@@ -289,10 +289,7 @@ def create_post():
     post_start_date = request.json['start_date']
     post_end_date = request.json['end_date']
 
-
-    user_session = session.get("current_user")
-
-    user_id = user_session["user_id"]
+    user_id = session["current_user"]["user_id"]
     
     new_post = Posts(post_title=post_title, 
                      post_body=post_body,
