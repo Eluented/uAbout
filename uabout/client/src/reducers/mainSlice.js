@@ -58,7 +58,7 @@ export const mainSlice = createSlice({
   initialState: {
     users: null,
     current_user: cookie ? cookie: null,
-    posts: [{}],
+    posts: [],
     status: null,
 
     // Errors
