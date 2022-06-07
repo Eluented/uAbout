@@ -4,6 +4,7 @@ import { searchFriends, logoutUser, postEvent } from "../actions";
 export const eventPost = createAsyncThunk(
   "reducers/eventPost",
   async (event) => {
+    console.log(event)
     const res = await postEvent(event);
     return res;
   }
