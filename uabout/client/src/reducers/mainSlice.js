@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn } from "../actions";
+import Cookies from 'js-cookie'
 
+const cookie = Cookies.get('session')
+console.log(cookie)
 ////////////////////////////////////////// SEND POST ////////////////////////////////////////////////
 export const eventPost = createAsyncThunk(
   "reducers/eventPost",
@@ -54,7 +57,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
-    current_user: null,
+    current_user: cookie ? cookie: null,
     posts: [],
     status: null,
 
