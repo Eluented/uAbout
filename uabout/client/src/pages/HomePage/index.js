@@ -6,18 +6,21 @@ import { useSelector, useDispatch } from "react-redux";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(renderPosts())
-  }, [])
 
   // getting stuff from redux
   const searchPostStatus = useSelector(state => state.main.status);
 
 
-  const getPosts = useSelector(postsResult)
+  const getPosts = useSelector(postsResult);
+
+  console.log(getPosts);
+
+  useEffect(() => {
+    dispatch(renderPosts())
+  }, [])
+
+
 
   if (searchPostStatus === "loading") {
     return <h1>Loading ...</h1>
@@ -29,7 +32,7 @@ const HomePage = () => {
 
   if (searchPostStatus === "succeeded") {
     return <>
-      {getPosts.length > 0 ?
+      { !getPosts.length ?
               <h1>There are no current events... Make one now sir</h1>
         :
         <div className="homepage-container">
