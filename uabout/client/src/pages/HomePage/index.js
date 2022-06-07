@@ -36,12 +36,12 @@ const HomePage = () => {
         </div>
         <div className="eventrender-container">
 
-        {getPosts.status === 200 &&
+        {searchPostStatus === "succeeded" &&
                   getPosts.data.results.map(( {props} , idx) => (
                     <EventCard className="event-cards" props={props} key={idx}/>
         ))}
-
-        {getPosts.status === 204 && 
+        
+        {searchPostStatus === "failed" && 
                               <h1>There are no posts to display</h1>}
         </div>
  : <h1>...</h1>
