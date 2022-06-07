@@ -107,7 +107,14 @@ export const mainSlice = createSlice({
     },
     [renderPosts.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.posts =  action.payload.data.results
+
+      if (action.payload.status === 204){
+        state.posts = []
+      }
+
+      if (action.payload.status === 200){
+        state.posts =  action.payload.data.results
+      }
     },
     [renderPosts.rejected]: (state, action) => {
       state.status = "failed";
