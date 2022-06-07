@@ -40,8 +40,6 @@ const checkLoggedIn = async () => {
   try {
     const resp = await httpClient.get("https://uabout.herokuapp.com/api/@me");
 
-    console.log(resp);
-
     return resp
   } catch(e) {
     console.log(e)

@@ -15,6 +15,7 @@ const HomePage = () => {
 
   // getting stuff from redux
   const searchPostStatus = useSelector(state => state.main.status);
+  
 
   const getPosts = useSelector(postsResult)
 
