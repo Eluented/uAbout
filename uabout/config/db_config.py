@@ -77,8 +77,7 @@ class Posts(db.Model):
     post_title = db.Column(db.String(255), nullable=False)
     post_body = db.Column(db.String(500), nullable=False)
 
-    created_on = db.Column(db.DateTime, 
-                          default=datetime.utcnow, 
+    created_on = db.Column(db.String(355), 
                           nullable=False)
 
     updated_on = db.Column(db.DateTime, 

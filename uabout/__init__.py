@@ -279,12 +279,14 @@ def add_friend():
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
 
 
-    
+# ------------------------------------- POSTS ROUTES ---------------------------------------- #
+
 @app.route('/api/posts', methods = ["POST"])
 def create_post():
 
     post_title = request.json['title']
     post_body = request.json['body']
+    post_date = request.json['date']
 
     user_session = session.get("current_user")
 
@@ -292,12 +294,15 @@ def create_post():
     
     new_post = Posts(post_title=post_title, 
                      post_body=post_body,
-                     user_id = user_id)
+                     user_id = user_id,
+                     created_on = post_date)
 
     db.session.add(new_post)
     db.session.commit()
 
-    return jsonify({"post_title": post_title, "post_body": post_body})
+    return jsonify({ "title": post_title, 
+                     "body": post_body, 
+                     "date": post_date })
 
     
 
