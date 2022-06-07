@@ -19,9 +19,10 @@ const HomePage = () => {
             Create an event David!
           </button>
           {modalOpen && <EventForm setOpenModal={setModalOpen} />}
-          {/* <hr /> */}
         </div>
-        <div className="eventrender-container">{/* <EventCard /> */}</div>
+        <div className="eventrender-container">
+          <EventCard className="event-cards" />
+        </div>
       </div>
       <Footer />
     </div>
