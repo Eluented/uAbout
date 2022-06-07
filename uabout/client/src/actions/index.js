@@ -15,6 +15,8 @@ const getPosts = async () => {
   try {
     const resp = await httpClient.get("https://uabout.herokuapp.com/api/posts");
 
+    console.log(resp);
+
     return resp
   } catch(e) {
     console.log(e)
@@ -28,9 +30,21 @@ async function searchFriends(formData) {
       formData
     );
     // console.log(resp)
-    return resp;
+    return resp
   } catch (e) {
     console.log(e);
+  }
+}
+
+const checkLoggedIn = async () => {
+  try {
+    const resp = await httpClient.get("https://uabout.herokuapp.com/api/@me");
+
+    console.log(resp);
+
+    return resp
+  } catch(e) {
+    console.log(e)
   }
 }
 
@@ -40,11 +54,12 @@ async function logoutUser() {
       "https://uabout.herokuapp.com/api/logout"
     );
     console.log(resp);
-    return resp;
+
+    return resp
   } catch (e) {
     console.log(e);
   }
 }
 
 
-export { searchFriends, logoutUser, postEvent, getPosts};
+export { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn};

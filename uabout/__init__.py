@@ -201,7 +201,9 @@ def get_current_user():
 
     return jsonify({
         "id": user.user_id,
-        "username": user.username
+        "username": user.username,
+        "first_name": user.first_name,
+        "last_name": user.last_name
     }), 200
 # ------------------------------------- USERS ROUTES ----------------------------------------
 

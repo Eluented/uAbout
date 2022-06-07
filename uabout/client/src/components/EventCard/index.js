@@ -26,8 +26,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function EventCard( { post_body, post_title, post_id, event_start, event_end } ) {
-
-
+  
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {

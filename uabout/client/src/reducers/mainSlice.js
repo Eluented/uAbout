@@ -1,36 +1,51 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchFriends, logoutUser, postEvent, getPosts } from "../actions";
+import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn } from "../actions";
 
+////////////////////////////////////////// SEND POST ////////////////////////////////////////////////
 export const eventPost = createAsyncThunk(
   "reducers/eventPost",
   async (event) => {
-    console.log(event)
     const res = await postEvent(event);
+
     return res;
   }
 );
-
+////////////////////////////////////////// GET POSTS ////////////////////////////////////////////////
 export const renderPosts = createAsyncThunk(
   "reducers/renderPosts",
   async () => {
     const res = await getPosts();
-    console.log(res)
-    return res;
+
+    return res
   }
 );
 
+////////////////////////////////////////// SEARCH FRIENDS ////////////////////////////////////////////////
 export const fetchUsers = createAsyncThunk(
   "reducers/fetchUsers",
   async (formData) => {
     const res = await searchFriends(formData);
-    return res;
+
+    return res
   }
 );
 
+//////////////////////////////////////// CHECK IF LOGGED IN //////////////////////////////////////////////
+export const checkLogin = createAsyncThunk(
+  "reducers/checkLogin",
+  async () => {
+    const res = await checkLoggedIn();
+
+    return res
+  }
+);
+
+////////////////////////////////////////// LOGOUT USER ////////////////////////////////////////////////
 export const logout = createAsyncThunk(
   "reducers/logoutUser",
   async () => {
     const res = await logoutUser();
+
     return res;
   }
 );
@@ -39,9 +54,15 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
+    current_user: null,
     posts: null,
     status: "idle",
-    searchError: null
+    // Errors
+    searchError: null,
+    loginError: null,
+    logoutError: null,
+    renderPostsError: null,
+    checkLogin: null
   },
   reducers: {},
   extraReducers: {
@@ -56,6 +77,17 @@ export const mainSlice = createSlice({
       state.status = "failed";
       state.searchError = action.error.message;
     },
+    [checkLogin.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [checkLogin.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.current_user =  action.payload
+    },
+    [checkLogin.rejected]: (state, action) => {
+      state.status = "failed";
+      state.checkLogin = action.error.message;
+    },
     [logout.pending]: (state, action) => {
       state.status = "loading";
     },
@@ -64,7 +96,7 @@ export const mainSlice = createSlice({
     },
     [logout.rejected]: (state, action) => {
       state.status = "failed";
-      state.error = action.error.message;
+      state.logoutError = action.error.message;
     },
     [renderPosts.pending]: (state, action) => {
       state.status = "loading";
@@ -75,7 +107,7 @@ export const mainSlice = createSlice({
     },
     [renderPosts.rejected]: (state, action) => {
       state.status = "failed";
-      state.error = action.error.message;
+      state.renderPostsError = action.error.message;
     }
   }
 });
