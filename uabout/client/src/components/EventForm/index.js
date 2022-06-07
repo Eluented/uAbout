@@ -1,27 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, Button } from "@mui/material";
+import { createPostAction } from "../../actions";
 
 // import ReactDOM from "react-dom/client";
 
 function EventForm({ setOpenModal }) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [form, setFormValue] = useState({
-    post_title: " ",
-    post_body: " ",
-  });
+  const [post_title, setPost_Title] = useState("");
+  const [post_body, setPost_Body] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setFormValue({ ...form, [name]: value });
-  };
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    return e.preventDefault();
-  };
+  function createPost(e) {
+    const postData = {
+      post_title,
+      post_body,
+      startDate,
+      endDate,
+    };
+    console.log(postData);
+    dispatch(createPostAction(postData));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
 
   return (
     <>
@@ -41,9 +48,10 @@ function EventForm({ setOpenModal }) {
             className="input-fields"
             id="outlined-event-name"
             label="Event Name"
-            value={form.post_title}
-            onChange={handleChange}
-          />{" "}
+            value={post_title}
+            onChange={(e) => setPost_Title(e.target.value)}
+            required
+          />
           <br />
           <div className="date-container">
             <label>
@@ -52,6 +60,7 @@ function EventForm({ setOpenModal }) {
                 className="date-input-field"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
+                required
               />
             </label>
             <label>
@@ -67,8 +76,8 @@ function EventForm({ setOpenModal }) {
             className="input-fields"
             id="outlined-body-input"
             label="Event Details"
-            value={form.post_body}
-            onChange={handleChange}
+            value={post_body}
+            onChange={(e) => setPost_Body(e.target.value)}
           />
           <br />
           <Button
@@ -76,7 +85,7 @@ function EventForm({ setOpenModal }) {
             id="post-btn"
             type="submit"
             onClick={() => {
-              handleSubmit();
+              createPost();
               setOpenModal(false);
             }}
           >
