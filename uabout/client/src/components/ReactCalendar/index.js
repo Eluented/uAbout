@@ -6,6 +6,7 @@ const ReactCalendar = () => {
 
   const onChange = (date) => {
     setDate(date);
+    console.log(date);
   };
   return (
     <div className="calendar-container">
