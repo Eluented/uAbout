@@ -38,7 +38,7 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/allfriends" element={<FriendsPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
-      <Route path="/home" element={ loggedInCheck.length > 0 ? < HomePage/> : <Navigate to="/login" replace={true}  />} />
+      <Route path="/home" element={ loggedInCheck !== null ? < HomePage/> : <Navigate to="/login" replace={true}  />} />
       <Route path="/profile" element={<ProfileSettingsPage />} />
 
       <Route path="/search">
