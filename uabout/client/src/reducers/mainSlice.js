@@ -86,7 +86,7 @@ export const mainSlice = createSlice({
     },
     [checkLogin.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.current_user =  action.payload
+      state.current_user =  action.payload.data
     },
     [checkLogin.rejected]: (state, action) => {
       state.status = "failed";
