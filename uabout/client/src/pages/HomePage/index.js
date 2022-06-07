@@ -17,6 +17,7 @@ const HomePage = () => {
   const searchPostStatus = useSelector(state => state.main.status);
   const props = useSelector(postsResult)
   
+  console.log(props)
   return (
     <div className="homepage-container">
       <Navbar />
