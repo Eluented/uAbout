@@ -1,5 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchFriends, logoutUser } from "../actions";
+import { searchFriends, logoutUser, postEvent } from "../actions";
+
+export const eventPost = createAsyncThunk(
+  "reducers/eventPost",
+  async (event) => {
+    const res = await postEvent(event);
+    return res;
+  }
+);
 
 export const fetchUsers = createAsyncThunk(
   "reducers/fetchUsers",

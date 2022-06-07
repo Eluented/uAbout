@@ -2,6 +2,16 @@ import httpClient from "../httpClient";
 
 const CREATE_POST_ACTION = "[Post Action] Create Post";
 
+async function postEvent(event) {
+  try {
+      const resp = await httpClient.post("https://uabout.herokuapp.com/api/posts", event)
+      console.log(resp)
+    return resp
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 async function searchFriends(formData) {
   try {
     const resp = await httpClient.post(

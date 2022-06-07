@@ -3,31 +3,38 @@ import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, Button } from "@mui/material";
-import { createPostAction } from "../../actions";
+import { eventPost } from '../../reducers/mainSlice';
+import { useNavigate } from 'react-router';
+import { useSelector, useDispatch } from "react-redux";
+import { postEvent } from "../../actions";
 
 // import ReactDOM from "react-dom/client";
 
 function EventForm({ setOpenModal }) {
-  const [post_title, setPost_Title] = useState("");
-  const [post_body, setPost_Body] = useState("");
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function createPost(e) {
-    const postData = {
-      post_title,
-      post_body,
-      startDate,
-      endDate,
-    };
-    console.log(postData);
-    dispatch(createPostAction(postData));
-  }
+  const [formData, setFormData] = useState({
+    post_title: "",
+    post_body:  ""
+  });
+  
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = (e) => {
+    dispatch(postEvent(event))
+    return e.preventDefault();
+  }
+  const event = {
+    title: formData.post_title,
+    body: formData.post_body,
+    start_date: startDate,
+    end_date: endDate
   }
 
   return (
@@ -48,27 +55,28 @@ function EventForm({ setOpenModal }) {
             className="input-fields"
             id="outlined-event-name"
             label="Event Name"
-            value={post_title}
-            onChange={(e) => setPost_Title(e.target.value)}
-            required
-          />
+            value={formData.post_title}
+            onChange={(e) => handleChange(e)}
+            name="post_title"
+          />{" "}
           <br />
           <div className="date-container">
             <label>
               Start Date:
               <DatePicker
                 className="date-input-field"
-                selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                required
+                selected={startDate}
+                name="start_date"
               />
             </label>
             <label>
               End Date:
               <DatePicker
                 className="date-input-field"
-                selected={endDate}
                 onChange={(date) => setEndDate(date)}
+                selected={endDate}
+                name="end_date"
               />
             </label>
           </div>
@@ -76,8 +84,9 @@ function EventForm({ setOpenModal }) {
             className="input-fields"
             id="outlined-body-input"
             label="Event Details"
-            value={post_body}
-            onChange={(e) => setPost_Body(e.target.value)}
+            value={formData.post_body}
+            onChange={(e) => handleChange(e)}
+            name="post_body"
           />
           <br />
           <Button
