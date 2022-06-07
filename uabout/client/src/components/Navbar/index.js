@@ -17,7 +17,7 @@ const Navbar = () => {
           <FontAwesomeIcon
             icon={faCalendar}
             size="3x"
-            onClick={() => navigate("/myevents")}
+            onClick={() => navigate("/calendar")}
           ></FontAwesomeIcon>
         </li>
         <li>
