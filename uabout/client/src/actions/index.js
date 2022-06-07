@@ -11,6 +11,16 @@ async function postEvent(event) {
   }
 };
 
+const getPosts = async () => {
+  try {
+    const resp = await httpClient.get("https://uabout.herokuapp.com/api/posts");
+
+    console.log(resp)
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 async function searchFriends(formData) {
   try {
     const resp = await httpClient.post(
@@ -37,4 +47,4 @@ async function logoutUser() {
 }
 
 
-export { searchFriends, logoutUser, postEvent};
+export { searchFriends, logoutUser, postEvent, getPosts};

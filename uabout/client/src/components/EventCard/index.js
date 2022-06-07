@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -11,8 +11,11 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BackgroundLetterAvatars from "../AvatarIcon";
+import { renderPosts } from "../../reducers/mainSlice";
+import { useDispatch } from "react-redux";
 
 const ExpandMore = styled((props) => {
+
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -24,7 +27,12 @@ const ExpandMore = styled((props) => {
 }));
 
 function EventCard() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(renderPosts())
+  }, [])
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

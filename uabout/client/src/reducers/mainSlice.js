@@ -1,11 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchFriends, logoutUser, postEvent } from "../actions";
+import { searchFriends, logoutUser, postEvent, getPosts } from "../actions";
 
 export const eventPost = createAsyncThunk(
   "reducers/eventPost",
   async (event) => {
     console.log(event)
     const res = await postEvent(event);
+    return res;
+  }
+);
+
+export const renderPosts = createAsyncThunk(
+  "reducers/renderPosts",
+  async () => {
+    const res = await getPosts();
     return res;
   }
 );
@@ -30,6 +38,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
+    post: null,
     status: "idle",
     searchError: null
   },
