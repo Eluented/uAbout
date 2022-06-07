@@ -307,7 +307,7 @@ def create_post():
         def get_uuid():
             return uuid4().hex
 
-        new_post = Posts(post_id = get_uuid,
+        new_post = Posts(post_id = get_uuid(),
                         post_title=post_title, 
                         post_body=post_body,
                         user_id = user_id,
