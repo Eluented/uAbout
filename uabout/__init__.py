@@ -307,7 +307,8 @@ def create_post():
         def get_uuid():
             return uuid4().hex
 
-        new_post = Posts(post_id = get_uuid(),
+        post_id = get_uuid()
+        new_post = Posts(post_id = post_id,
                         post_title=post_title, 
                         post_body=post_body,
                         user_id = user_id,
@@ -319,10 +320,8 @@ def create_post():
 
         invitees = request.json['invitees'] # not sure how this will come through as a list??
 
-        new_post_id = new_post['post_id']
-
         for i in invitees:
-            new_invite = Invites(event_a_id = new_post_id,
+            new_invite = Invites(event_a_id = post_id,
                                 user_a_id = i)
             db.session.add(new_invite)
             db.session.commit()
