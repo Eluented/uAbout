@@ -14,6 +14,7 @@ export const renderPosts = createAsyncThunk(
   "reducers/renderPosts",
   async () => {
     const res = await getPosts();
+    console.log(res)
     return res;
   }
 );
