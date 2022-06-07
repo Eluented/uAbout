@@ -108,7 +108,7 @@ def register_user():
     user_exists = Users.query.filter_by(email=email).first() is not None
 
     if user_exists:
-        return jsonify({ "error": "User already exits"}), 409
+        return jsonify({ "error": "User already exits"})
     
 
     # encrypts password - decodes utf-8 stuff (if it comes as unicode it messes up)

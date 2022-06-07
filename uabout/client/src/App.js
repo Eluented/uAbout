@@ -21,14 +21,16 @@ import { checkLogin } from './reducers/mainSlice';
 function App() {
   const dispatch = useDispatch()
 
+  // gets results from the checkLogin function
+  const loggedInCheck = useSelector(state => state.main.current_user);
+  console.log(loggedInCheck)
+
   // checks if user is logged in
   useEffect(() => {
     dispatch(checkLogin())
   }, []);
 
-  // gets results from the checkLogin function
-  const loggedInCheck = useSelector(state => state.main.current_user);
-  console.log(loggedInCheck)
+
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
@@ -38,7 +40,7 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/allfriends" element={<FriendsPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
-      <Route path="/home" element={ loggedInCheck !== null ? < HomePage/> : <Navigate to="/login" replace={true}  />} />
+      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/register" replace={true}  />} />
       <Route path="/profile" element={<ProfileSettingsPage />} />
 
       <Route path="/search">
