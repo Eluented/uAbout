@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Footer, ReactCalendar } from "../../components";
 
-const MyEventsPage = () => {
+const CalendarPage = () => {
   return (
     <div className="myevents-container">
       <Navbar />
@@ -16,4 +16,4 @@ const MyEventsPage = () => {
   );
 };
 
-export default MyEventsPage;
+export default CalendarPage;
