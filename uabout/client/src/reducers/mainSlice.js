@@ -70,7 +70,7 @@ export const mainSlice = createSlice({
     },
     [renderPosts.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.posts = action.payload.results
+      state.posts = action.payload.data.results
     },
     [renderPosts.rejected]: (state, action) => {
       state.status = "failed";
