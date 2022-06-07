@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from os import environ
 
 # Database Imports
-from .config.db_config import db, Users, Posts, Comments, Reactions, Connection
+from .config.db_config import db, Users, Posts, Comments, Reactions, Connection, Invites
 from .config.friends_config import is_friends_or_pending, get_friend_requests, get_friends
 from .config.redis_config import RedisConfig
 
@@ -313,6 +313,17 @@ def create_post():
         db.session.add(new_post)
         db.session.commit()
 
+        invitees = request.json['invitees'] # not sure how this will come through as a list??
+
+        new_post_id = new_post['post_id']
+
+        for i in invitees:
+            new_invite = Invites(event_a_id = new_post_id,
+                                user_a_id = i)
+            db.session.add(new_invite)
+            db.session.commit()
+
+
         return jsonify({ "title": post_title, 
                         "body": post_body, 
                         "start_date": post_start_date,
@@ -336,6 +347,32 @@ def create_post():
         print(result)
 
         return jsonify({"results": result})
+
+
+@app.route('/api/events/:id')
+def show_user_events():
+
+    user_session = session.get("current_user")
+    current_user_id = user_session["user_id"]
+
+    my_events = db.session.query(Invites).with_entities(Invites.event_a_id).filter(Invites.user_a_id == current_user_id).all()
+
+    return jsonify(my_events)
+
+@app.route('/api/events/:id/rsvp', methods=["POST"])
+def rsvp():
+
+    user_session = session.get("current_user")
+    current_user_id = user_session["user_id"]
+
+    if request.json['going']:
+
+        stmt = db.session.update(Invites).where(Invites.user_id == current_user_id).values(attending=True)
+
+    #page reload here?
+    return jsonify ({"success": True})
+
+ 
 
 
 if __name__ == '__main__':

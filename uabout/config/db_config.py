@@ -91,6 +91,15 @@ class Posts(db.Model):
     # can use reactions.user.first_name, comments.comment for each post
     reactions = db.relationship('Reactions', backref='reactions')
 
+class Invites(db.Model):
+    __tablename__ = 'invites'
+    invite_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    event_a_id = db.Column(db.String(32), db.ForeignKey('posts.post_id'), nullable=False)
+    user_a_id = db.Column(db.String(32), db.ForeignKey('users.user_id'), nullable=False)
+
+    attending = db.Column(db.Boolean, default=False, nullable=False)
+
 class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
