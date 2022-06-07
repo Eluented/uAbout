@@ -33,7 +33,27 @@ const HomePage = () => {
   if (searchPostStatus === "succeeded") {
     return <>
       { !getPosts.length ?
-              <h1>There are no current events... Make one now sir</h1>
+        <div className="homepage-container">
+        <Navbar />
+        <div className="homepage-section">
+          <div className="eventform-parent-container">
+            <button
+              className="openModalBtn"
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
+              Create an event David!
+            </button>
+            {modalOpen && <EventForm setOpenModal={setModalOpen} />}
+          </div>
+          <div className="eventrender-container">
+          <h1>There are no current events... Make one now sir</h1>
+          </div>
+            : <h1>...</h1>
+          </div>
+          <Footer />
+        </div>
         :
         <div className="homepage-container">
           <Navbar />
