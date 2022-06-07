@@ -120,4 +120,6 @@ export const userSearchResult = state => state.main.users;
 
 export const postsResult = state => state.main.posts;
 
+export const currentUser = state => state.main.current_user;
+
 export default mainSlice.reducer;
