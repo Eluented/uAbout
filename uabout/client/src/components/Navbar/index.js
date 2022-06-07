@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faCalendar,
-  faComments,
+  faEnvelope,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -35,7 +35,7 @@ const Navbar = () => {
           ></FontAwesomeIcon>
         </li>
         <li>
-          <FontAwesomeIcon icon={faComments} size="3x"></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faEnvelope} size="3x"></FontAwesomeIcon>
         </li>
       </ul>
     </nav>
