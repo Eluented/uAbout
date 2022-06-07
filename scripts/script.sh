@@ -1,0 +1,1 @@
+docker run -it --mount type=bind,source="$(pwd)",dst="/code" -p 5000:5000 python bash
