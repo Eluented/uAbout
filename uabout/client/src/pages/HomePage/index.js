@@ -9,7 +9,7 @@ const HomePage = () => {
 
   const dispatch = useDispatch();
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(renderPosts())
   }, [])
 
@@ -36,15 +36,21 @@ const HomePage = () => {
         </div>
         <div className="eventrender-container">
 
-        {searchPostStatus === "succeeded" &&
-                  getPosts.data.results.map(( {props} , idx) => (
-                    <EventCard className="event-cards" props={props} key={idx}/>
-        ))}
-        
-        {searchPostStatus === "failed" && 
-                              <h1>There are no posts to display</h1>}
+          {searchPostStatus === "succeeded" &&
+            getPosts.data.results.map(({ post_body, post_title, post_id, event_start, event_end }, idx) => (
+              <EventCard className="event-cards"
+                post_body={post_body}
+                post_title={post_title}
+                post_id={post_id}
+                event_start={event_start}
+                event_end={event_end}
+                key={idx} />
+            ))}
+
+          {searchPostStatus === "failed" &&
+            <h1>There are no posts to display</h1>}
         </div>
- : <h1>...</h1>
+        : <h1>...</h1>
       </div>
       <Footer />
     </div>

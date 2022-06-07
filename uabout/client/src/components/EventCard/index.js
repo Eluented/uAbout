@@ -25,9 +25,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function EventCard(props) {
+function EventCard( { post_body, post_title, post_id, event_start, event_end } ) {
 
-  const { post_body, post_title, post_id, event_start, event_end } = props
 
   const [expanded, setExpanded] = useState(false);
 
@@ -36,7 +35,7 @@ function EventCard(props) {
   };
 
   return (
-    <Card sx={{ maxWidth: 700 }}>
+    <Card sx={{ maxWidth: 700, display: "block" }}>
       <CardHeader
         avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} />}
         title={post_title}
