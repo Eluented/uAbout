@@ -292,8 +292,31 @@ hr {
   top: 10px;
 }
 
+/* Event component styling */
+.homepage-section {
+  display: block;
+  top: 10%;
+}
+
 .eventrender-container {
-  top: 200px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 80px;
+  width: 70%;
+  padding: 30px;
+  margin: auto;
+  text-align: center;
+  height: 470px;
+  overflow-y: scroll;
+}
+
+.eventrender-container::-webkit-scrollbar {
+  display: none;
+}
+
+.MuiPaper-root {
+  width: 100%;
 }
 
 /* Profile Settings page */
@@ -336,5 +359,10 @@ hr {
   .openModalBtn {
     font-size: 20px;
     padding: 10px 5px;
+  }
+
+  .eventrender-container {
+    width: 80%;
+    top: 100px;
   }
 }
