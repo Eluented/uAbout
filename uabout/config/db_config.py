@@ -69,7 +69,10 @@ class Connection(db.Model):
 
 class Posts(db.Model):
     __tablename__ = 'posts'
-    post_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.String(32), 
+                  primary_key=True, 
+                  unique=True)
+
     user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
@@ -107,7 +110,7 @@ class Comments(db.Model):
     user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
-    post_id = db.Column(db.Integer, 
+    post_id = db.Column(db.String(32), 
                        db.ForeignKey('posts.post_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
 
@@ -129,7 +132,7 @@ class Reactions(db.Model):
     user_id = db.Column(db.String(32), 
                        db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
-    post_id = db.Column(db.Integer, 
+    post_id = db.Column(db.String(32), 
                        db.ForeignKey('posts.post_id', ondelete='CASCADE', onupdate='CASCADE'), 
                        nullable=False)
 

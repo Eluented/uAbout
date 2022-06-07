@@ -15,7 +15,7 @@ from flask_cors import CORS
 from flask_session import Session
 from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
-
+from uuid import uuid4
 
 from werkzeug import exceptions
 
@@ -303,8 +303,12 @@ def create_post():
 
         print(post_start_date, post_end_date)
         user_id = session["current_user"]["user_id"]
-        
-        new_post = Posts(post_title=post_title, 
+
+        def get_uuid():
+            return uuid4().hex
+
+        new_post = Posts(post_id = get_uuid,
+                        post_title=post_title, 
                         post_body=post_body,
                         user_id = user_id,
                         event_start= post_start_date,
