@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, Button } from "@mui/material";
@@ -93,7 +94,7 @@ function EventForm({ setOpenModal }) {
             id="post-btn"
             type="submit"
             onClick={() => {
-              handleSubmit();
+              createPost();
               setOpenModal(false);
             }}
           >

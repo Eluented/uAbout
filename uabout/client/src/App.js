@@ -10,7 +10,7 @@ import {
   NotFoundPage,
   FriendsPage,
   SearchResultsPage,
-  MyEventsPage,
+  CalendarPage,
   HomePage,
   ProfileSettingsPage,
 } from "./pages";
@@ -24,7 +24,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/allfriends" element={<FriendsPage />} />
-      <Route path="/myevents" element={<MyEventsPage />} />
+      <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/profile" element={<ProfileSettingsPage />} />
 
