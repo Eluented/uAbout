@@ -71,7 +71,7 @@ export default function BackgroundLetterAvatars() {
         variant="dot"
       >
         <Avatar
-          {...stringAvatar("David Quigley")}
+          {...stringAvatar("Onur Belek")}
           sx={{ width: 100, height: 100 }}
         />
       </StyledBadge>
