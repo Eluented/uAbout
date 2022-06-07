@@ -15,9 +15,10 @@ const HomePage = () => {
 
   // getting stuff from redux
   const searchPostStatus = useSelector(state => state.main.status);
-  const props = useSelector(postsResult)
-  
-  console.log(props)
+
+  const getPosts = useSelector(postsResult)
+
+
   return (
     <div className="homepage-container">
       <Navbar />
@@ -34,8 +35,16 @@ const HomePage = () => {
           {modalOpen && <EventForm setOpenModal={setModalOpen} />}
         </div>
         <div className="eventrender-container">
-        {searchPostStatus === "succeeded" ? <EventCard className="event-cards" props={props}/> : <h1>...</h1>}
+
+        {getPosts.status === 200 &&
+                  getPosts.data.results.map(( {props} , idx) => (
+                    <EventCard className="event-cards" props={props} key={idx}/>
+        ))}
+
+        {getPosts.status === 204 && 
+                              <h1>There are no posts to display</h1>}
         </div>
+ : <h1>...</h1>
       </div>
       <Footer />
     </div>
