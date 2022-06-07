@@ -38,7 +38,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
-    post: null,
+    posts: null,
     status: "idle",
     searchError: null
   },
@@ -49,7 +49,7 @@ export const mainSlice = createSlice({
     },
     [fetchUsers.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.users = state.users = action.payload;
+      state.users =  action.payload;
     },
     [fetchUsers.rejected]: (state, action) => {
       state.status = "failed";
@@ -64,10 +64,23 @@ export const mainSlice = createSlice({
     [logout.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
+    },
+    [renderPosts.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [renderPosts.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.posts = action.payload.results
+    },
+    [renderPosts.rejected]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
     }
   }
 });
 
 export const userSearchResult = state => state.main.users;
+
+export const postsResult = state => state.main.posts;
 
 export default mainSlice.reducer;

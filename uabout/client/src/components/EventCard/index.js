@@ -25,7 +25,10 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function EventCard() {
+function EventCard(props) {
+
+  const { post_body, post_title, post_id, event_start, event_end } = props
+
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -36,7 +39,7 @@ function EventCard() {
     <Card sx={{ maxWidth: 700 }}>
       <CardHeader
         avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} />}
-        title="Event Title"
+        title={post_title}
       />
       {/* <CardMedia 
       component="img"
@@ -45,8 +48,8 @@ function EventCard() {
       alt=""
       /> */}
       <CardContent>
-        <Typography>Start Date:</Typography>
-        <Typography>End Date:</Typography>
+        <Typography>Start Date: {event_start}</Typography>
+        <Typography>End Date: {event_end}</Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Going">
@@ -67,7 +70,7 @@ function EventCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography>Location: </Typography>
-          <Typography paragraph>Event Details</Typography>
+          <Typography paragraph>{post_body}</Typography>
         </CardContent>
       </Collapse>
     </Card>

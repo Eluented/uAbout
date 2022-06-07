@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { Footer, Navbar, EventForm, EventCard } from "../../components";
-import { renderPosts } from "../../reducers/mainSlice";
-import { useDispatch } from "react-redux";
+import { renderPosts, postsResult } from "../../reducers/mainSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -13,6 +13,10 @@ const HomePage = () => {
     dispatch(renderPosts())
   }, [])
 
+  // getting stuff from redux
+  const searchPostStatus = useSelector(state => state.main.status);
+  const props = useSelector(postsResult)
+  
   return (
     <div className="homepage-container">
       <Navbar />
@@ -29,7 +33,7 @@ const HomePage = () => {
           {modalOpen && <EventForm setOpenModal={setModalOpen} />}
         </div>
         <div className="eventrender-container">
-          <EventCard className="event-cards" />
+        {searchPostStatus === "succeeded" ? <EventCard className="event-cards" props={props}/> : <h1>...</h1>}
         </div>
       </div>
       <Footer />
