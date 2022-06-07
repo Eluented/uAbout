@@ -38,7 +38,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
-    posts: null,
+    posts: [],
     status: "idle",
     searchError: null
   },
@@ -70,7 +70,7 @@ export const mainSlice = createSlice({
     },
     [renderPosts.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.posts = action.payload.data.results
+      state.posts = [...state.posts, ...action.payload.data.results];
     },
     [renderPosts.rejected]: (state, action) => {
       state.status = "failed";
