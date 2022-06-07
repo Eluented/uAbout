@@ -36,6 +36,8 @@ function EventForm({ setOpenModal }) {
     end_date: endDate
   };
 
+  console.log(event)
+
   return (
     <>
       <div className="form-container">

@@ -302,6 +302,7 @@ def create_post():
         post_start_date = request.json['start_date']
         post_end_date = request.json['end_date']
 
+        print(post_start_date, post_end_date)
         user_id = session["current_user"]["user_id"]
         
         new_post = Posts(post_title=post_title, 
@@ -329,6 +330,9 @@ def create_post():
         print(post_by_user_id)
 
         result = posts_schema.dump(post_by_user_id)
+
+        if result == []:
+            return jsonify({ "error": "Couldn't find a user with that username"}), 204
 
         print(result)
 

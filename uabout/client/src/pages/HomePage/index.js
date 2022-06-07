@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Footer, Navbar, EventForm, EventCard } from "../../components";
+import { renderPosts } from "../../reducers/mainSlice";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(renderPosts())
+  }, [])
 
   return (
     <div className="homepage-container">

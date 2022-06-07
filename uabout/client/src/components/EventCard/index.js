@@ -11,8 +11,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BackgroundLetterAvatars from "../AvatarIcon";
-import { renderPosts } from "../../reducers/mainSlice";
-import { useDispatch } from "react-redux";
+
 
 const ExpandMore = styled((props) => {
 
@@ -28,11 +27,6 @@ const ExpandMore = styled((props) => {
 
 function EventCard() {
   const [expanded, setExpanded] = useState(false);
-  const dispatch = useDispatch();
-
-  useEffect( () => {
-    dispatch(renderPosts())
-  }, [])
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
