@@ -1,5 +1,15 @@
 import httpClient from '../httpClient'
 
+async function postEvent(event) {
+  try {
+      const resp = await httpClient.post("https://uabout.herokuapp.com/api/posts", event)
+      console.log(resp)
+    return resp
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 async function searchFriends(formData) {
     try {
         const resp = await httpClient.post("https://uabout.herokuapp.com/api/friends/search", formData)
@@ -22,4 +32,4 @@ async function logoutUser() {
 
 
 
-export { searchFriends, logoutUser};
+export { searchFriends, logoutUser, postEvent};

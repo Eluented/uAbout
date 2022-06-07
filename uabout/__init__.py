@@ -286,7 +286,9 @@ def create_post():
 
     post_title = request.json['title']
     post_body = request.json['body']
-    post_date = request.json['date']
+    post_start_date = request.json['start_date']
+    post_end_date = request.json['end_date']
+
 
     user_session = session.get("current_user")
 
@@ -295,16 +297,17 @@ def create_post():
     new_post = Posts(post_title=post_title, 
                      post_body=post_body,
                      user_id = user_id,
-                     created_on = post_date)
+                     event_start= post_start_date,
+                     event_end = post_end_date)
 
     db.session.add(new_post)
     db.session.commit()
 
     return jsonify({ "title": post_title, 
                      "body": post_body, 
-                     "date": post_date })
-
-    
+                     "start_date": post_start_date,
+                     "end_date": post_end_date,
+                     "user_id": user_id })
 
 if __name__ == '__main__':
     
