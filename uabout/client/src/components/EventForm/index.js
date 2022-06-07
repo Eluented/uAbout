@@ -1,24 +1,22 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, Button } from "@mui/material";
-import { eventPost } from '../../reducers/mainSlice';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from "react-redux";
-import { postEvent } from "../../actions";
+import { eventPost } from "../../reducers/mainSlice";
 
 // import ReactDOM from "react-dom/client";
 
 function EventForm({ setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   const [formData, setFormData] = useState({
     post_title: "",
     post_body:  ""
   });
-  
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   
@@ -27,22 +25,25 @@ function EventForm({ setOpenModal }) {
   };
 
   const handleSubmit = (e) => {
-    dispatch(postEvent(event))
-    return e.preventDefault();
-  }
+    e.preventDefault();
+    return dispatch(eventPost(event));
+  };
+
   const event = {
     title: formData.post_title,
     body: formData.post_body,
-    start_date: startDate,
-    end_date: endDate
-  }
+    start_date: startDate.toString(),
+    end_date: endDate.toString()
+  };
 
+  console.log(event)
+  
   return (
     <>
       <div className="form-container">
         <div>
           <button className="modalCloseBtn" onClick={() => setOpenModal(false)}>
-            X
+            x
           </button>
         </div>
         <form
@@ -93,10 +94,6 @@ function EventForm({ setOpenModal }) {
             variant="contained"
             id="post-btn"
             type="submit"
-            onClick={() => {
-              createPost();
-              setOpenModal(false);
-            }}
           >
             Post
           </Button>

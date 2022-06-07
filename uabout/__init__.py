@@ -65,6 +65,17 @@ class UsersSchema(ma.Schema):
 user_schema = UsersSchema()
 users_schema = UsersSchema(many=True)
 
+# Post Ma Schema
+class PostsSchema(ma.Schema):
+    class Meta:
+        fields = ("post_id", 
+                "post_title",
+                "post_body",
+                "event_start", 
+                "event_end") 
+
+post_schema = PostsSchema()
+posts_schema = PostsSchema(many=True)
 # ----------------------------------- React Served on all 404 Routes -----------------------------
 
 @app.errorhandler(exceptions.NotFound)
@@ -281,48 +292,62 @@ def add_friend():
 
 # ------------------------------------- POSTS ROUTES ---------------------------------------- #
 
-@app.route('/api/posts', methods = ["POST"])
+@app.route('/api/posts', methods = ["POST", "GET"])
 def create_post():
+    if request.method == "POST":
 
-    post_title = request.json['title']
-    post_body = request.json['body']
-    post_start_date = request.json['start_date']
-    post_end_date = request.json['end_date']
+        post_title = request.json['title']
+        post_body = request.json['body']
+        post_start_date = request.json['start_date']
+        post_end_date = request.json['end_date']
 
+        print(post_start_date, post_end_date)
+        user_id = session["current_user"]["user_id"]
+        
+        new_post = Posts(post_title=post_title, 
+                        post_body=post_body,
+                        user_id = user_id,
+                        event_start= post_start_date,
+                        event_end = post_end_date)
 
-    user_session = session.get("current_user")
-
-    user_id = user_session["user_id"]
-    
-    new_post = Posts(post_title=post_title, 
-                     post_body=post_body,
-                     user_id = user_id,
-                     event_start= post_start_date,
-                     event_end = post_end_date)
-
-    db.session.add(new_post)
-    db.session.commit()
-
-    invitees = request.json['invitees'] # not sure how this will come through as a list??
-
-    new_post_id = new_post['post_id']
-
-    for i in invitees:
-        new_invites = Invites(event_a_id = new_post_id,
-                              user_a_id = i)
-        db.session.add(new_invites)
+        db.session.add(new_post)
         db.session.commit()
 
+        invitees = request.json['invitees'] # not sure how this will come through as a list??
+
+        new_post_id = new_post['post_id']
+
+        for i in invitees:
+            new_invite = Invites(event_a_id = new_post_id,
+                                user_a_id = i)
+            db.session.add(new_invite)
+            db.session.commit()
+
+
+        return jsonify({ "title": post_title, 
+                        "body": post_body, 
+                        "start_date": post_start_date,
+                        "end_date": post_end_date,
+                        "user_id": user_id })
     
+    elif request.method == "GET":
 
+        user_id = session["current_user"]["user_id"]
 
-    return jsonify({ "title": post_title, 
-                     "body": post_body, 
-                     "start_date": post_start_date,
-                     "end_date": post_end_date,
-                     "user_id": user_id },
-                   { "event_a_id":  new_post_id,
-                     "user_a_id": i})
+        # get shit from databse send it back
+        post_by_user_id = Posts.query.filter_by(user_id=user_id).all()
+        
+        print(post_by_user_id)
+
+        result = posts_schema.dump(post_by_user_id)
+
+        if result == []:
+            return jsonify({ "error": "Couldn't find a user with that username"}), 204
+
+        print(result)
+
+        return jsonify({"results": result})
+
 
 @app.route('/api/events/:id')
 def show_user_events():
