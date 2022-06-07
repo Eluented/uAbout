@@ -69,7 +69,8 @@ users_schema = UsersSchema(many=True)
 class PostsSchema(ma.Schema):
     class Meta:
         fields = ("post_id", 
-                "post_title", 
+                "post_title",
+                "post_body",
                 "event_start", 
                 "event_end", 
                 "updated_on") 
@@ -330,7 +331,7 @@ def create_post():
         result = posts_schema.dump(post_by_user_id)
 
         print(result)
-        
+
         return jsonify({"results": result})
 
 
