@@ -19,11 +19,15 @@ flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 sqlalchemy-searchable = "*"
 sqlalchemy-utils = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.10"
 
 [scripts]
 init_db = "python init_db.py"
-dev = "flask run -p ${PORT}"
+dev = "flask run --host 0.0.0.0 -p ${PORT}"
 start = "gunicorn uabout:app"
+test = "pytest ."
+coverage = "pytest --cov-report term-missing --cov=."
