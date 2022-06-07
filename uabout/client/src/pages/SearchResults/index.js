@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router';
 import { userSearchResult } from '../../reducers/mainSlice.js'
 import { Box } from "@mui/system";
+import './index.css'
 import {
   FormControl,
   Button,
@@ -10,6 +11,7 @@ import {
   TextField,
   Container
 } from "@mui/material";
+import BackgroundLetterAvatars from '../../components/AvatarIcon'
 
 const SearchResultsPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const SearchResultsPage = () => {
 
   return (
     <>
-      <Container maxWidth="md" style={{ backgroundColor: "white" }}>
+      <Container class="Container" maxWidth="md">
         <Box sx={{ pt: "2%", pb: "5%", mb: "5%" }}>
           <h1>Search Results for {username}</h1>
         </Box>
@@ -35,12 +37,13 @@ const SearchResultsPage = () => {
 
 
         {searchResult.status === 200
-          && 
-          results.map(({username, first_name, last_name }, idx) => (
-            <Box key={idx} sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
-            <h3>{username}</h3>
-            <h3>{first_name}</h3>
-            <h3>{last_name}</h3>
+          &&
+          results.map(({ username, first_name, last_name }, idx) => (
+            <Box class="FriendBox" key={idx} sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
+              <div class="Avatar"><BackgroundLetterAvatars /></div>
+              <div class="NameBox">{first_name} {last_name}</div>
+              <div class="UsernameBox">{username}</div>
+               
             </Box>
           ))}
 
