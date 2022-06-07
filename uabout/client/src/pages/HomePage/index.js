@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Footer, Navbar, EventForm } from "../../components";
+import { Footer, Navbar, EventForm, EventCard } from "../../components";
 
 const HomePage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div className="homepage-container">
       <Navbar />
       <div className="homepage-section">
-        <div className="postform-parent-container">
-          <EventForm />
+        <div className="eventform-parent-container">
+          <button
+            className="openModalBtn"
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          >
+            Create an event David!
+          </button>
+          {modalOpen && <EventForm setOpenModal={setModalOpen} />}
+          {/* <hr /> */}
         </div>
-        <div className="postrender-container"></div>
+        <div className="eventrender-container">{/* <EventCard /> */}</div>
       </div>
       <Footer />
     </div>
