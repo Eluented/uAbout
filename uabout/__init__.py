@@ -281,30 +281,41 @@ def add_friend():
 
 # ------------------------------------- POSTS ROUTES ---------------------------------------- #
 
-@app.route('/api/posts', methods = ["POST"])
+@app.route('/api/posts', methods = ["POST", "GET"])
 def create_post():
+    if request.method == "POST":
 
-    post_title = request.json['title']
-    post_body = request.json['body']
-    post_start_date = request.json['start_date']
-    post_end_date = request.json['end_date']
+        post_title = request.json['title']
+        post_body = request.json['body']
+        post_start_date = request.json['start_date']
+        post_end_date = request.json['end_date']
 
-    user_id = session["current_user"]["user_id"]
+        user_id = session["current_user"]["user_id"]
+        
+        new_post = Posts(post_title=post_title, 
+                        post_body=post_body,
+                        user_id = user_id,
+                        event_start= post_start_date,
+                        event_end = post_end_date)
+
+        db.session.add(new_post)
+        db.session.commit()
+
+        return jsonify({ "title": post_title, 
+                        "body": post_body, 
+                        "start_date": post_start_date,
+                        "end_date": post_end_date,
+                        "user_id": user_id })
     
-    new_post = Posts(post_title=post_title, 
-                     post_body=post_body,
-                     user_id = user_id,
-                     event_start= post_start_date,
-                     event_end = post_end_date)
+    elif request.method == "GET":
 
-    db.session.add(new_post)
-    db.session.commit()
+        user_id = session["current_user"]["user_id"]
 
-    return jsonify({ "title": post_title, 
-                     "body": post_body, 
-                     "start_date": post_start_date,
-                     "end_date": post_end_date,
-                     "user_id": user_id })
+        # get shit from databse send it back
+        post_by_user_id = Posts.query.filter_by(user_id=user_id).first()
+
+        return jsonify({"results": post_by_user_id})
+
 
 if __name__ == '__main__':
     
