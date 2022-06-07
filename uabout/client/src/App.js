@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   // gets results from the checkLogin function
-  const loggedInCheck = useSelector(state => state.current_user);
+  const loggedInCheck = useSelector(state => state.main.current_user);
   console.log(loggedInCheck)
   return (
     <Routes>

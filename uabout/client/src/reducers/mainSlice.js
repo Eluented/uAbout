@@ -55,8 +55,9 @@ export const mainSlice = createSlice({
   initialState: {
     users: null,
     current_user: null,
-    posts: null,
-    status: "idle",
+    posts: [],
+    status: null,
+
     // Errors
     searchError: null,
     loginError: null,
@@ -103,7 +104,7 @@ export const mainSlice = createSlice({
     },
     [renderPosts.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.posts =  action.payload
+      state.posts =  action.payload.data.results
     },
     [renderPosts.rejected]: (state, action) => {
       state.status = "failed";

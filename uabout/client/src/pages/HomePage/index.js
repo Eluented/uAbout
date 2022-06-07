@@ -15,7 +15,7 @@ const HomePage = () => {
 
   // getting stuff from redux
   const searchPostStatus = useSelector(state => state.main.status);
-  
+
 
   const getPosts = useSelector(postsResult)
 
@@ -38,7 +38,7 @@ const HomePage = () => {
         <div className="eventrender-container">
 
           {searchPostStatus === "succeeded" &&
-            getPosts.data.results.map(({ post_body, post_title, post_id, event_start, event_end }, idx) => (
+            getPosts.map(({ post_body, post_title, post_id, event_start, event_end }, idx) => (
               <EventCard className="event-cards"
                 post_body={post_body}
                 post_title={post_title}
