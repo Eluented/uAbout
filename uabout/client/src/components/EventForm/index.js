@@ -32,12 +32,12 @@ function EventForm({ setOpenModal }) {
   const event = {
     title: formData.post_title,
     body: formData.post_body,
-    start_date: startDate,
-    end_date: endDate
+    start_date: startDate.toString(),
+    end_date: endDate.toString()
   };
 
   console.log(event)
-
+  
   return (
     <>
       <div className="form-container">
