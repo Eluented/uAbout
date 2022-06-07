@@ -65,6 +65,17 @@ class UsersSchema(ma.Schema):
 user_schema = UsersSchema()
 users_schema = UsersSchema(many=True)
 
+# Post Ma Schema
+class PostsSchema(ma.Schema):
+    class Meta:
+        fields = ("post_id", 
+                "post_title", 
+                "event_start", 
+                "event_end", 
+                "updated_on") 
+
+post_schema = PostsSchema()
+posts_schema = PostsSchema(many=True)
 # ----------------------------------- React Served on all 404 Routes -----------------------------
 
 @app.errorhandler(exceptions.NotFound)
@@ -312,9 +323,15 @@ def create_post():
         user_id = session["current_user"]["user_id"]
 
         # get shit from databse send it back
-        post_by_user_id = Posts.query.filter_by(user_id=user_id).first()
+        post_by_user_id = Posts.query.filter_by(user_id=user_id).all()
+        
+        print(post_by_user_id)
 
-        return jsonify({"results": post_by_user_id})
+        result = posts_schema.dump(post_by_user_id)
+
+        print(result)
+        
+        return jsonify({"results": result})
 
 
 if __name__ == '__main__':
