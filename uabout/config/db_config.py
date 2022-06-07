@@ -83,11 +83,6 @@ class Posts(db.Model):
     event_end = db.Column(db.String(355), 
                           nullable=False)
 
-    updated_on = db.Column(db.DateTime, 
-                          default=datetime.utcnow, 
-                          onupdate=datetime.utcnow, 
-                          nullable=False)
-
     # back-reference Comments class 
     # can use comments.comment, comments.comment for each post
     comments = db.relationship('Comments', backref='comments')
