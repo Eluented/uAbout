@@ -67,6 +67,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
+    friends: null,
     current_user: cookie ? cookie : null,
     posts: [],
     status: null,
@@ -96,7 +97,7 @@ export const mainSlice = createSlice({
     },
     [allFriends.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.users = action.payload.data;
+      state.friends = action.payload.data;
     },
     [allFriends.rejected]: (state, action) => {
       state.status = "failed";
@@ -147,5 +148,7 @@ export const userSearchResult = state => state.main.users;
 export const postsResult = state => state.main.posts;
 
 export const currentUser = state => state.main.current_user;
+
+export const friends = state => state.main.friends;
 
 export default mainSlice.reducer;
