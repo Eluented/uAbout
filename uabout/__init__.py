@@ -316,15 +316,17 @@ def add_friends():
     """ Show friend requests and list of all friends """
 
     user_a_id = session["current_user"]["user_id"]
-    
+
     # retrieves the other user_id of the other person within post request
     user_b_id = request.json["user_b_id"]
 
-    friend_requests = is_friends_or_pending(user_a_id, user_b_id)
+    pending = db.session.query(Connection).filter(Connection.user_a_id == user_a_id,
+                                                     Connection.user_b_id == user_b_id,
+                                                     Connection.status == "Requested").first()
 
-    print(is_friends_or_pending)
+    print(pending)
 
-    friend_requests.status = "Accepted"
+    pending.status = "Accepted"
 
     db.session.commit()
 
