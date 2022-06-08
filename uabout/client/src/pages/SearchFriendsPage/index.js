@@ -40,8 +40,7 @@ const SearchFriendsPage = () => {
     // if the search function is completed
     if (searchResult) {
 
-      // if search succeeds... changes url to searched user (fool the user)
-      // navigate(`/search/${formData.username}`)
+      navigate(`/search/${formData.username}`)
     }
   }, [searchResult]);
 
