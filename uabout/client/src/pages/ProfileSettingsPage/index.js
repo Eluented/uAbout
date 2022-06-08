@@ -30,8 +30,14 @@ const ProfileSettingsPage = () => {
         </div>
       </div>
       <div className="friend-container">
-        <div className="all-friends"></div>
-        <div className="friend requests"></div>
+        <div className="all-friends">
+          <h2>Friends</h2>
+          <hr />
+        </div>
+        <div className="friend requests">
+          <h2>Friend Requests</h2>
+          <hr />
+        </div>
       </div>
       <Footer />
     </div>
