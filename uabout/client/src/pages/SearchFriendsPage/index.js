@@ -43,7 +43,7 @@ const SearchFriendsPage = () => {
       // if search succeeds... changes url to searched user (fool the user)
       navigate(`/search/${formData.username}`)
     }
-  }, [searchFriendsStatus, dispatch]);
+  }, [searchResult]);
 
 
   return (
