@@ -9,7 +9,6 @@ import { currentUser, friends } from "../../reducers/mainSlice";
 const ProfileSettingsPage = () => {
   const userInfo = useSelector(currentUser);
 
-  
   const allFriends = useSelector(friends);
   console.log(allFriends);
 
