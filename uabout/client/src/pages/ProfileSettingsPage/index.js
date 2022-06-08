@@ -1,5 +1,5 @@
 import React from "react";
-import { BackgroundLetterAvatars, Footer, Navbar } from "../../components";
+import { BackgroundLetterAvatars, Footer, Navbar, FriendRequest } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { logoutUser } from "../../actions";
@@ -43,7 +43,16 @@ const ProfileSettingsPage = () => {
         </div>
         <div className="friend requests">
           <h2>Friend Requests</h2>
-          <hr />
+          {allFriends.map(({ email, first_name, phone_number, user_id, username }, idx) => (
+          < FriendRequest
+            email={email}
+            first_name={first_name}
+            phone_number={phone_number}
+            user_id={user_id}
+            username={username}
+            idx={idx}
+          />
+          ))}
         </div>
       </div>
       <Footer />

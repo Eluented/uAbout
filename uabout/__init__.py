@@ -252,7 +252,10 @@ def show_friends_and_requests():
 
     sent = users_schema.dump(sent_friend_requests)
 
-    all_friends = users_schema.dump(friends)
+    all_friends = users_schema.dump(friends)    
+
+    if received == [] and sent == [] and all_friends == []:
+        return jsonify({ "error": "There are currently no Friends or Requests"}), 204
 
     return jsonify({ "received_friend_requests" : received,
                     "sent_friend_requests" : sent,

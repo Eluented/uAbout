@@ -67,7 +67,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
-    friends: null,
+    friends: [],
     current_user: cookie ? cookie : null,
     posts: [],
     status: null,
@@ -97,7 +97,11 @@ export const mainSlice = createSlice({
     },
     [allFriends.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.friends = action.payload.data;
+      if (action.payload.status === 204 || action.payload.status === 500){
+        state.friends = [];
+      } else {
+        state.friends = action.payload.data;
+      }
     },
     [allFriends.rejected]: (state, action) => {
       state.status = "failed";
