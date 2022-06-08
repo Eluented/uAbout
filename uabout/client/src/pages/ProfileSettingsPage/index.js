@@ -12,7 +12,7 @@ const ProfileSettingsPage = () => {
   const allFriends = useSelector(friends);
   console.log(allFriends)
 
-  if (allFriends === []){
+  if (allFriends.length === 0){
     return (
       <div className="profile-container">
       <Navbar />
