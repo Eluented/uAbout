@@ -59,7 +59,7 @@ function EventForm({ setOpenModal }) {
     body: formData.post_body,
     start_date: startDate.toString(),
     end_date: endDate.toString(),
-    invitees: [],
+    invitees: personName,
   };
 
   const ITEM_HEIGHT = 48;

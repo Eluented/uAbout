@@ -75,7 +75,7 @@ export default function BackgroundLetterAvatars() {
         variant="dot"
       >
         <Avatar
-          {...stringAvatar(`${userInfo.first_name} ${userInfo.last_name}`)}
+          {...stringAvatar(`${userInfo.first_name[0]} ${userInfo.last_name[0]}`)}
           sx={{ width: 100, height: 100 }}
         />
       </StyledBadge>
