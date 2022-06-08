@@ -1,14 +1,27 @@
 import "./index.css";
 import BackgroundLetterAvatars from "../AvatarIcon";
 import { Button } from "@mui/material";
-import { friendRequest } from "../../actions";
+import httpClient from "../../httpClient";
 
 const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
-
-  function sendFriendRequest() {
-    friendRequest(user_id)
+  const user = {
+    user_b_id: user_id
   }
-
+  console.log(user)
+  async function friendRequest() {
+    try {
+      const resp = await httpClient.post(
+        "https://uabout.herokuapp.com/api/add-friend", 
+        user
+      );
+      console.log(user)
+      
+      console.log(resp)
+      return resp;
+    } catch (e) {
+      console.log(e);
+    }
+  }
   return (
     <>
       <div key={idx} className="friend_list">
@@ -20,7 +33,7 @@ const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
             {first_name} {last_name}
           </div>
           <div class="UsernameBox">{username}</div>
-          <Button variant="outlined" onClick={sendFriendRequest()}>
+          <Button variant="outlined" onClick={friendRequest}>
             Add Friend
           </Button>
         </div>

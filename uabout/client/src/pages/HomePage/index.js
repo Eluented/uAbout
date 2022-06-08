@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Footer, Navbar, EventForm, EventCard } from "../../components";
 import { renderPosts, postsResult } from "../../reducers/mainSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { currentUser } from "../../reducers/mainSlice";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -10,7 +11,7 @@ const HomePage = () => {
 
   // getting stuff from redux
   const searchPostStatus = useSelector(state => state.main.status);
-
+  const userInfo = useSelector(currentUser);
 
   const getPosts = useSelector(postsResult);
 
@@ -65,7 +66,7 @@ const HomePage = () => {
                   setModalOpen(true);
                 }}
               >
-                Create an event David!
+                Create an event {userInfo.first_name}!
               </button>
               {modalOpen && <EventForm setOpenModal={setModalOpen} />}
             </div>

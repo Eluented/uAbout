@@ -21,6 +21,8 @@ const SearchResultsPage = () => {
   const searchResult = useSelector(userSearchResult);
   const results = searchResult;
 
+  console.log(results);
+  
   return (
     <>
       <Container class="Container" maxWidth="md">
