@@ -16,14 +16,36 @@ function FriendRequest({ email, first_name, phone_number, user_id, username, sta
     }
   }
 
-  return (
-    <span key={idx} >
+  if (status === "Friend"){
+    return (
+      <span key={idx} >
+      <p>{email} {first_name} {phone_number} {username} </p>
+      <p>{status}</p>
+      <button onClick={acceptFriendRequest}>Accept</button>
+      <button>Decline</button>
+    </span>
+    )
+  }
+  if (status === "Pending Friend Requests"){
+    return (
+      <span key={idx} >
       <p>{email} {first_name} {phone_number} {username} sent you a friend request</p>
       <p>{status}</p>
       <button onClick={acceptFriendRequest}>Accept</button>
       <button>Decline</button>
     </span>
-  );
+    )
+  }
+  if (status === "Sent Friend Requests"){
+    return (
+      <span key={idx} >
+      <p>You sent a friend request to... {email} {first_name} {phone_number} {username}</p>
+      <p>{status}</p>
+      <button onClick={acceptFriendRequest}>Accept</button>
+      <button>Decline</button>
+    </span>
+    )
+  }
 }
 
 export default FriendRequest;
