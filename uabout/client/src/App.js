@@ -30,7 +30,7 @@ function App() {
     dispatch(checkLogin())
   }, []);
 
-
+  // <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/register" replace={true}  />} />
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
@@ -40,7 +40,7 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/allfriends" element={<FriendsPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
-      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/register" replace={true}  />} />
+      <Route path="/home" element={ < HomePage/> } />
       <Route path="/profile" element={<ProfileSettingsPage />} />
 
       <Route path="/search">
