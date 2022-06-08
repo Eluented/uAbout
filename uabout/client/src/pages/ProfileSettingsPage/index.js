@@ -52,7 +52,7 @@ const ProfileSettingsPage = () => {
 
     return (
       <div className="profile-container">
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="profile-section">
           <div className="eventform-parent-container" id="profile-card">
             <h1>Profile Settings</h1>
