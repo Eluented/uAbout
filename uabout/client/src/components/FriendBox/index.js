@@ -3,10 +3,12 @@ import BackgroundLetterAvatars from "../AvatarIcon";
 import { Button } from "@mui/material";
 import { friendRequest } from "../../actions";
 
-const FriendBox = ({ username, first_name, last_name, idx }) => {
-  function sendFriendRequest(idx) {
-    const data = { idx };
+const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
+
+  function sendFriendRequest() {
+    friendRequest(user_id)
   }
+
   return (
     <>
       <div key={idx} className="friend_list">

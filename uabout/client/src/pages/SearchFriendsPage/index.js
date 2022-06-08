@@ -18,7 +18,7 @@ const SearchFriendsPage = () => {
   const dispatch = useDispatch();
 
   const searchResult = useSelector(userSearchResult);
-
+  
   const [formData, setFormData] = useState({});
 
   // when user types sets form data based on name

@@ -65,8 +65,9 @@ async function friendRequest(data) {
   try {
     const resp = await httpClient.post(
       "https://uabout.herokuapp.com/api/add-friend",
-      data
+      {user_b_id: data}
     );
+    console.log(resp)
     return resp;
   } catch (e) {
     console.log(e);
