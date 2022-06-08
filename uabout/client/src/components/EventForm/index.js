@@ -98,10 +98,8 @@ function EventForm({ setOpenModal }) {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      value
-    );
+    console.log(value)
+    setPersonName(value);
   };
 
   console.log(event);
