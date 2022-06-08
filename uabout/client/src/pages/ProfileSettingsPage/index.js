@@ -75,7 +75,7 @@ const ProfileSettingsPage = () => {
           </div>
         </div>
         <div className="friend-container">
-          {friendsArr.map(({ email, first_name, phone_number, user_id, username }, idx) => (
+          {friendsArr.map(({ email, first_name, phone_number, user_id, username, status }, idx) => (
             <FriendRequest 
             email={email}
             first_name={first_name}
@@ -83,6 +83,7 @@ const ProfileSettingsPage = () => {
             user_id={user_id}
             username={username}
             idx={idx}
+            status={status}
             />
           ))}
         </div>

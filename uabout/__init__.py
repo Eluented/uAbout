@@ -311,12 +311,12 @@ def add_friend():
 
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
 
-@app.route("/api/accept-friend")
+@app.route("/api/accept-friend", methods=["POST"])
 def add_friends():
     """ Show friend requests and list of all friends """
 
     user_a_id = session["current_user"]["user_id"]
-
+    
     # retrieves the other user_id of the other person within post request
     user_b_id = request.json["user_b_id"]
 
