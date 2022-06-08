@@ -97,7 +97,7 @@ export const mainSlice = createSlice({
     },
     [allFriends.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      if (action.payload.status === 204 || action.payload.status === 500){
+      if (action.payload.status === 204 ){
         state.friends = [];
       } else {
         state.friends = action.payload.data;

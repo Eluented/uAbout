@@ -15,7 +15,6 @@ const HomePage = () => {
 
   const getPosts = useSelector(postsResult);
 
-  console.log(getPosts);
 
   useEffect(() => {
     dispatch(renderPosts());

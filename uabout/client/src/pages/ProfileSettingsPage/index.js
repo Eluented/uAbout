@@ -10,6 +10,7 @@ const ProfileSettingsPage = () => {
   const userInfo = useSelector(currentUser);
 
   const allFriends = useSelector(friends);
+  
   console.log(allFriends)
 
   if (allFriends.length === 0){
