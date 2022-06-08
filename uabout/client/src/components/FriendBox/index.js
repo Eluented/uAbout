@@ -7,13 +7,15 @@ const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
   const user = {
     user_b_id: user_id
   }
-
+  console.log(user)
   async function friendRequest() {
     try {
       const resp = await httpClient.post(
         "https://uabout.herokuapp.com/api/add-friend", 
         user
       );
+      console.log(user)
+      
       console.log(resp)
       return resp;
     } catch (e) {
