@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Footer, Navbar, EventForm, EventCard } from "../../components";
 import { renderPosts, postsResult } from "../../reducers/mainSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { currentUser } from "../../reducers/mainSlice";
+import { currentUser, allFriends } from "../../reducers/mainSlice";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,6 +19,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(renderPosts())
+    dispatch(allFriends())
   }, [])
 
 

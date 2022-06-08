@@ -74,6 +74,18 @@ async function friendRequest(data) {
   }
 }
 
+async function getFriends() {
+  try {
+    const resp = await httpClient.get(
+      "https://uabout.herokuapp.com/api/friends"
+    );
+    console.log(resp)
+    return resp;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export {
   searchFriends,
   logoutUser,
@@ -81,4 +93,5 @@ export {
   getPosts,
   checkLoggedIn,
   friendRequest,
+  getFriends
 };

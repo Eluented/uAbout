@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn } from "../actions";
+import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn, getFriends } from "../actions";
 import Cookies from 'js-cookie'
 
 const cookie = Cookies.get('session')
@@ -28,6 +28,16 @@ export const fetchUsers = createAsyncThunk(
   "reducers/fetchUsers",
   async (formData) => {
     const res = await searchFriends(formData);
+
+    return res
+  }
+);
+
+////////////////////////////////////////// GET FRIENDS ////////////////////////////////////////////////
+export const allFriends = createAsyncThunk(
+  "reducers/getFriends",
+  async () => {
+    const res = await getFriends();
 
     return res
   }
@@ -78,6 +88,17 @@ export const mainSlice = createSlice({
       state.users = action.payload.data.results;
     },
     [fetchUsers.rejected]: (state, action) => {
+      state.status = "failed";
+      state.searchError = action.error.message;
+    },
+    [allFriends.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [allFriends.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.users = action.payload.data;
+    },
+    [allFriends.rejected]: (state, action) => {
       state.status = "failed";
       state.searchError = action.error.message;
     },
