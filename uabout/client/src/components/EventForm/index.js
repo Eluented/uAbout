@@ -99,7 +99,7 @@ function EventForm({ setOpenModal }) {
       target: { value },
     } = event;
     console.log(value)
-    setPersonName(value);
+    setPersonName(value[0]);
   };
 
   console.log(event);
