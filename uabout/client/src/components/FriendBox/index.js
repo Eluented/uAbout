@@ -5,8 +5,8 @@ import { friendRequest } from "../../actions";
 
 const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
 
-  function sendFriendRequest() {
-    friendRequest(user_id)
+  function sendFriendRequest(user_id) {
+    return friendRequest(user_id)
   }
 
   return (
@@ -20,7 +20,7 @@ const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
             {first_name} {last_name}
           </div>
           <div class="UsernameBox">{username}</div>
-          <Button variant="outlined" onClick={sendFriendRequest()}>
+          <Button variant="outlined" onClick={sendFriendRequest(user_id)}>
             Add Friend
           </Button>
         </div>
