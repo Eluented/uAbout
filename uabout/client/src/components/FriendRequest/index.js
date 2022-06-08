@@ -9,7 +9,7 @@ function FriendRequest({ email, first_name, phone_number, user_id, username, sta
         "https://uabout.herokuapp.com/api/accept-friend",
         {user_b_id: user_id}
       );
-      console.log(resp)
+
       return resp;
     } catch (e) {
       console.log(e);

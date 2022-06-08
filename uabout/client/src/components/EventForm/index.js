@@ -62,6 +62,8 @@ function EventForm({ setOpenModal }) {
     invitees: personName,
   };
 
+  console.log(personName);
+
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -83,16 +85,14 @@ function EventForm({ setOpenModal }) {
   }
 
   const theme = useTheme();
+
+  ///////////////////////////////////////////// PERSON NAME ///////////////////////////////////////////////
   const [personName, setPersonName] = useState([]);
+
 
   const allFriends = useSelector(friends)
 
   const names = allFriends["friends"].map(props => props.first_name)
-
-  console.log(allFriends);
-
-  console.log(names);
-
 
   const handleChanges = (event) => {
     const {
