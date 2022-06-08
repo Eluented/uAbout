@@ -56,7 +56,8 @@ ma = Marshmallow(app)
 # utilising marshmallow to parse unreadable python objects into json data
 class UsersSchema(ma.Schema):
     class Meta:
-        fields = ("first_name", 
+        fields = ("user_id",
+                "first_name", 
                 "last_name", 
                 "username", 
                 "email", 
