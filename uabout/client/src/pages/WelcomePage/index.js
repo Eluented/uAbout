@@ -18,7 +18,14 @@ const WelcomePage = () => {
         <AppContainer>
             <AccountBox />
         </AppContainer>
+
+        
+
+
+
     );
 
 }
+
+
 export default WelcomePage;

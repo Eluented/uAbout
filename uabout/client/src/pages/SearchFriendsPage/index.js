@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/system";
-import {
-  FormControl,
-  Button,
-  Typography,
-  TextField,
-  Container,
-} from "@mui/material";
-
+import { Navbar, SearchBar } from "../../components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import './index.css'
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { userSearchResult } from "../../reducers/mainSlice.js";
@@ -18,7 +13,7 @@ const SearchFriendsPage = () => {
   const dispatch = useDispatch();
 
   const searchResult = useSelector(userSearchResult);
-  
+
   const [formData, setFormData] = useState({});
 
   // when user types sets form data based on name
@@ -32,7 +27,7 @@ const SearchFriendsPage = () => {
   // when form is submitted...
   function handleSubmit(e) {
     e.preventDefault();
-
+    console.log("This is visible");
     dispatch(fetchUsers(formData));
   }
 
@@ -43,33 +38,14 @@ const SearchFriendsPage = () => {
     }
   }, [searchResult]);
 
+
   return (
     <>
-      <Container
-        maxWidth="md"
-        style={{
-          backgroundColor: "white",
-          paddingTop: "1%",
-          paddingBottom: "2%",
-        }}
-      >
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ mt: "2%", mb: "2%" }} width="100%">
-            <FormControl fullWidth>
-              <TextField
-                type="text"
-                label="Search"
-                name="username"
-                onChange={(e) => setData(e)}
-              />
-            </FormControl>
-          </Box>
+      <Navbar />
+      
+        <SearchBar />
+      
 
-          <Button fullWidth variant="contained" type="submit">
-            Search Users
-          </Button>
-        </form>
-      </Container>
     </>
   );
 };
