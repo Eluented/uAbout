@@ -16,20 +16,10 @@ export const eventPost = createAsyncThunk(
 ////////////////////////////////////////// GET POSTS ////////////////////////////////////////////////
 export const renderPosts = createAsyncThunk(
   "reducers/renderPosts",
-  async ({ rejectWithValue }) => {
-    try {
-      const res = await getPosts();
+  async () => {
+    const res = await getPosts();
 
-      return res
-
-    } catch (err) {
-
-      if (!err.response) {
-        throw err
-      }
-
-      return rejectWithValue(err.response.data)
-    }
+    return res
   }
 );
 
@@ -117,11 +107,7 @@ export const mainSlice = createSlice({
     },
     [renderPosts.fulfilled]: (state, action) => {
       state.status = "succeeded";
-
-      if (action.payload.response.status === 401 || action.payload.response.status === 500) {
-        state.posts = []
-      }
-
+      
       if (action.payload.status === 200) {
         state.posts = action.payload.data.results
       } else {
