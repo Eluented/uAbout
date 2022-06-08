@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { TextField, Button } from "@mui/material";
-import { useNavigate } from 'react-router';
+import { TextField, Button, FormControlLabel } from "@mui/material";
+import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { eventPost } from "../../reducers/mainSlice";
+import Radio from "@mui/material/Radio";
+import { RadioGroup } from "@mui/material";
+import { FormLabel } from "@mui/material";
 
 // import ReactDOM from "react-dom/client";
 
 function EventForm({ setOpenModal }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [formData, setFormData] = useState({
     post_title: "",
-    post_body:  ""
+    post_body: "",
   });
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -34,10 +37,10 @@ function EventForm({ setOpenModal }) {
     body: formData.post_body,
     start_date: startDate.toString(),
     end_date: endDate.toString(),
-    invitees: []
+    invitees: [],
   };
 
-  console.log(event)
+  console.log(event);
 
   return (
     <>
@@ -53,6 +56,27 @@ function EventForm({ setOpenModal }) {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
+          <div id="invite-options">
+            <FormLabel id="invite-radio-btn-group"></FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="invite-radio-btn-group-label"
+              defaultValue={"public"}
+              name="radio-buttons-group"
+              onChange={(e) => handleChange(e)}
+            >
+              <FormControlLabel
+                value={"public"}
+                control={<Radio />}
+                label="Public"
+              />
+              <FormControlLabel
+                value={"private"}
+                control={<Radio />}
+                label="Private"
+              />
+            </RadioGroup>
+          </div>
           <TextField
             className="input-fields"
             id="outlined-event-name"
@@ -91,11 +115,7 @@ function EventForm({ setOpenModal }) {
             name="post_body"
           />
           <br />
-          <Button
-            variant="contained"
-            id="post-btn"
-            type="submit"
-          >
+          <Button variant="contained" id="post-btn" type="submit">
             Post
           </Button>
         </form>
