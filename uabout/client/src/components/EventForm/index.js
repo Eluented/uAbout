@@ -9,7 +9,7 @@ import {
   FormLabel,
 } from "@mui/material";
 // import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { eventPost } from "../../reducers/mainSlice";
 import Radio from "@mui/material/Radio";
 import { useTheme } from "@mui/material/styles";
@@ -20,6 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 // import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import { friends } from "../../reducers/mainSlice";
 
 // import ReactDOM from "react-dom/client";
 
@@ -75,18 +76,14 @@ function EventForm({ setOpenModal }) {
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
 
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-  ];
+  const allFriends = useSelector(friends)
+
+  const names = [...allFriends["friends"].first_name]
+
+  console.log(allFriends);
+
+  console.log(names);
+  
 
   const handleChanges = (event) => {
     const {
