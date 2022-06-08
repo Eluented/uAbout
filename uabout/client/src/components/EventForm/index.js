@@ -9,7 +9,7 @@ import {
   FormLabel,
 } from "@mui/material";
 // import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { eventPost } from "../../reducers/mainSlice";
 import Radio from "@mui/material/Radio";
 import { useTheme } from "@mui/material/styles";
@@ -20,6 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 // import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import { friends } from "../../reducers/mainSlice";
 
 // import ReactDOM from "react-dom/client";
 
@@ -27,10 +28,19 @@ function EventForm({ setOpenModal }) {
   // const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [eventsStatus, setEventsStatus] = useState(true)
   const [formData, setFormData] = useState({
     post_title: "",
     post_body: "",
   });
+
+  function privateCheck(){
+    return setEventsStatus(false)
+  }
+
+  function publicCheck() {
+    return setEventsStatus(true)
+  }
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -49,8 +59,10 @@ function EventForm({ setOpenModal }) {
     body: formData.post_body,
     start_date: startDate.toString(),
     end_date: endDate.toString(),
-    invitees: [],
+    invitees: personName,
   };
+
+  console.log(personName);
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -73,29 +85,21 @@ function EventForm({ setOpenModal }) {
   }
 
   const theme = useTheme();
+
+  ///////////////////////////////////////////// PERSON NAME ///////////////////////////////////////////////
   const [personName, setPersonName] = useState([]);
 
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-  ];
+
+  const allFriends = useSelector(friends)
+
+  const names = allFriends["friends"].map(props => props.first_name)
 
   const handleChanges = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    console.log(value)
+    setPersonName(value);
   };
 
   console.log(event);
@@ -127,40 +131,47 @@ function EventForm({ setOpenModal }) {
                 value={"public"}
                 control={<Radio />}
                 label="Public"
+                onChange={publicCheck}
               />
               <FormControlLabel
                 value={"private"}
                 control={<Radio />}
                 label="Private"
+                onChange={privateCheck}
               />
             </RadioGroup>
             <InputLabel id="select-friends-label">Select Friends</InputLabel>
-            <Select
-              labelId="select-friends-label"
-              id="select-friends"
-              multiple
-              value={personName}
-              onChange={handleChanges}
-              input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-              renderValue={(selected) => (
-                <Box sx={{ display: "flex", flexqrap: "wrap", gap: 0.5 }}>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
-              MenuProps={MenuProps}
-            >
-              {names.map((name) => (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, personName, theme)}
-                >
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
+
+            {eventsStatus === false
+              &&
+              <Select
+                labelId="select-friends-label"
+                id="select-friends"
+                multiple
+                value={personName}
+                onChange={handleChanges}
+                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                renderValue={(selected) => (
+                  <Box sx={{ display: "flex", flexqrap: "wrap", gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                MenuProps={MenuProps}
+              >
+                {names.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personName, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            }
+
           </div>
           <TextField
             className="input-fields"

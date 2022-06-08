@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const dispatch = useDispatch();
 
   // getting stuff from redux
   const searchPostStatus = useSelector((state) => state.main.status);
