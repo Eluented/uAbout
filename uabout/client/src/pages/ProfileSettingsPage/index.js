@@ -40,9 +40,7 @@ const ProfileSettingsPage = () => {
       <Footer />
     </div>
     )
-  } else if ( typeof allFriends === 'object' &&
-              allFriends !== null &&
-              !Array.isArray(allFriends) ) {
+  } else if ( !Array.isArray(allFriends) ) {
 
     const friendsArr = [...allFriends["friends"].map(f => ({...f, status:"Friend"})),
     ...allFriends["received_friend_requests"].map(f => ({...f, status:"Pending Friend Requests"})),
