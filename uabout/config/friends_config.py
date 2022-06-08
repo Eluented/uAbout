@@ -48,5 +48,5 @@ def get_friends(user_id):
     friends = db.session.query(Users).filter(Connection.user_a_id == user_id,
                                             Connection.status == "Accepted").join(Connection,
                                                                                   Connection.user_b_id == Users.user_id)
-
+                                                                                  
     return friends
