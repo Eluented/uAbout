@@ -35,8 +35,13 @@ const SearchResultsPage = () => {
         )}
 
         {searchResult.status === 200 &&
-          results.map(({ username, first_name, last_name }, idx) => (
-            <FriendBox />
+          results.map(({ username, first_name, last_name, user_id }, idx) => (
+            <FriendBox 
+            username={username}
+            first_name={first_name}
+            last_name={last_name}
+            user_id={user_id}
+            idx={idx}/>
           ))}
       </Container>
     </>
