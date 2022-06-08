@@ -5,7 +5,7 @@ import httpClient from "../../httpClient";
 
 const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
 
-  async function friendRequest(user_id) {
+  async function friendRequest() {
     try {
       const resp = await httpClient.post(
         "https://uabout.herokuapp.com/api/add-friend",
@@ -28,7 +28,7 @@ const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
             {first_name} {last_name}
           </div>
           <div class="UsernameBox">{username}</div>
-          <Button variant="outlined" onClick={friendRequest(user_id)}>
+          <Button variant="outlined" onClick={friendRequest}>
             Add Friend
           </Button>
         </div>
