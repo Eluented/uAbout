@@ -6,7 +6,7 @@ function FriendRequest({ email, first_name, phone_number, user_id, username, sta
   async function acceptFriendRequest() {
     try {
       const resp = await httpClient.post(
-        "https://uabout.herokuapp.com/api/add-friend",
+        "https://uabout.herokuapp.com/api/accept-friend",
         {user_b_id: user_id}
       );
       console.log(resp)
