@@ -78,7 +78,7 @@ function EventForm({ setOpenModal }) {
 
   const allFriends = useSelector(friends)
 
-  const names = [...allFriends["friends"].first_name]
+  const names = allFriends["friends"].map(props => props.first_name)
 
   console.log(allFriends);
 
