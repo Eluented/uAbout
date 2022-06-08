@@ -133,13 +133,13 @@ function EventForm({ setOpenModal }) {
                 value={"public"}
                 control={<Radio />}
                 label="Public"
-                checked={publicCheck}
+                onChange={publicCheck}
               />
               <FormControlLabel
                 value={"private"}
                 control={<Radio />}
                 label="Private"
-                checked={privateCheck}
+                onChange={privateCheck}
               />
             </RadioGroup>
             <InputLabel id="select-friends-label">Select Friends</InputLabel>
