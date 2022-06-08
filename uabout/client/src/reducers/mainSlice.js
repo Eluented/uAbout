@@ -66,7 +66,7 @@ export const logout = createAsyncThunk(
 export const mainSlice = createSlice({
   name: "main",
   initialState: {
-    users: [],
+    users: null,
     current_user: cookie ? cookie : null,
     posts: [],
     status: null,

@@ -10,12 +10,14 @@ import {
 
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from "react-redux";
+import { userSearchResult } from "../../reducers/mainSlice.js";
 import { fetchUsers } from '../../reducers/mainSlice'
 
 const SearchFriendsPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const searchResult = useSelector(userSearchResult);
 
   const [formData, setFormData] = useState({});
 
@@ -31,20 +33,18 @@ const SearchFriendsPage = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-
     dispatch(fetchUsers(formData))
-    // if the search function is completed
-    if (searchFriendsStatus === "succeeded") {
-
-      // if search succeeds... changes url to searched user (fool the user)
-      return navigate(`/search/${formData.username}`)
-    }
   };
 
-
   useEffect(() => {
+    // if the search function is completed
+    if (searchResult) {
 
+      // if search succeeds... changes url to searched user (fool the user)
+      navigate(`/search/${formData.username}`)
+    }
   }, [searchFriendsStatus, dispatch]);
+
 
   return (
     <>
