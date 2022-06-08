@@ -8,7 +8,9 @@ import {
   TextField,
   Container,
 } from "@mui/material";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import './index.css'
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { userSearchResult } from "../../reducers/mainSlice.js";
@@ -19,7 +21,7 @@ const SearchFriendsPage = () => {
   const dispatch = useDispatch();
 
   const searchResult = useSelector(userSearchResult);
-  
+
   const [formData, setFormData] = useState({});
 
   // when user types sets form data based on name
@@ -33,7 +35,7 @@ const SearchFriendsPage = () => {
   // when form is submitted...
   function handleSubmit(e) {
     e.preventDefault();
-
+    console.log("This is visible");
     dispatch(fetchUsers(formData));
   }
 
@@ -44,35 +46,24 @@ const SearchFriendsPage = () => {
     }
   }, [searchResult]);
 
-  return (
-    <><Navbar />
-      <Container
-        maxWidth="md"
-        style={{
-          marginTop: "12vh",
-          backgroundColor: "white",
-          paddingTop: "1%",
-          paddingBottom: "2%",
-        }}
-      >
-        
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ mt: "2%", mb: "2%" }} width="100%">
-            <FormControl fullWidth>
-              <TextField
-                type="text"
-                label="Search"
-                name="username"
-                onChange={(e) => setData(e)}
-              />
-            </FormControl>
-          </Box>
 
-          <Button fullWidth variant="contained" type="submit">
-            Search Users
-          </Button>
-        </form>
-      </Container>
+  return (
+    <>
+      <Navbar />
+      
+        <div class="main-app">
+          <form onSubmit={handleSubmit}>
+          <input type="text" placeholder= "Search users here" class="search-bar" name="username" onChange={(e) => setData(e)}/>
+          <button class="submit">
+          <FontAwesomeIcon
+              icon={faSearch}
+              size="1x"
+            />
+          </button>
+          </form>
+        </div>
+      
+
     </>
   );
 };
