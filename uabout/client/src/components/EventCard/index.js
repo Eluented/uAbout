@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -11,10 +11,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BackgroundLetterAvatars from "../AvatarIcon";
-
+import CheckIcon from "@mui/icons-material/Check";
+import ToggleButton from "@mui/material/ToggleButton";
 
 const ExpandMore = styled((props) => {
-
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -25,9 +25,10 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function EventCard( { post_body, post_title, post_id, event_start, event_end } ) {
-  
+function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
   const [expanded, setExpanded] = useState(false);
+
+  const [selected, setSelected] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -50,12 +51,20 @@ function EventCard( { post_body, post_title, post_id, event_start, event_end } )
         <Typography>End Date: {event_end}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Going">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="Comments">
-          <FavoriteIcon />
-        </IconButton>
+        <div className="interaction-btns">
+          <ToggleButton
+            value="true"
+            selected={selected}
+            onChange={() => {
+              setSelected(!selected);
+            }}
+          >
+            <CheckIcon />
+          </ToggleButton>
+          <IconButton aria-label="Comments">
+            <FavoriteIcon />
+          </IconButton>
+        </div>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

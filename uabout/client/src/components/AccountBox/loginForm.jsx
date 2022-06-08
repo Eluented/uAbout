@@ -8,48 +8,65 @@ import {
   SubmitButton,
 } from "./common";
 import { Marginer } from "../Marginer";
-import httpClient from '../../httpClient'
+import httpClient from "../../httpClient";
 import { AccountContext } from "./accountContext";
 import { useNavigate } from "react-router-dom";
 
 export function LoginForm(props) {
-
   const [formData, setFormData] = useState({});
-  const setUser = useState('')
+  const setUser = useState("");
 
   //useNavigate added to try and navigate to '/landing' page
   const navigate = useNavigate();
 
   const setData = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const logInUser = async () => {
-    console.log(formData)
+    console.log(formData);
 
     try {
-      const resp = await httpClient.post("https://uabout.herokuapp.com/api/login", formData)
-      setUser(`${resp.data.username}`)
-      navigate("/landing")
-      console.log(resp.data)
+      const resp = await httpClient.post(
+        "https://uabout.herokuapp.com/api/login",
+        formData
+      );
+      setUser(`${resp.data.username}`);
+      navigate("/landing");
+      console.log(resp.data);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-
-  }
+  };
 
   const { switchToSignup } = useContext(AccountContext);
 
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="email" placeholder="Email" label="Email" name='email' required onChange={(e) => setData(e)} />
-        <Input type="password" placeholder="Password" label="Password" name='password' required onChange={(e) => setData(e)} />
+        <Input
+          type="email"
+          placeholder="Email"
+          label="Email"
+          name="email"
+          required
+          onChange={(e) => setData(e)}
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          label="Password"
+          name="password"
+          required
+          onChange={(e) => setData(e)}
+        />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <MutedLink href="#">Forget your password?</MutedLink>
+      {/* <MutedLink href="#">Forget your password?</MutedLink> */}
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit" onClick={logInUser}>Log In</SubmitButton>
+      <SubmitButton type="submit" onClick={logInUser}>
+        Log In
+      </SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Don't have an account?{" "}

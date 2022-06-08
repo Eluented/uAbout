@@ -5,19 +5,20 @@ import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
 
-
 //maybe keep this display when in mobile view
 const BoxContainer = styled.div`
-  width: 400px;
+  margin-top: 5%;
+  width: 80%;
   min-width: 280px;
   min-height: 550px;
+  height: 700px;
   display: flex;
   flex-direction: column;
-  border-radius: 19px;
-  background-color: yellow;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  background-color: rgba(241, 241, 241, 0.24);
 `;
 
 const TopContainer = styled.div`
@@ -26,25 +27,26 @@ const TopContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 1.8em;
-  background: red;
   padding-bottom: 5em;
+  text-align: center;
+  font-family: "Abril Fatface", cursive;
+  color: black;
 `;
 
 const BackDrop = styled(motion.div)`
-  width: 160%;
-  height: 100%;
+  width: 60%;
+  height: 460%;
   position: absolute;
   display: flex;
   flex-direction: column;
   border-radius: 50%;
   transform: rotate(60deg);
-  top: -290px;
-  left: -70px;
-  background: linear-gradient(#76C4CD, #E1E3CD);
+  top: -420px;
+  left: -170px;
+  background: linear-gradient(180deg, #7ac5ce 0%, #e4e4cd 100%);
   background-image: linear-gradient(
     90deg,
-    linear-gradient(#76C4CD, #E1E3CD) 100%
+    linear-gradient(#76c4cd, #e1e3cd) 100%
   );
 `;
 
@@ -52,7 +54,6 @@ const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: black;
 `;
 
 const HeaderText = styled.h2`
@@ -62,6 +63,8 @@ const HeaderText = styled.h2`
   color: #fff;
   z-index: 10;
   margin: 0;
+  color: black;
+  font-family: "Abril Fatface", cursive;
 `;
 
 const SmallText = styled.h5`
@@ -71,6 +74,7 @@ const SmallText = styled.h5`
   z-index: 10;
   margin: 0;
   margin-top: 7px;
+  color: black;
 `;
 
 const InnerContainer = styled.div`
@@ -78,25 +82,22 @@ const InnerContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background: green;
   text-align: center;
   align-items: center;
-  padding: 0 1.8em;
 `;
-
 
 const backdropVariants = {
   expanded: {
     width: "233%",
-    height: "1050px",
-    borderRadius: "20%",
-    transform: "rotate(60deg)",
+    height: "1600px",
+    borderRadius: "100%",
+    transform: "rotate(180deg)",
   },
   collapsed: {
     width: "160%",
-    height: "550px",
-    borderRadius: "50%",
-    transform: "rotate(60deg)",
+    height: "700px",
+    borderRadius: "100%",
+    transform: "rotate(180deg)",
   },
 };
 
@@ -145,15 +146,15 @@ export function AccountBox(props) {
           />
           {active === "signin" && (
             <HeaderContainer>
-              <HeaderText>Welcome</HeaderText>
-              <HeaderText>Back</HeaderText>
+              <HeaderText></HeaderText>
+              <HeaderText>Welcome Back</HeaderText>
               <SmallText>Please sign-in to continue!</SmallText>
             </HeaderContainer>
           )}
           {active === "signup" && (
             <HeaderContainer>
-              <HeaderText>Create</HeaderText>
-              <HeaderText>Account</HeaderText>
+              <HeaderText></HeaderText>
+              <HeaderText>Create Account</HeaderText>
               <SmallText>Please sign-up to continue!</SmallText>
             </HeaderContainer>
           )}
@@ -167,4 +168,4 @@ export function AccountBox(props) {
   );
 }
 
-export default AccountBox
+export default AccountBox;
