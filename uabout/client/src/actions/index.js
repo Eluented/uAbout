@@ -1,15 +1,17 @@
 import httpClient from "../httpClient";
 
-
 async function postEvent(event) {
   try {
-      const resp = await httpClient.post("https://uabout.herokuapp.com/api/posts", event)
-      console.log(resp)
-    return resp
+    const resp = await httpClient.post(
+      "https://uabout.herokuapp.com/api/posts",
+      event
+    );
+    console.log(resp);
+    return resp;
   } catch (e) {
     console.log(e);
   }
-};
+}
 
 const getPosts = async () => {
   try {
@@ -17,11 +19,11 @@ const getPosts = async () => {
 
     console.log(resp);
 
-    return resp
-  } catch(e) {
-    console.log(e)
+    return resp;
+  } catch (e) {
+    console.log(e);
   }
-}
+};
 
 async function searchFriends(formData) {
   try {
@@ -30,7 +32,7 @@ async function searchFriends(formData) {
       formData
     );
     // console.log(resp)
-    return resp
+    return resp;
   } catch (e) {
     console.log(e);
   }
@@ -40,11 +42,11 @@ const checkLoggedIn = async () => {
   try {
     const resp = await httpClient.get("https://uabout.herokuapp.com/api/@me");
 
-    return resp
-  } catch(e) {
-    console.log(e)
+    return resp;
+  } catch (e) {
+    console.log(e);
   }
-}
+};
 
 async function logoutUser() {
   try {
@@ -53,11 +55,29 @@ async function logoutUser() {
     );
     console.log(resp);
 
-    return resp
+    return resp;
   } catch (e) {
     console.log(e);
   }
 }
 
+async function friendRequest(data) {
+  try {
+    const resp = await httpClient.post(
+      "https://uabout.herokuapp.com/api/add-friend",
+      data
+    );
+    return resp;
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-export { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn};
+export {
+  searchFriends,
+  logoutUser,
+  postEvent,
+  getPosts,
+  checkLoggedIn,
+  friendRequest,
+};

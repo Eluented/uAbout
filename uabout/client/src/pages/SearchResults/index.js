@@ -19,9 +19,7 @@ const SearchResultsPage = () => {
   const { username } = useParams();
 
   const searchResult = useSelector(userSearchResult);
-  const results = searchResult;
-
-  function sendFriendRequest() {}
+  const results = searchResult.data.results;
 
   return (
     <>
@@ -30,13 +28,13 @@ const SearchResultsPage = () => {
           <h1>Search Results for {username}</h1>
         </Box>
 
-        {/* {searchResult.status === 204 && (
+        {searchResult.status === 204 && (
           <Box sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
             <h2>Could not find any results for {username}</h2>
           </Box>
-        )} */}
+        )}
 
-        {
+        {searchResult.status === 200 &&
           results.map(({ username, first_name, last_name }, idx) => (
             <FriendBox />
           ))}

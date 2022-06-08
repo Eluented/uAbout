@@ -1,10 +1,11 @@
 import "./index.css";
 import BackgroundLetterAvatars from "../AvatarIcon";
 import { Button } from "@mui/material";
+import { friendRequest } from "../../actions";
 
 const FriendBox = ({ username, first_name, last_name, idx }) => {
-  function sendFriendRequest() {
-    console.log();
+  function sendFriendRequest(idx) {
+    const data = { idx };
   }
   return (
     <>
