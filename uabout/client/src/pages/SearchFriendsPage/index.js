@@ -30,18 +30,20 @@ const SearchFriendsPage = () => {
   // when form is submitted...
   function handleSubmit(e) {
     e.preventDefault();
-    // posts to API to search for user in Database
-    return dispatch(fetchUsers(formData))
-  };
 
 
-  useEffect(() => {
+    dispatch(fetchUsers(formData))
     // if the search function is completed
     if (searchFriendsStatus === "succeeded") {
 
       // if search succeeds... changes url to searched user (fool the user)
-      navigate(`/search/${formData.username}`)
+      return navigate(`/search/${formData.username}`)
     }
+  };
+
+
+  useEffect(() => {
+
   }, [searchFriendsStatus, dispatch]);
 
   return (
