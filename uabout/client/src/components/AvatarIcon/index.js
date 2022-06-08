@@ -67,8 +67,8 @@ function stringAvatar(name) {
 export default function BackgroundLetterAvatars() {
   const userInfo = useSelector(currentUser);
 
-  const letterOne = userInfo.first_name[0];
-  const letterTwo = userInfo.last_name[0];
+  const letterOne = userInfo.first_name;
+  const letterTwo = userInfo.last_name;
   return (
     <Stack direction="row" spacing={2}>
       <StyledBadge
