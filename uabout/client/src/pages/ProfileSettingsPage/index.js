@@ -29,6 +29,10 @@ const ProfileSettingsPage = () => {
           </button>
         </div>
       </div>
+      <div className="friend-container">
+        <div className="all-friends"></div>
+        <div className="friend requests"></div>
+      </div>
       <Footer />
     </div>
   );
