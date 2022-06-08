@@ -75,8 +75,15 @@ const ProfileSettingsPage = () => {
           </div>
         </div>
         <div className="friend-container">
-          {friendsArr.map((object, idx) => (
-            <FriendRequest object={object} key={idx}/>
+          {friendsArr.map(({ email, first_name, phone_number, user_id, username }, idx) => (
+            <FriendRequest 
+            email={email}
+            first_name={first_name}
+            phone_number={phone_number}
+            user_id={user_id}
+            username={username}
+            idx={idx}
+            />
           ))}
         </div>
         <Footer />
