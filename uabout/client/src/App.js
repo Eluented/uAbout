@@ -16,18 +16,18 @@ import {
   ProfileSettingsPage,
 } from "./pages";
 
-import { checkLogin } from './reducers/mainSlice';
-
+import { allFriends, checkLogin, renderPosts } from "./reducers/mainSlice";
 function App() {
   const dispatch = useDispatch()
 
   // gets results from the checkLogin function
   const loggedInCheck = useSelector(state => state.main.current_user);
-  console.log(loggedInCheck)
 
   // checks if user is logged in
   useEffect(() => {
-    dispatch(checkLogin())
+    dispatch(checkLogin());
+    dispatch(renderPosts());
+    dispatch(allFriends());
   }, []);
 
 

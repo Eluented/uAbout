@@ -311,7 +311,7 @@ def add_friend():
 
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
 
-@app.route("/api/accept-friend")
+@app.route("/api/accept-friend", methods=["POST"])
 def add_friends():
     """ Show friend requests and list of all friends """
 
@@ -320,11 +320,13 @@ def add_friends():
     # retrieves the other user_id of the other person within post request
     user_b_id = request.json["user_b_id"]
 
-    friend_requests = is_friends_or_pending(user_a_id, user_b_id)
+    pending = db.session.query(Connection).filter(Connection.user_a_id == user_a_id,
+                                                     Connection.user_b_id == user_b_id,
+                                                     Connection.status == "Requested").first()
 
-    print(is_friends_or_pending)
+    print(pending)
 
-    friend_requests.status = "Accepted"
+    pending.status = "Accepted"
 
     db.session.commit()
 

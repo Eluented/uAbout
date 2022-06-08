@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { Footer, Navbar, EventForm, EventCard } from "../../components";
-import { renderPosts, postsResult } from "../../reducers/mainSlice";
+import {  postsResult, currentUser } from "../../reducers/mainSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { currentUser, allFriends } from "../../reducers/mainSlice";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,19 +14,13 @@ const HomePage = () => {
 
   const getPosts = useSelector(postsResult);
 
-  console.log(getPosts);
-
-  useEffect(() => {
-    dispatch(renderPosts());
-    dispatch(allFriends());
-  }, []);
 
   if (searchPostStatus === "loading") {
     return <h1>Loading ...</h1>;
   }
 
   if (searchPostStatus === "failed") {
-    <h1>Failed to display posts! Please try again</h1>;
+    return <h1>Failed to display posts! Please try again</h1>;
   }
 
   if (searchPostStatus === "succeeded") {
