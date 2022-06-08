@@ -27,7 +27,7 @@ const HomePage = () => {
   }
 
   if (searchPostStatus === "failed") {
-    <h1>Failed to display posts! Please try again</h1>;
+    return <h1>Failed to display posts! Please try again</h1>;
   }
 
   if (searchPostStatus === "succeeded") {

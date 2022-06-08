@@ -10,7 +10,7 @@ const ProfileSettingsPage = () => {
   const userInfo = useSelector(currentUser);
 
   const allFriends = useSelector(friends);
-
+  console.log(allFriends)
 
   if (allFriends === []){
     return (
@@ -40,12 +40,15 @@ const ProfileSettingsPage = () => {
       <Footer />
     </div>
     )
-  } else {
+  } else if ( typeof allFriends === 'object' &&
+              allFriends !== null &&
+              !Array.isArray(allFriends) ) {
+
     const friendsArr = [...allFriends["friends"].map(f => ({...f, status:"Friend"})),
     ...allFriends["received_friend_requests"].map(f => ({...f, status:"Pending Friend Requests"})),
     ...allFriends["sent_friend_requests"].map(f => ({...f, status:"Sent Friend Requests"}))
   ]
-  
+
   console.log(friendsArr)
 
     return (
