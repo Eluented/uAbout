@@ -16,8 +16,7 @@ import {
   ProfileSettingsPage,
 } from "./pages";
 
-import { checkLogin } from './reducers/mainSlice';
-
+import { allFriends, checkLogin, renderPosts } from "./reducers/mainSlice";
 function App() {
   const dispatch = useDispatch()
 
@@ -26,7 +25,9 @@ function App() {
 
   // checks if user is logged in
   useEffect(() => {
-    dispatch(checkLogin())
+    dispatch(checkLogin());
+    dispatch(renderPosts());
+    dispatch(allFriends());
   }, []);
 
 
