@@ -11,14 +11,7 @@ const ProfileSettingsPage = () => {
 
   const allFriends = useSelector(friends);
 
-  const currentFriends = [...allFriends["friends"].map(f => ({...f, status:"Friend"})) ]
 
-  const recievedRequests = [...allFriends["received_friend_requests"].map(f => ({...f, status:"Pending Friend Requests"}))]
-
-  const sent_friend_request = [...allFriends["sent_friend_requests"].map(f => ({...f, status:"Sent Friend Requests"}))]
-
-  console.log(currentFriends, recievedRequests, sent_friend_request)
-  
   if (allFriends === []){
     return (
       <div className="profile-container">
@@ -48,6 +41,13 @@ const ProfileSettingsPage = () => {
     </div>
     )
   } else {
+    const friendsArr = [...allFriends["friends"].map(f => ({...f, status:"Friend"})),
+    ...allFriends["received_friend_requests"].map(f => ({...f, status:"Pending Friend Requests"})),
+    ...allFriends["sent_friend_requests"].map(f => ({...f, status:"Sent Friend Requests"}))
+  ]
+  
+  console.log(friendsArr)
+
     return (
       <div className="profile-container">
         <Navbar />
@@ -79,18 +79,7 @@ const ProfileSettingsPage = () => {
           </div>
           <div className="friend requests">
             <h2>Friend Requests</h2>
-            {!allFriends.length ? <h1>You have no requests</h1>
-            :
-            allFriends.map(({ email, first_name, phone_number, user_id, username }, idx) => (
-            < FriendRequest
-              email={email}
-              first_name={first_name}
-              phone_number={phone_number}
-              user_id={user_id}
-              username={username}
-              idx={idx}
-            />
-            ))}
+            
           </div>
         </div>
         <Footer />
