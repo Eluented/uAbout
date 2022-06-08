@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn } from "../actions";
+import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn, getFriends } from "../actions";
 import Cookies from 'js-cookie'
 
 const cookie = Cookies.get('session')
@@ -33,6 +33,16 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
+////////////////////////////////////////// GET FRIENDS ////////////////////////////////////////////////
+export const allFriends = createAsyncThunk(
+  "reducers/getFriends",
+  async () => {
+    const res = await getFriends();
+
+    return res
+  }
+);
+
 //////////////////////////////////////// CHECK IF LOGGED IN //////////////////////////////////////////////
 export const checkLogin = createAsyncThunk(
   "reducers/checkLogin",
@@ -57,6 +67,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
+    friends: null,
     current_user: cookie ? cookie : null,
     posts: [],
     status: null,
@@ -78,6 +89,17 @@ export const mainSlice = createSlice({
       state.users = action.payload.data.results;
     },
     [fetchUsers.rejected]: (state, action) => {
+      state.status = "failed";
+      state.searchError = action.error.message;
+    },
+    [allFriends.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [allFriends.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.friends = action.payload.data;
+    },
+    [allFriends.rejected]: (state, action) => {
       state.status = "failed";
       state.searchError = action.error.message;
     },
@@ -126,5 +148,7 @@ export const userSearchResult = state => state.main.users;
 export const postsResult = state => state.main.posts;
 
 export const currentUser = state => state.main.current_user;
+
+export const friends = state => state.main.friends;
 
 export default mainSlice.reducer;

@@ -3,11 +3,14 @@ import { BackgroundLetterAvatars, Footer, Navbar } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { logoutUser } from "../../actions";
-import { useSelector } from "react-redux";
-import { currentUser } from "../../reducers/mainSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { currentUser, friends } from "../../reducers/mainSlice";
 
 const ProfileSettingsPage = () => {
   const userInfo = useSelector(currentUser);
+
+  const allFriends = useSelector(friends);
+  console.log(allFriends);
 
   return (
     <div className="profile-container">
