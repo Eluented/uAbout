@@ -86,8 +86,8 @@ function EventForm({ setOpenModal }) {
 
   const theme = useTheme();
 
-  ///////////////////////////////////////////// PERSON NAME ///////////////////////////////////////////////
-  const [personName, setPersonName] = useState([]);
+  /////////////////// PERSON NAME //////////////////////////////////////
+  const [personName, setPersonName] = useState();
 
 
   const allFriends = useSelector(friends)
@@ -98,8 +98,10 @@ function EventForm({ setOpenModal }) {
     const {
       target: { value },
     } = event;
-    console.log(value)
-    setPersonName(value[0]);
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
   };
 
   console.log(event);
