@@ -18,7 +18,7 @@ const SearchResultsPage = () => {
   const { username } = useParams();
 
   const searchResult = useSelector(userSearchResult);
-  const results = searchResult.data.results;
+  const results = searchResult;
 
   function sendFriendRequest() {}
 

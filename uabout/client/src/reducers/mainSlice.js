@@ -66,7 +66,7 @@ export const logout = createAsyncThunk(
 export const mainSlice = createSlice({
   name: "main",
   initialState: {
-    users: null,
+    users: [],
     current_user: cookie ? cookie : null,
     posts: [],
     status: null,
@@ -85,7 +85,7 @@ export const mainSlice = createSlice({
     },
     [fetchUsers.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.users = action.payload;
+      state.users = action.payload.data.results;
     },
     [fetchUsers.rejected]: (state, action) => {
       state.status = "failed";
