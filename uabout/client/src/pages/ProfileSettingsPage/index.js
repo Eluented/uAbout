@@ -3,7 +3,7 @@ import { BackgroundLetterAvatars, Footer, Navbar } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { logoutUser } from "../../actions";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { currentUser } from "../../reducers/mainSlice";
 
 const ProfileSettingsPage = () => {
