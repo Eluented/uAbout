@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/system";
+import { Navbar } from "../../components";
 import {
   FormControl,
   Button,
@@ -44,15 +45,17 @@ const SearchFriendsPage = () => {
   }, [searchResult]);
 
   return (
-    <>
+    <><Navbar />
       <Container
         maxWidth="md"
         style={{
+          marginTop: "12vh",
           backgroundColor: "white",
           paddingTop: "1%",
           paddingBottom: "2%",
         }}
       >
+        
         <form onSubmit={handleSubmit}>
           <Box sx={{ mt: "2%", mb: "2%" }} width="100%">
             <FormControl fullWidth>
