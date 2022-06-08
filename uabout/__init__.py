@@ -247,6 +247,7 @@ def show_friends_and_requests():
     # This returns a query for current user's friends (not User objects), but adding .all() to the end gets list of User objects
     friends = get_friends(session["current_user"]["user_id"]).all()
 
+
     return jsonify({ "received_friend_requests" : received_friend_requests,
                     "sent_friend_requests" : sent_friend_requests,
                     "friends" : friends })
@@ -301,7 +302,24 @@ def add_friend():
 
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
 
+@app.route("/api/accept-friend")
+def add_friends():
+    """ Show friend requests and list of all friends """
 
+    user_a_id = session["current_user"]["user_id"]
+
+    # retrieves the other user_id of the other person within post request
+    user_b_id = request.json["user_b_id"]
+
+    friend_requests = is_friends_or_pending(user_a_id, user_b_id)
+
+    print(is_friends_or_pending)
+
+    friend_requests.status = "Accepted"
+
+    db.session.commit()
+
+    return "Added User as a Friend"
 # ------------------------------------- POSTS ROUTES ---------------------------------------- #
 
 @app.route('/api/posts', methods = ["POST", "GET"])
