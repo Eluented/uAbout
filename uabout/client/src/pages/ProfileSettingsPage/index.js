@@ -3,8 +3,12 @@ import { BackgroundLetterAvatars, Footer, Navbar } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { logoutUser } from "../../actions";
+import { useSelector, useDispatch } from "react-redux";
+import { currentUser } from "../../reducers/mainSlice";
 
 const ProfileSettingsPage = () => {
+  const userInfo = useSelector(currentUser);
+
   return (
     <div className="profile-container">
       <Navbar />
@@ -14,9 +18,9 @@ const ProfileSettingsPage = () => {
           <div id="avatar-container">
             <BackgroundLetterAvatars />
             <ul id="profile-details">
-              <li>Username: </li>
-              <li>First Name: </li>
-              <li>Last Name: </li>
+              <li>Username: {userInfo.username}</li>
+              <li>First Name: {userInfo.first_name}</li>
+              <li>Last Name: {userInfo.last_name}</li>
             </ul>
           </div>
         </div>
