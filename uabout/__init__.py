@@ -220,9 +220,18 @@ def all_users():
 
     return jsonify({ "results": result })
 
-# @app.route("/api/users/<int:user_id>")
-# def user_profile(user_id):
+# @app.route("/api/users/profile")
+# def user_profile():
 #     """ Show a specific user profile """
+ 
+
+#     user_a_id = session["current_user"]["user_id"]
+
+#     user_b_id = request.json["user_b"]
+#     # Check connection status between user_a and user_b
+#     friends, pending_request = is_friends_or_pending(user_a_id, user_b_id)
+
+#     total_friends = len(get_friends(user_id).all())
 
 
 # ------------------------------------- FRIENDS ROUTES ----------------------------------------

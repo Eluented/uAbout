@@ -16,10 +16,20 @@ export const eventPost = createAsyncThunk(
 ////////////////////////////////////////// GET POSTS ////////////////////////////////////////////////
 export const renderPosts = createAsyncThunk(
   "reducers/renderPosts",
-  async () => {
-    const res = await getPosts();
+  async ({ rejectWithValue }) => {
+    try {
+      const res = await getPosts();
 
-    return res
+      return res
+
+    } catch (err) {
+
+      if (!err.response) {
+        throw err
+      }
+
+      return rejectWithValue(err.response.data)
+    }
   }
 );
 
@@ -57,7 +67,7 @@ export const mainSlice = createSlice({
   name: "main",
   initialState: {
     users: null,
-    current_user: cookie ? cookie: null,
+    current_user: cookie ? cookie : null,
     posts: [],
     status: null,
 
@@ -75,7 +85,7 @@ export const mainSlice = createSlice({
     },
     [fetchUsers.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.users =  action.payload;
+      state.users = action.payload;
     },
     [fetchUsers.rejected]: (state, action) => {
       state.status = "failed";
@@ -86,7 +96,7 @@ export const mainSlice = createSlice({
     },
     [checkLogin.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.current_user =  action.payload.data
+      state.current_user = action.payload.data
     },
     [checkLogin.rejected]: (state, action) => {
       state.status = "failed";
@@ -108,12 +118,14 @@ export const mainSlice = createSlice({
     [renderPosts.fulfilled]: (state, action) => {
       state.status = "succeeded";
 
-      if (action.payload.status === 204){
+      if (action.payload.response.status === 401 || action.payload.response.status === 500) {
         state.posts = []
       }
 
-      if (action.payload.status === 200){
-        state.posts =  action.payload.data.results
+      if (action.payload.status === 200) {
+        state.posts = action.payload.data.results
+      } else {
+        state.posts = []
       }
     },
     [renderPosts.rejected]: (state, action) => {
