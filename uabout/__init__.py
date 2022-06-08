@@ -247,10 +247,16 @@ def show_friends_and_requests():
     # This returns a query for current user's friends (not User objects), but adding .all() to the end gets list of User objects
     friends = get_friends(session["current_user"]["user_id"]).all()
 
+    # Parsing Data into ma
+    received = users_schema.dump(received_friend_requests)
 
-    return jsonify({ "received_friend_requests" : received_friend_requests,
-                    "sent_friend_requests" : sent_friend_requests,
-                    "friends" : friends })
+    sent = users_schema.dump(sent_friend_requests)
+
+    all_friends = users_schema.dump(friends)
+
+    return jsonify({ "received_friend_requests" : received,
+                    "sent_friend_requests" : sent,
+                    "friends" : all_friends })
 
 
 @app.route('/api/friends/search', methods=['POST'])
