@@ -6,3 +6,4 @@ export { default as EventCard } from "./EventCard";
 export { default as BackgroundLetterAvatars } from "./AvatarIcon";
 export { default as FriendBox } from "./FriendBox";
 export { default as FriendRequest } from "./FriendRequest";
+export { default as SearchBar } from './SearchBar';

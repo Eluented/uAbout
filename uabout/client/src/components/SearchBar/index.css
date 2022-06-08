@@ -1,0 +1,74 @@
+button:focus,
+input:focus {
+    outline: none;
+}
+
+.main-app {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    border-radius: 20px;
+    box-shadow: 2px 2px 1px -2px;
+    width: 70%;
+    min-width: 30%;
+    background-color: rgba(7,42,72, 0.5);
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.submit {
+    margin-left: 2%;
+    background: transparent;
+    border: none;
+    font-size: 5vw;
+    transition: .5s ease-in-out;
+    color:#072A48;
+    min-width: 5%;
+}
+
+.search-bar {
+    background: transparent;
+    width: 5%;
+    height: 4vh;
+    padding-bottom: 1%;
+    border: none;
+    font-size: 3vw;
+    text-align: justify;
+    color: #072A48;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom: 1px solid #072A48;
+    -webkit-transition: width .35s ease-in-out;
+    transition-delay: 0.3s;
+    transition: width .5s ease-in-out,
+        padding .2s ease-in-out;
+}
+
+input[type=text]:focus{
+    width: 70%
+}
+
+.search-bar:hover {
+    width: 70%;
+    padding: 1%;
+}
+
+.submit:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+    min-width: auto;
+}
+
+.main-app:hover {
+    background-color: rgba(7,42,72, 0.8);
+    border-color: #072A48;
+    border-style: 1px solid;
+}
+
+/* If input is empty */
+input:placeholder-shown {
+    min-width: 37%;
+}

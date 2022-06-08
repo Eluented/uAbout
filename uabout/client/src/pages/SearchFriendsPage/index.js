@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/system";
-import { Navbar } from "../../components";
-import {
-  FormControl,
-  Button,
-  Typography,
-  TextField,
-  Container,
-} from "@mui/material";
+import { Navbar, SearchBar } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import './index.css'
@@ -51,17 +43,7 @@ const SearchFriendsPage = () => {
     <>
       <Navbar />
       
-        <div class="main-app">
-          <form onSubmit={handleSubmit}>
-          <input type="text" placeholder= "Search users here" class="search-bar" name="username" onChange={(e) => setData(e)}/>
-          <button class="submit">
-          <FontAwesomeIcon
-              icon={faSearch}
-              size="1x"
-            />
-          </button>
-          </form>
-        </div>
+        <SearchBar />
       
 
     </>
