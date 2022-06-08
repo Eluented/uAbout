@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { currentUser } from "../../reducers/mainSlice";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -35,7 +35,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function stringToColor(string: string) {
+function stringToColor(string) {
   let hash = 0;
   let i;
 
@@ -55,7 +55,7 @@ function stringToColor(string: string) {
   return color;
 }
 
-function stringAvatar(name: string) {
+function stringAvatar(name) {
   return {
     sx: {
       bgcolor: stringToColor(name),
