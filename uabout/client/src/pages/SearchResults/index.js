@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from 'react-router';
-import { userSearchResult } from '../../reducers/mainSlice.js'
+import { useParams } from "react-router";
+import { userSearchResult } from "../../reducers/mainSlice.js";
 import { Box } from "@mui/system";
-import './index.css'
+import "./index.css";
 import {
   FormControl,
   Button,
   Typography,
   TextField,
-  Container
+  Container,
 } from "@mui/material";
-import BackgroundLetterAvatars from '../../components/AvatarIcon'
+import BackgroundLetterAvatars from "../../components/AvatarIcon";
 
 const SearchResultsPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const SearchResultsPage = () => {
   const searchResult = useSelector(userSearchResult);
   const results = searchResult.data.results;
 
+  function sendFriendRequest() {}
 
   return (
     <>
@@ -28,28 +29,34 @@ const SearchResultsPage = () => {
           <h1>Search Results for {username}</h1>
         </Box>
 
-        {searchResult.status === 204
-          &&
+        {searchResult.status === 204 && (
           <Box sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
             <h2>Could not find any results for {username}</h2>
           </Box>
-        }
+        )}
 
-
-        {searchResult.status === 200
-          &&
+        {searchResult.status === 200 &&
           results.map(({ username, first_name, last_name }, idx) => (
-            <Box class="FriendBox" key={idx} sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>
-              <div class="Avatar"><BackgroundLetterAvatars /></div>
-              <div class="NameBox">{first_name} {last_name}</div>
+            <Box
+              class="FriendBox"
+              key={idx}
+              sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}
+            >
+              <div class="Avatar">
+                <BackgroundLetterAvatars />
+              </div>
+              <div class="NameBox">
+                {first_name} {last_name}
+              </div>
               <div class="UsernameBox">{username}</div>
-               
+              <Button variant="outlined" onClick={sendFriendRequest()}>
+                Add Friend
+              </Button>
             </Box>
           ))}
-
       </Container>
     </>
-  )
-}
+  );
+};
 
 export default SearchResultsPage;
