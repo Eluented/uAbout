@@ -384,7 +384,7 @@ def create_post():
         user_id = session["current_user"]["user_id"]
 
         # get shit from databse send it back
-        post_by_user_id = Posts.query.filter_by(user_id=user_id).all()
+        post_by_user_id = Posts.query.all()
         
         print(post_by_user_id)
 
