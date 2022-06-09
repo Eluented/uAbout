@@ -153,14 +153,9 @@ function EventForm({ setOpenModal }) {
     }
   
   
-    const handleChanges = (event) => {
-      const {
-        target: { value },
-      } = event;
-      setPersonName(
-        // On autofill we get a stringified value.
-        typeof value === "string" ? value.split(",") : value
-      );
+    const handleChanges = (e) => {
+
+      setPersonName([...personName, e.target.value]);
     };
   
     console.log(event);

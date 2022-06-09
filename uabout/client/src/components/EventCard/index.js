@@ -38,7 +38,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
     <Card sx={{ maxWidth: 700, display: "block" }}>
       <CardHeader
         avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} />}
-        titleTypographyProps={{variant:'h2' }}
+        titleTypographyProps={{variant:'h3' }}
         title={post_title}
       />
       {/* <CardMedia 
