@@ -305,7 +305,7 @@ hr {
 }
 
 .eventrender-container {
-  display: flex;
+  display: block;
   justify-content: center;
   position: relative;
   top: 80px;
