@@ -306,6 +306,9 @@ hr {
   width: 50%;
   margin: auto;
 }
+.friend-container::-webkit-scrollbar {
+  display: none;
+}
 #avatar-container {
   display: flex;
   justify-content: space-evenly;
