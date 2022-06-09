@@ -34,7 +34,7 @@ export function LoginForm(props) {
       if (resp.data.error){
 
       } else {
-        navigate("/landing");
+        navigate("/home");
       }
       console.log(resp);
       return resp
