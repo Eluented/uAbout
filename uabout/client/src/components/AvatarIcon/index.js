@@ -67,6 +67,7 @@ function stringAvatar(name) {
 export default function BackgroundLetterAvatars({ first_name, last_name }) {
 
   return (
+    
     <Stack direction="row" spacing={2}>
       <StyledBadge
         overlap="circular"
