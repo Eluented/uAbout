@@ -389,7 +389,6 @@ def create_post():
         # get shit from databse send it back
         all_post= Posts.query.all()
         
-        user_who_posted = Users.query.filter_by(user_id=all_post.user_id)
 
         print(all_post)
 

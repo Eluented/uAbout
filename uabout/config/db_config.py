@@ -29,8 +29,7 @@ class Users(db.Model):
                   default=get_uuid)
 
     post_id = db.Column(db.String(32), 
-                       db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
-                       nullable=False)
+                       db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'))
 
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
