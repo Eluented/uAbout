@@ -74,7 +74,7 @@ class PostsSchema(ma.Schema):
                 "post_body",
                 "event_start", 
                 "event_end",
-                "user_id") 
+                "user") 
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
