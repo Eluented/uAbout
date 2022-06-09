@@ -2,9 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { userSearchResult } from "../../reducers/mainSlice.js";
-import { Box } from "@mui/system";
 import "./index.css";
-import { default as FriendBox } from "../../components/FriendBox";
+import { FriendBox, Navbar, SearchBar } from "../../components";
 import {
   FormControl,
   Button,
@@ -26,9 +25,14 @@ const SearchResultsPage = () => {
   return (
     <>
       <Container class="Container" maxWidth="md">
-        <Box sx={{ pt: "2%", pb: "5%", mb: "5%" }}>
-          <h1>Search Results for {username}</h1>
-        </Box>
+        
+      <Navbar />
+      
+      <SearchBar />
+
+        <div class="SearchTop" sx={{ pt: "1%", pb: "1%", mb: "5%" }}>
+          <h1>Search Results for '{username}'</h1>
+        </div>
 
         {/* {searchResult.status === 204 && (
           <Box sx={{ pt: "2%", pb: "5%", mt: "2%", mb: "5%" }}>

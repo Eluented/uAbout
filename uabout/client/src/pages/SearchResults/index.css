@@ -20,8 +20,7 @@
 }
 
 .Container {
-    overflow: scroll;
-    background-color: rgb(241, 241, 241);
+    overflow:scroll;
 }
 
 
@@ -59,4 +58,12 @@
     font-style: italic;
     font-family: 'Montserrat', sans-serif;
 }
+
+.SearchTop{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-bottom: 5%;
+    background-color: rgb(241, 241, 241);
+}
+
 

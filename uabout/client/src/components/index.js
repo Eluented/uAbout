@@ -7,3 +7,5 @@ export { default as BackgroundLetterAvatars } from "./AvatarIcon";
 export { default as FriendBox } from "./FriendBox";
 export { default as FriendRequest } from "./FriendRequest";
 export { default as SearchBar } from './SearchBar';
+export {default as AccountBox } from './AccountBox'
+
