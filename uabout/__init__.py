@@ -412,7 +412,7 @@ def create_post():
 
         # print(result)
 
-        return jsonify({ "results": 3 })
+        return jsonify({ "results": [serialize_post(p) for p in all_post] })
 
 
 @app.route('/api/events/:id')
