@@ -29,7 +29,7 @@ const CalendarPage = () => {
                 <div>
                   <h1>My Events</h1>
                   <div className="eventrender-container">
-                    <h1>There are no current events... Make one now sir</h1>
+                    <h1>You have no current events!</h1>
                   </div>
                 </div>
               </div>
