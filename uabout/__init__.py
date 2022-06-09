@@ -379,8 +379,7 @@ def create_post():
                         "body": post_body, 
                         "start_date": post_start_date,
                         "end_date": post_end_date,
-                        "user_id": user_id,
-                        "poster_info": new_post.poster })
+                        "user_id": user_id })
     
     elif request.method == "GET":
 
@@ -398,7 +397,8 @@ def create_post():
 
         print(result)
 
-        return jsonify({"results": result})
+        return jsonify({"results": result,
+                        "poster_info": result.poster})
 
 
 @app.route('/api/events/:id')
