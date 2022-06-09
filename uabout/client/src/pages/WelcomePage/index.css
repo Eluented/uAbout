@@ -27,6 +27,12 @@
   color: #f1f1f1;
 }
 
+.friend-container {
+  display: block;
+  text-align: center;
+  position: relative;
+}
+
 .FormContainer {
   width: 40%;
   height: 50vh;
