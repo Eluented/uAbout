@@ -75,7 +75,7 @@ class PostsSchema(ma.Schema):
                 "event_start", 
                 "event_end") 
 
-    users = ma.Nested(UsersSchema, many=True)
+    posts = ma.Nested(UsersSchema, many=True)
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
