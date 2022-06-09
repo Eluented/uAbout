@@ -64,11 +64,8 @@ function stringAvatar(name) {
   };
 }
 
-export default function BackgroundLetterAvatars() {
-  const userInfo = useSelector(currentUser);
+export default function BackgroundLetterAvatars({ first_name, last_name }) {
 
-  const letterOne = userInfo.first_name;
-  const letterTwo = userInfo.last_name;
   return (
     <Stack direction="row" spacing={2}>
       <StyledBadge
@@ -77,7 +74,7 @@ export default function BackgroundLetterAvatars() {
         variant="dot"
       >
         <Avatar
-          {...stringAvatar(`${letterOne} ${letterTwo}`)}
+          {...stringAvatar(`${first_name} ${last_name}`)}
           sx={{ width: 100, height: 100 }}
         />
       </StyledBadge>

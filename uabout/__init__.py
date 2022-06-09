@@ -184,8 +184,6 @@ def logout_user():
     # Gets rid of session
     del session["current_user"]
 
-    flash("You have successfully logged out.")
-
     return 200
 
 # if you're logged in it will return info - current logged in user

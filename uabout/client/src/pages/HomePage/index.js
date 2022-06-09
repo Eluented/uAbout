@@ -70,11 +70,15 @@ const HomePage = () => {
                         post_id,
                         event_start,
                         event_end,
+                        first_name,
+                        last_name
                       },
                       idx
                     ) => (
                       <EventCard
                         className="event-cards"
+                        first_name={first_name}
+                        last_name={last_name}
                         post_body={post_body}
                         post_title={post_title}
                         post_id={post_id}
