@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   WelcomePage,
-  LandingPage,
   LoginPage,
   SearchFriendsPage,
   RegisterPage,
@@ -34,13 +33,13 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
-      <Route path="/landing" element={<LandingPage />} />
+      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true}  />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/allfriends" element={<FriendsPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
-      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/register" replace={true}  />} />
+      
       <Route path="/profile" element={<ProfileSettingsPage />} />
 
       <Route path="/search">
