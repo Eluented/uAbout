@@ -290,9 +290,7 @@ hr {
   top: 10px;
 }
 /* Event component styling */
-.homepage-section {
-  display: flex;
-}
+
 .eventrender-container {
   justify-content: center;
   position: relative;
