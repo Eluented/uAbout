@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
-  
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
@@ -45,6 +45,7 @@ export function SignupForm(props) {
 
     return (
       <BoxContainer>
+        <form onSubmit={registerUser}>
         <FormContainer onSubmit={handleSubmit}>
           <Input type="text" placeholder="First Name" label="First Name" name='first_name' onChange={(e) => setData(e)}/>
           <Input type="text" placeholder = "Last Name" label="Last Name" name='last_name' onChange={(e) => setData(e)} />
@@ -54,7 +55,9 @@ export function SignupForm(props) {
           <Input type="number" placeholder = "Phone Number" label="Phone Number" name = "phone_number" onChange={(e) => setData(e)} />
         </FormContainer>
         <Marginer direction="vertical" margin={10} />
-        <SubmitButton type="submit" onClick={registerUser}>Register</SubmitButton>
+        <SubmitButton type="submit" >Register</SubmitButton>
+        </form>
+
         <Marginer direction="vertical" margin="1em" />
         <MutedLink href="#">
           Already have an account?
