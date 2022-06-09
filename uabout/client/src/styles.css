@@ -290,9 +290,6 @@ hr {
   justify-content: center;
 }
 
-.homepage-section {
-  display: block;
-}
 .form-container {
   display: block;
   top: 10px;
@@ -301,8 +298,6 @@ hr {
 /* Event component styling */
 .homepage-section {
   display: block;
-  top: 10%;
-  position: absolute;
 }
 
 .eventrender-container {
