@@ -11,9 +11,12 @@ import { Marginer } from "../Marginer";
 import style from "styled-components"
 import httpClient from '../../httpClient'
 import { AccountContext } from "./accountContext";
+import { useNavigate } from "react-router-dom";
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
+  
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
 
@@ -25,11 +28,14 @@ export function SignupForm(props) {
   }
 
   const registerUser = async () => {
-    console.log(formData)
 
     try {
       const resp = await httpClient.post("https://uabout.herokuapp.com/api/register", formData)
+      if (resp.data.error){
 
+      } else {
+        navigate("/home");
+      }
       console.log(resp.data)
     } catch (e) {
       console.log(e)

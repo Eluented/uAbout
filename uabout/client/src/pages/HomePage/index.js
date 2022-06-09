@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Footer, Navbar, EventForm, EventCard } from "../../components";
-import {  postsResult, currentUser } from "../../reducers/mainSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { postsResult, currentUser } from "../../reducers/mainSlice";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -12,7 +12,6 @@ const HomePage = () => {
   const userInfo = useSelector(currentUser);
 
   const getPosts = useSelector(postsResult);
-
 
   if (searchPostStatus === "loading") {
     return <h1>Loading ...</h1>;
@@ -43,7 +42,6 @@ const HomePage = () => {
               <div className="eventrender-container">
                 <h1>There are no current events... Make one now sir</h1>
               </div>
-              : <h1>...</h1>
             </div>
             <Footer />
           </div>
@@ -87,7 +85,6 @@ const HomePage = () => {
                     )
                   )}
               </div>
-              : <h1>...</h1>
             </div>
             <Footer />
           </div>
