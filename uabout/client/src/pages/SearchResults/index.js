@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import { userSearchResult } from "../../reducers/mainSlice.js";
 import "./index.css";
 import { FriendBox, Navbar, SearchBar } from "../../components";
-import { Box } from "@mui/material";
 import {
   FormControl,
   Button,
@@ -38,7 +37,6 @@ const SearchResultsPage = () => {
           </Box>
         )} */}
 
-        <Box sx={{display:"flex", alignItems:"center"}}>
         {
           results.map(({ username, first_name, last_name, user_id }, idx) => (
             <FriendBox
@@ -48,8 +46,6 @@ const SearchResultsPage = () => {
               user_id={user_id}
               idx={idx} />
           ))}
-        </Box>
-
       </Container>
     </>
   );
