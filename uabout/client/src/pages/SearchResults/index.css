@@ -1,26 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
 
-.Container {
-    overflow:scroll;
+.container {
+    
     align-items: center;  
 }
 
 .SearchEntry{
+  background-color: rgb(241, 241, 241, 0.1);
+  display: flex;
+  border-radius: 40px;
   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow: scroll;
-  
-  }
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: scroll;
 
-  .SearchTop{
+}
+
+.SearchTop{
     padding-top: 1%;
     padding-bottom: 1%;
-    
-    background-color: rgba(241, 241, 241, 0.3);
+    background-color: rgb(241, 241, 241, 0.3);
     text-align: center;
+    border-radius: 50px;
 }
 
 @media (max-width: 600px){
