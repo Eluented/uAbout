@@ -9,7 +9,6 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
-    "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-5.17.0.tgz",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.2",
     "@mui/styled-engine-sc": "^5.8.0",
