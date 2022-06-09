@@ -33,18 +33,15 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
-      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true}  />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/allfriends" element={<FriendsPage />} />
-      <Route path="/calendar" element={<CalendarPage />} />
-      
-      <Route path="/profile" element={<ProfileSettingsPage />} />
-
+      <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/profile" element={loggedInCheck ? < ProfileSettingsPage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/allfriends" element={loggedInCheck ? <FriendsPage/> : <Navigate to="/" replace={true}  />}  />
+      <Route path="/calendar" element={loggedInCheck ? <CalendarPage /> : <Navigate to="/" replace={true}  />} />
       <Route path="/search">
-        <Route path="/search" element={<SearchFriendsPage />} />
-        <Route path=":username" element={<SearchResultsPage />} />
+        <Route path="/search" element={loggedInCheck ? < SearchFriendsPage/> : <Navigate to="/" replace={true}  />} />
+        <Route path=":username" element={loggedInCheck ? < SearchResultsPage/> : <Navigate to="/" replace={true}  />} />
       </Route>
     </Routes>
   );

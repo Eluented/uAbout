@@ -234,6 +234,7 @@ html {
   margin: 10px;
   text-align: center;
   position: relative;
+  z-index: 2;
 }
 
 #post-btn {
@@ -302,9 +303,11 @@ hr {
 .homepage-section {
   display: block;
   top: 10%;
+  position: absolute;
 }
 
 .eventrender-container {
+  z-index: 1;
   display: flex;
   justify-content: center;
   position: relative;
@@ -323,6 +326,7 @@ hr {
 
 .MuiPaper-root {
   width: 100%;
+  margin: 5px;
 }
 
 /* Profile Settings page */
