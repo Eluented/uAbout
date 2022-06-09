@@ -30,7 +30,7 @@ const SearchResultsPage = () => {
       <SearchBar />
 
         <div class="SearchTop" sx={{ pt: "1%", pb: "1%", mb: "5%" }}>
-          <h1>Search Results for {username}</h1>
+          <h1>Search Results for ({username})</h1>
         </div>
 
         {/* {searchResult.status === 204 && (
