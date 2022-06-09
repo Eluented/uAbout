@@ -390,7 +390,6 @@ def create_post():
         # get shit from databse send it back
         all_post= Posts.query.all()
         
-        
 
         print(all_post)
 
