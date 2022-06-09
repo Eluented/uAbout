@@ -76,7 +76,6 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography>Location: </Typography>
           <Typography paragraph>{post_body}</Typography>
         </CardContent>
       </Collapse>
