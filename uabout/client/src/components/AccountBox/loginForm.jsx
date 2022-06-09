@@ -23,9 +23,9 @@ export function LoginForm(props) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const logInUser = async () => {
+  const logInUser = async (e) => {
+    e.preventDefault()
     console.log(formData);
-
     try {
       const resp = await httpClient.post(
         "https://uabout.herokuapp.com/api/login",
