@@ -73,7 +73,8 @@ class PostsSchema(ma.Schema):
                 "post_title",
                 "post_body",
                 "event_start", 
-                "event_end") 
+                "event_end",
+                "user_id") 
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
@@ -398,7 +399,7 @@ def create_post():
         print(result)
 
         return jsonify({"results": result,
-                        "poster_info": result.poster})
+                        "poster_info": result.user_id})
 
 
 @app.route('/api/events/:id')
