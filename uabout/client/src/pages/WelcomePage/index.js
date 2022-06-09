@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { AccountBox } from '../../components'
-
 import logo from './pics/UAbout2.png';
 import './index.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,6 +30,7 @@ const WelcomePage = () => {
                 <div class="FormContainer">
                     <AccountBox />
                 </div>
+
             </div>
 
         </>
