@@ -379,6 +379,17 @@ hr {
     width: 100%;
   }
   /* event form */
+  .events-heading {
+    position: relative;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .calendarpage-event-container {
+    position: relative;
+    width: 450px;
+    height: 300px;
+    top: 75%;
+  }
   .eventform-parent-container {
     background-color: rgba(241, 241, 241, 0.41);
     width: 80%;
@@ -394,12 +405,20 @@ hr {
     width: 80%;
     top: 100px;
   }
+  /* my event responsive styling */
+  .events-heading {
+    margin-top: 50%;
+  }
   /* Calendar Styling */
+  .calendar-parent-container {
+    display: flex;
+    justify-content: center;
+  }
 
   .calendar-container {
     justify-content: center;
     display: flex;
-    margin-top: 10%;
+    margin-top: 25%;
     position: fixed;
     margin-left: 0;
   }
