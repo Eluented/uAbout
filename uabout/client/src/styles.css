@@ -305,7 +305,7 @@ hr {
 }
 
 .eventrender-container {
-  display: block;
+  display: flex;
   justify-content: center;
   position: relative;
   top: 80px;
@@ -323,6 +323,7 @@ hr {
 
 .MuiPaper-root {
   width: 100%;
+  margin: 5px;
 }
 
 /* Profile Settings page */
