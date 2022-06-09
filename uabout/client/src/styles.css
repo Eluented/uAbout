@@ -1,8 +1,6 @@
 /***************************************************************************************/
-
 /* Generic */
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
-
 :root {
   --background-primary: #e1e3cd;
   --background-secondary: #76c4cd;
@@ -11,7 +9,6 @@
   --triangle: #f1f1f1;
   --font-primary: "Abril Fatface", cursive;
 }
-
 html {
   margin: 0;
   height: 100%;
@@ -22,33 +19,27 @@ html {
     var(--background-secondary) 100%
   );
 }
-
 /* Navbar component styling */
 .Navbar {
   position: fixed;
   top: 20%;
 }
-
 .Navbar li {
   list-style: none;
   padding: 30px 0px;
 }
-
 .Navbar li:hover {
   cursor: pointer;
 }
-
 /* Footer component styling */
 .footer-container {
   display: flex;
 }
-
 .Footer {
   position: fixed;
   bottom: 0px;
   width: 100%;
 }
-
 .Footer h2 {
   font-size: 36px;
   display: flex;
@@ -57,7 +48,6 @@ html {
   left: 10%;
   top: 90px;
 }
-
 .triangle {
   width: 100%;
   height: 20vh;
@@ -67,22 +57,18 @@ html {
   justify-content: flex-end;
   align-items: center;
 }
-
 .triangle h3 {
   margin: 5%;
 }
-
 .username {
   color: var(--text-secondary);
 }
-
 .avatar-icon {
   border-style: none;
 }
 .avatar-icon:hover {
   cursor: pointer;
 }
-
 /* Calendar component styling */
 .calendar-container {
   display: flex;
@@ -218,7 +204,6 @@ html {
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
-
 /* Post form Styling */
 .eventform-parent-container {
   background-color: rgba(241, 241, 241, 0.41);
@@ -229,27 +214,23 @@ html {
   margin: auto;
   text-align: center;
 }
-
 #event-form {
   margin: 10px;
   text-align: center;
   position: relative;
 }
-
 #post-btn {
   display: block;
   width: 100%;
   margin-top: 10px;
   background-color: var(--text-primary);
 }
-
 .date-input-field {
   text-align: center;
   background: none;
   border-width: thin;
   border-color: var(--text-primary);
 }
-
 .openModalBtn {
   padding: px;
   font-family: var(--font-primary);
@@ -261,27 +242,22 @@ html {
   color: darkslategrey;
   margin-bottom: 10px;
 }
-
 .openModalBtn:hover {
   cursor: pointer;
 }
-
 .modalCloseBtn {
   background: none;
   border-style: none;
   font-size: large;
   font-weight: 300;
 }
-
 .modalCloseBtn:hover {
   cursor: pointer;
 }
-
 hr {
   margin-top: 10px;
   color: grey;
 }
-
 .date-container {
   display: flex;
   margin: auto;
@@ -289,22 +265,14 @@ hr {
   padding: 10px 0px;
   justify-content: center;
 }
-
-.homepage-section {
-  display: block;
-}
 .form-container {
   display: block;
   top: 10px;
 }
-
 /* Event component styling */
 .homepage-section {
   display: block;
-  top: 10%;
-  position: absolute;
 }
-
 .eventrender-container {
   justify-content: center;
   position: relative;
@@ -316,16 +284,13 @@ hr {
   height: 470px;
   overflow-y: scroll;
 }
-
 .eventrender-container::-webkit-scrollbar {
   display: none;
 }
-
 .MuiPaper-root {
   width: 100%;
   margin: 5px;
 }
-
 /* Profile Settings page */
 #logout-btn {
   background: none;
@@ -334,37 +299,30 @@ hr {
   top: 350px;
   cursor: pointer;
 }
-
 #avatar-container {
   display: flex;
   justify-content: space-evenly;
 }
-
 #profile-details {
   display: flexbox;
   width: 50%;
 }
-
 #profile-details li {
   list-style: none;
   margin: 0%;
   /* position: absolute; */
 }
-
 .profile-section {
   display: block;
   justify-content: center;
 }
-
 .bottom-section {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-
 /* All responsive styling */
-
 @media (max-width: 600px) {
   /* Navbar Responsive */
   .Navbar {
@@ -372,24 +330,19 @@ hr {
     top: 0%;
     width: 100%;
   }
-
   .Navbar ul {
     display: flex;
     justify-content: space-evenly;
     padding: 0px;
   }
-
   .Navbar li {
     padding: 0px;
     margin: 0px;
   }
-
   /* Footer Responsive */
-
   .Footer {
     width: 100%;
   }
-
   /* event form */
   .eventform-parent-container {
     background-color: rgba(241, 241, 241, 0.41);
@@ -397,17 +350,14 @@ hr {
     top: 80px;
     text-align: center;
   }
-
   .openModalBtn {
     font-size: 20px;
     padding: 10px 5px;
   }
-
   .eventrender-container {
     width: 80%;
     top: 100px;
   }
-
   /* Calendar Styling */
   .calendar-container {
     display: flex;
@@ -416,7 +366,6 @@ hr {
     position: fixed;
     margin-left: 0;
   }
-
   .react-calendar {
     max-width: 80%;
     height: 300px;
