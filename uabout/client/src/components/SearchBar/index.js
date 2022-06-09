@@ -46,7 +46,6 @@ const SearchBar = () => {
                     <FontAwesomeIcon
                         icon={faSearch}
                         size="1x"
-                        
                     />
                 </button>
             </form>
