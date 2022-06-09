@@ -40,7 +40,7 @@ const HomePage = () => {
                 {modalOpen && <EventForm setOpenModal={setModalOpen} />}
               </div>
               <div className="eventrender-container">
-                <h1>There are no current events... Make one now sir</h1>
+                <h1>There are no current events...</h1>
               </div>
             </div>
             <Footer />
