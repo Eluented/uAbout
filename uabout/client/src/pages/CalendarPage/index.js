@@ -43,34 +43,6 @@ const CalendarPage = () => {
             <div className="homepage-section">
               <div className="calendar-parent-container">
                 <ReactCalendar />
-                <div>
-                  <h1>My Events</h1>
-                  <div className="eventrender-container">
-                    {searchPostStatus === "succeeded" &&
-                      getPosts.map(
-                        (
-                          {
-                            post_body,
-                            post_title,
-                            post_id,
-                            event_start,
-                            event_end,
-                          },
-                          idx
-                        ) => (
-                          <EventCard
-                            className="event-cards"
-                            post_body={post_body}
-                            post_title={post_title}
-                            post_id={post_id}
-                            event_start={event_start}
-                            event_end={event_end}
-                            key={idx}
-                          />
-                        )
-                      )}
-                  </div>
-                </div>
               </div>
               <div className="events-parent-container"></div>
             </div>
