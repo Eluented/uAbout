@@ -11,9 +11,12 @@ import { Marginer } from "../Marginer";
 import style from "styled-components"
 import httpClient from '../../httpClient'
 import { AccountContext } from "./accountContext";
+import { useNavigate } from "react-router-dom";
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
+  
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
 
