@@ -320,15 +320,17 @@ hr {
 /* Event component styling */
 
 .eventrender-container {
-  justify-content: center;
-  position: absolute;
-  top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: relative;
+  top: 10vh;
   width: 35%;
   padding: 30px;
   margin: auto;
   margin-left: 15%;
   text-align: center;
-  height: 70%;
+  height: 60vh;
   overflow-y: scroll;
 }
 .eventrender-container::-webkit-scrollbar {
