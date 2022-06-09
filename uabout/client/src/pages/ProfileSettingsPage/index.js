@@ -47,6 +47,7 @@ const ProfileSettingsPage = () => {
           <div className="eventform-parent-container" id="profile-card">
             <h1>Profile Settings</h1>
             <div id="avatar-container">
+              
               <BackgroundLetterAvatars />
               <ul id="profile-details">
                 <li>Username: {userInfo.username}</li>
@@ -56,12 +57,16 @@ const ProfileSettingsPage = () => {
             </div>
           </div>
           <div className="bottom-section">
+          <div class="tooltip">
+            <span class="tooltiptext">Logout</span>
             <button id="logout-btn" onClick={logoutUser}>
               <FontAwesomeIcon
+              id="#logoutIcon"
                 icon={faRightFromBracket}
                 size="5x"
               ></FontAwesomeIcon>
             </button>
+            </div>
           </div>
         </div>
         <Footer />
@@ -98,13 +103,16 @@ const ProfileSettingsPage = () => {
             </div>
           </div>
           <div className="bottom-section">
+          <div class="tooltip">
+            <span class="tooltiptext">Logout</span>
             <button id="logout-btn" onClick={logoutUser}>
               <FontAwesomeIcon
-                id="logoutIcon"
+              id="#logoutIcon"
                 icon={faRightFromBracket}
                 size="5x"
               ></FontAwesomeIcon>
             </button>
+            </div>
           </div>
         </div>
         <div className="friend-container">
