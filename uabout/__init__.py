@@ -73,8 +73,9 @@ class PostsSchema(ma.Schema):
                 "post_title",
                 "post_body",
                 "event_start", 
-                "event_end",
-                "user") 
+                "event_end") 
+
+        users = ma.Nested(UsersSchema, many=True)
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
