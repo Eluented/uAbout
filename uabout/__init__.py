@@ -389,8 +389,19 @@ def create_post():
 
         # get shit from databse send it back
         all_post= Posts.query.all()
+
+        def serialize_post(post):
+            return {
+                "post_id": post["post_id"],
+                "user_id":  post["user_id"],
+                "post_title": post["post_title"],
+                "post_body": post["post_body"] ,
+                "event_start": post["event_start"] ,
+                "event_end": post["event_end"]  ,
+                "user": post["poster"]
+            }
         
-        print('ALL POSTS:', all_post)
+        print('ALL POSTS:', [serialize_post(p) for p in all_post])
         
 
         # result = posts_schema.dump(all_post)
