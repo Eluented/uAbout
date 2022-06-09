@@ -2,7 +2,8 @@
 
 # uAbout
 
-A
+A mobile first event app that allows users to add each other as friends,
+create and share posts about meetups and events to go to.
 
 # Installation and Usage
 
@@ -36,7 +37,7 @@ A
 
 - [UABOUT HEROKU LINK](https://uabout.herokuapp.com)
 
-### Technologies Used:
+# Technologies Used:
 
 - Flask Backend
 - Python
@@ -49,11 +50,14 @@ A
 - Redux
 - Jest
 
-## Future Features
+# Future Features
 
--
+- Profile page
+- Selecting specific friends to share posts with
+- Integrate social calendar feature so that users can view all their upcoming events in a single view
+- Notifications for friend requests and event invites
 
-## Contributors
+# Contributors
 
 - [ONUR BELEK](https://github.com/Eluented)
 - [DAVID QUIGLEY](https://github.com/AverKill)
