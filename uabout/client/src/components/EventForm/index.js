@@ -28,7 +28,7 @@ function EventForm({ setOpenModal }) {
   const theme = useTheme();
   // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const allFriends = useSelector(friends)
+  const allFriends = useSelector(friends);
 
   const [formData, setFormData] = useState({
     post_title: "",
@@ -40,7 +40,7 @@ function EventForm({ setOpenModal }) {
 
   const [personName, setPersonName] = useState([]);
   const [eventsStatus, setEventsStatus] = useState(true);
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -58,80 +58,83 @@ function EventForm({ setOpenModal }) {
     invitees: personName,
   };
 
-  if (allFriends.length === 0){
+  if (allFriends.length === 0) {
     return (
       <>
-      <div className="form-container">
-        <div>
-          <button className="modalCloseBtn" onClick={() => setOpenModal(false)}>
-            x
-          </button>
-        </div>
-        <form
-          id="event-form"
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            className="input-fields"
-            id="outlined-event-name"
-            label="Event Name"
-            value={formData.post_title}
-            onChange={(e) => handleChange(e)}
-            name="post_title"
-          />{" "}
-          <br />
-          <div className="date-container">
-            <label>
-              Start Date:
-              <DatePicker
-                className="date-input-field"
-                onChange={(date) => setStartDate(date)}
-                selected={startDate}
-                name="start_date"
-              />
-            </label>
-            <label>
-              End Date:
-              <DatePicker
-                className="date-input-field"
-                onChange={(date) => setEndDate(date)}
-                selected={endDate}
-                name="end_date"
-              />
-            </label>
+        <div className="form-container">
+          <div>
+            <button
+              className="modalCloseBtn"
+              onClick={() => setOpenModal(false)}
+            >
+              x
+            </button>
           </div>
-          <TextField
-            className="input-fields"
-            id="outlined-body-input"
-            label="Event Details"
-            value={formData.post_body}
-            onChange={(e) => handleChange(e)}
-            name="post_body"
-          />
-          <br />
-          <Button variant="contained" id="post-btn" type="submit">
-            Post
-          </Button>
-        </form>
-      </div>
-    </> 
-    )
+          <form
+            id="event-form"
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              className="input-fields"
+              id="outlined-event-name"
+              label="Event Name"
+              value={formData.post_title}
+              onChange={(e) => handleChange(e)}
+              name="post_title"
+            />{" "}
+            <br />
+            <div className="date-container">
+              <label>
+                Start Date:
+                <DatePicker
+                  className="date-input-field"
+                  onChange={(date) => setStartDate(date)}
+                  selected={startDate}
+                  name="start_date"
+                />
+              </label>
+              <label>
+                End Date:
+                <DatePicker
+                  className="date-input-field"
+                  onChange={(date) => setEndDate(date)}
+                  selected={endDate}
+                  name="end_date"
+                />
+              </label>
+            </div>
+            <TextField
+              className="input-fields"
+              id="outlined-body-input"
+              label="Event Details"
+              value={formData.post_body}
+              onChange={(e) => handleChange(e)}
+              name="post_body"
+            />
+            <br />
+            <Button variant="contained" id="post-btn" type="submit">
+              Post
+            </Button>
+          </form>
+        </div>
+      </>
+    );
   } else {
     console.log(personName);
 
-    function privateCheck(){
-      return setEventsStatus(false)
+    function privateCheck() {
+      return setEventsStatus(false);
     }
-  
-    function publicCheck() {
-      return setEventsStatus(true)
-    }
-  
-    const names = allFriends["friends"]
 
-////////////////////////////////////////// SELECT FRIENDS CHIP STYLES /////////////////////////////////////////
+    function publicCheck() {
+      return setEventsStatus(true);
+    }
+
+    const names = allFriends["friends"];
+
+    ////////////////////////////////////////// SELECT FRIENDS CHIP STYLES /////////////////////////////////////////
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {
@@ -142,7 +145,7 @@ function EventForm({ setOpenModal }) {
         },
       },
     };
-  
+
     function getStyles(name, personName, theme) {
       return {
         fontWeight:
@@ -161,16 +164,19 @@ function EventForm({ setOpenModal }) {
       setPersonName(
         value
       );
-    };
-  
-    console.log(event);
 
+    };
+
+    console.log(event);
 
     return (
       <>
         <div className="form-container">
           <div>
-            <button className="modalCloseBtn" onClick={() => setOpenModal(false)}>
+            <button
+              className="modalCloseBtn"
+              onClick={() => setOpenModal(false)}
+            >
               x
             </button>
           </div>
@@ -202,38 +208,43 @@ function EventForm({ setOpenModal }) {
                   onChange={privateCheck}
                 />
               </RadioGroup>
-              <InputLabel id="select-friends-label">Select Friends</InputLabel>
-  
-              {eventsStatus === false
-                &&
-                <Select
-                  labelId="select-friends-label"
-                  id="select-friends"
-                  multiple
-                  value={personName}
-                  onChange={handleChanges}
-                  input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                  renderValue={(selected) => (
-                    <Box sx={{ display: "flex", flexqrap: "wrap", gap: 0.5 }}>
-                      {selected.map((value) => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </Box>
-                  )}
-                  MenuProps={MenuProps}
-                >
-                  {names.map(({first_name, user_id}, idx) => (
-                    <MenuItem
-                      key={idx}
-                      value={user_id}
-                      style={getStyles(first_name, personName, theme)}
-                    >
-                      {first_name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              }
-  
+
+              {eventsStatus === false && (
+                <FormControl sx={{ m: 1, width: 300 }}>
+                  <InputLabel id="select-friends-label">
+                    Select Friends
+                  </InputLabel>
+                  <Select
+                    labelId="select-friends-label"
+                    id="select-friends"
+                    label="Select Friends"
+                    multiple
+                    value={personName}
+                    onChange={handleChanges}
+                    input={
+                      <OutlinedInput id="select-multiple-chip" label="Chip" />
+                    }
+                    renderValue={(selected) => (
+                      <Box sx={{ display: "flex", flexqrap: "wrap", gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} />
+                        ))}
+                      </Box>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map(({ first_name, user_id }, idx) => (
+                      <MenuItem
+                        key={idx}
+                        value={user_id}
+                        style={getStyles(first_name, personName, theme)}
+                      >
+                        {first_name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
             </div>
             <TextField
               className="input-fields"
@@ -281,7 +292,6 @@ function EventForm({ setOpenModal }) {
       </>
     );
   }
-
 }
 
 export default EventForm;
