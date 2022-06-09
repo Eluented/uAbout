@@ -1,5 +1,5 @@
 import httpClient from "../httpClient";
-import { useNavigate } from 'react-router-dom'
+
 
 async function postEvent(event) {
   try {
@@ -49,28 +49,6 @@ const checkLoggedIn = async () => {
   }
 };
 
-async function logoutUser() {
-  const navigate = useNavigate();
-  try {
-    const resp = await httpClient.post(
-      "https://uabout.herokuapp.com/api/logout"
-
-    );
-
-    if (resp.status === 500) {
-      return navigate('/')
-    }
-
-    if (resp.status === 200){
-      return navigate('/')
-    }
-
-    return resp;
-  } catch (e) {
-    console.log(e);
-  }
-}
-
 async function friendRequest(data) {
   try {
     const resp = await httpClient.post(
@@ -98,7 +76,6 @@ async function getFriends() {
 
 export {
   searchFriends,
-  logoutUser,
   postEvent,
   getPosts,
   checkLoggedIn,
