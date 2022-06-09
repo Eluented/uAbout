@@ -398,7 +398,8 @@ def create_post():
                 "post_body": post.post_body ,
                 "event_start": post.event_start ,
                 "event_end": post.event_end ,
-                "user": post.poster.first_name
+                "first_name": post.poster.first_name,
+                "last_name": post.poster.last_name
             }
         
         print('ALL POSTS:', [serialize_post(p) for p in all_post])
