@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   WelcomePage,
-  LoginPage,
+  
   SearchFriendsPage,
-  RegisterPage,
+  
   NotFoundPage,
   FriendsPage,
   SearchResultsPage,
