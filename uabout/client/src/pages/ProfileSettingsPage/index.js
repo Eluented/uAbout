@@ -7,14 +7,37 @@ import {
 } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { logoutUser } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 import { currentUser, friends } from "../../reducers/mainSlice";
+import { useNavigate } from 'react-router-dom'
+import httpClient from '../../httpClient'
 
 const ProfileSettingsPage = () => {
   const userInfo = useSelector(currentUser);
-
+  const navigate = useNavigate();
   const allFriends = useSelector(friends);
+
+  async function logoutUser() {
+
+    try {
+      const resp = await httpClient.post(
+        "https://uabout.herokuapp.com/api/logout"
+  
+      );
+  
+      if (resp.status === 500) {
+        return navigate('/')
+      }
+  
+      if (resp.status === 200){
+        return navigate('/')
+      }
+  
+      return resp;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   if (allFriends.length === 0) {
     return (

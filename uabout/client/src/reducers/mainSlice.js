@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn, getFriends } from "../actions";
+import { searchFriends, postEvent, getPosts, checkLoggedIn, getFriends } from "../actions";
 import Cookies from 'js-cookie'
 
 const cookie = Cookies.get('session')
@@ -53,16 +53,6 @@ export const checkLogin = createAsyncThunk(
   }
 );
 
-////////////////////////////////////////// LOGOUT USER ////////////////////////////////////////////////
-export const logout = createAsyncThunk(
-  "reducers/logoutUser",
-  async () => {
-    const res = await logoutUser();
-
-    return res;
-  }
-);
-
 export const mainSlice = createSlice({
   name: "main",
   initialState: {
@@ -112,21 +102,16 @@ export const mainSlice = createSlice({
     },
     [checkLogin.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.current_user = action.payload.data
+      
+      if (action.payload.response.status === 500){
+        state.current_user = null
+      } else {
+        state.current_user = action.payload.data
+      }
     },
     [checkLogin.rejected]: (state, action) => {
       state.status = "failed";
       state.checkLogin = action.error.message;
-    },
-    [logout.pending]: (state, action) => {
-      state.status = "loading";
-    },
-    [logout.fulfilled]: (state, action) => {
-      state.status = "succeeded";
-    },
-    [logout.rejected]: (state, action) => {
-      state.status = "failed";
-      state.logoutError = action.error.message;
     },
     [renderPosts.pending]: (state, action) => {
       state.status = "loading";
