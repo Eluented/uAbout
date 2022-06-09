@@ -27,8 +27,8 @@ export function SignupForm(props) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const registerUser = async () => {
-
+  const registerUser = async (e) => {
+    e.preventDefault();
     try {
       const resp = await httpClient.post("https://uabout.herokuapp.com/api/register", formData)
       if (resp.data.error){
