@@ -38,7 +38,7 @@ const SearchResultsPage = () => {
           </Box>
         )} */}
 
-        <Box sx={{display:"flex", justifyContent:"center"}}>
+        <Box sx={{display:"flex", alignItems:"center"}}>
         {
           results.map(({ username, first_name, last_name, user_id }, idx) => (
             <FriendBox
