@@ -26,9 +26,9 @@ const CalendarPage = () => {
             <div className="homepage-section">
               <div className="calendar-parent-container">
                 <ReactCalendar />
-                <div id="my-event-container">
-                  <h1>My Events</h1>
-                  <div className="eventrender-container">
+                <div id="my-events-container">
+                  <h1 className="events-heading">My Events</h1>
+                  <div className="calendarpage-event-container">
                     <h1>You have no current events!</h1>
                   </div>
                 </div>
