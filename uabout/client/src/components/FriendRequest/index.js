@@ -1,7 +1,7 @@
 import React from "react";
 import httpClient from "../../httpClient";
 
-function FriendRequest({ email, first_name, phone_number, user_id, username, status, idx }) {
+function FriendRequest({ first_name, last_name, user_id, username, status, idx }) {
 
   async function acceptFriendRequest() {
     try {
@@ -19,7 +19,7 @@ function FriendRequest({ email, first_name, phone_number, user_id, username, sta
   if (status === "Friend"){
     return (
       <span key={idx} >
-      <p>{email} {first_name} {phone_number} {username} </p>
+      <p>{first_name} {last_name} {username} </p>
       <p>{status}</p>
       <button onClick={acceptFriendRequest}>Accept</button>
       <button>Decline</button>
@@ -29,7 +29,7 @@ function FriendRequest({ email, first_name, phone_number, user_id, username, sta
   if (status === "Pending Friend Requests"){
     return (
       <span key={idx} >
-      <p>{email} {first_name} {phone_number} {username} </p>
+      <p>{first_name} {last_name} {username} </p>
       <p>{status}</p>
       <button onClick={acceptFriendRequest}>Accept</button>
       <button>Decline</button>
@@ -39,7 +39,7 @@ function FriendRequest({ email, first_name, phone_number, user_id, username, sta
   if (status === "Sent Friend Requests"){
     return (
       <span key={idx} >
-      <p>{email} {first_name} {phone_number} {username}</p>
+      <p>{first_name} {last_name} {username}</p>
       <p>{status}</p>
       <button onClick={acceptFriendRequest}>Accept</button>
       <button>Decline</button>

@@ -402,4 +402,7 @@ hr {
     padding: 1.5em 0.75em;
     font-family: var(--font-primary);
   }
+  .main-app{
+    margin-top: 10%
+  }
 }

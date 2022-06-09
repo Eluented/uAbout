@@ -23,11 +23,11 @@ const BoxContainer = styled.div`
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 250px;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 5em;
+  justify-content: center;
+  padding-bottom: 4em;
   text-align: center;
   font-family: "Abril Fatface", cursive;
   color: black;
@@ -35,14 +35,14 @@ const TopContainer = styled.div`
 
 const BackDrop = styled(motion.div)`
   width: 60%;
-  height: 460%;
+  height: 400%;
   position: absolute;
   display: flex;
   flex-direction: column;
   border-radius: 50%;
   transform: rotate(60deg);
-  top: -420px;
-  left: -170px;
+  top: -510px;
+  left: -190px;
   background: linear-gradient(180deg, #7ac5ce 0%, #e4e4cd 100%);
   background-image: linear-gradient(
     90deg,
@@ -52,16 +52,13 @@ const BackDrop = styled(motion.div)`
 
 const HeaderContainer = styled.div`
   width: 100%;
-  display: flex;
+  position: absolute;
   flex-direction: column;
 `;
 
 const HeaderText = styled.h2`
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 2em;
   line-height: 1.24;
-  color: #fff;
-  z-index: 10;
   margin: 0;
   color: black;
   font-family: "Abril Fatface", cursive;
@@ -70,7 +67,7 @@ const HeaderText = styled.h2`
 const SmallText = styled.h5`
   color: #fff;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 1em;
   z-index: 10;
   margin: 0;
   margin-top: 7px;
@@ -148,7 +145,7 @@ export function AccountBox(props) {
             <HeaderContainer>
               <HeaderText></HeaderText>
               <HeaderText>Welcome Back</HeaderText>
-              <SmallText>Please sign-in to continue!</SmallText>
+              <SmallText>Sign-In Below</SmallText>
             </HeaderContainer>
           )}
           {active === "signup" && (
