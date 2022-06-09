@@ -305,6 +305,7 @@ hr {
   position: relative;
   width: 50%;
   margin: auto;
+  overflow-y: scroll;
 }
 .friend-container::-webkit-scrollbar {
   display: none;
