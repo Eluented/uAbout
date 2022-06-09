@@ -155,7 +155,7 @@ function EventForm({ setOpenModal }) {
   
     const handleChanges = (e) => {
 
-      setPersonName([e.target.value]);
+      setPersonName(e.target.value);
     };
   
     console.log(event);
