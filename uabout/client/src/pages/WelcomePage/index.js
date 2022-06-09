@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { AccountBox } from '../../components/AccountBox'
+import { AccountBox } from '../../components'
+
 import logo from './pics/UAbout2.png';
 import './index.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +28,6 @@ const WelcomePage = () => {
                     <p style={{  marginBottom: "-1%"}}><FontAwesomeIcon icon={faCalendarDays} size="1x" />    Keep up to date with your social calendar &amp; enjoy making plans again!</p>
                    
                 </div>
-
                 <div class="FormContainer">
                     <AccountBox />
                 </div>

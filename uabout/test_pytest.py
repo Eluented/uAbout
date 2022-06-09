@@ -2,7 +2,7 @@ import pytest
 from .__init__ import app
 from uabout.config.db_config import get_uuid
 
-# ----------------------------------- uuid -------------------------------------------------------
+# --------------------------------------------- UUID --------------------------------------------- #
 
 
 def test_uuid():
@@ -10,7 +10,7 @@ def test_uuid():
     assert len(rand) > 0
 
 
-# ----------------------------------- React Served on all 404 Routes -----------------------------
+# ----------------------------------- React Served on all 404 Routes ----------------------------- #
 
 
 def test_serve(api):
@@ -29,7 +29,7 @@ def test_serve_fail(api):
     assert res.status == '405 METHOD NOT ALLOWED'
 
 
-# ---------------------------------------- API ROUTES --------------------------------------------
+# ---------------------------------------- INDEX -------------------------------------------- #
 
 
 def test_index(api):
@@ -51,7 +51,7 @@ def test_index_fail(api):
     assert res.status == '405 METHOD NOT ALLOWED'
 
 
-# --------------------------------------- AUTH ROUTES --------------------------------------------
+# ------------------------------------- REGISTER USER ---------------------------------------- #
 
 
 def test_register_user(api):
@@ -70,6 +70,9 @@ def test_register_user_fail(api):
     assert res.status == '400 BAD REQUEST'
 
 
+# ------------------------------------- LOGIN USER ---------------------------------------- #
+
+
 def test_login_user(api):
     res = api.get('/api/login')
 
@@ -84,6 +87,9 @@ def test_login_user_fail(api):
     assert len(res.text) > 0
     assert res.status_code == 400
     assert res.status == '400 BAD REQUEST'
+
+
+# ------------------------------------- LOGOUT USER ---------------------------------------- #
 
 
 def test_logout_user(api):
@@ -121,7 +127,7 @@ def test_get_current_user_fail(api):
     assert res.status == '401 UNAUTHORIZED'
 
 
-# ------------------------------------- FRIENDS ROUTES ----------------------------------------
+# ------------------------------------- SHOW FRIENDS ---------------------------------------- #
 
 
 def test_show_friends_and_requests(api):
@@ -140,6 +146,9 @@ def test_show_friends_and_requests_fail(api):
     assert res.status == '500 INTERNAL SERVER ERROR'
 
 
+# ------------------------------------- SEARCH FRIENDS ---------------------------------------- #
+
+
 def test_search_friends(api):
     res = api.get('/api/friends/search')
 
@@ -154,6 +163,9 @@ def test_search_friends_fail(api):
     assert len(res.text) > 0
     assert res.status_code == 400
     assert res.status == '400 BAD REQUEST'
+
+
+# ------------------------------------- ADD FRIEND ---------------------------------------- #
 
 
 def test_add_friend(api):
@@ -172,20 +184,26 @@ def test_add_friend_fail(api):
     assert res.status == '500 INTERNAL SERVER ERROR'
 
 
+# ------------------------------------- ADD FRIENDS ---------------------------------------- #
+
+
 def test_add_friends(api):
-    res = api.post('/api/accept-friend')
+    res = api.get('/api/accept-friend')
 
     assert len(res.text) > 0
-    assert res.status_code == 405
-    assert res.status == '405 METHOD NOT ALLOWED'
+    assert res.status_code == 200
+    assert res.status == '200 OK'
 
 
 def test_add_friends_fail(api):
-    res = api.get('/api/accept-friend')
+    res = api.post('/api/accept-friend')
 
     assert len(res.text) > 0
     assert res.status_code == 500
     assert res.status == '500 INTERNAL SERVER ERROR'
+
+
+# ------------------------------------- CREATE POST ---------------------------------------- #
 
 
 def create_post(api):
@@ -203,7 +221,7 @@ def create_post_fail(api):
     assert res.status_code == 500
     assert res.status == '500 INTERNAL SERVER ERROR'
 
-# ------------------------------------- POSTS ROUTES ---------------------------------------- #
+# ------------------------------------- SHOW USER EVENTS ---------------------------------------- #
 
 
 def test_show_user_events(api):
@@ -220,6 +238,9 @@ def test_show_user_events_fail(api):
     assert len(res.text) > 0
     assert res.status_code == 500
     assert res.status == '500 INTERNAL SERVER ERROR'
+
+
+# ------------------------------------- RSVP ---------------------------------------- #
 
 
 def test_rsvp(api):

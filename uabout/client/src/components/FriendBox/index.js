@@ -7,11 +7,11 @@ const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
   const user = {
     user_b_id: user_id
   }
- 
+
   async function friendRequest() {
     try {
       const resp = await httpClient.post(
-        "https://uabout.herokuapp.com/api/add-friend", 
+        "https://uabout.herokuapp.com/api/add-friend",
         user
       );
 
@@ -32,9 +32,11 @@ const FriendBox = ({ username, first_name, last_name, user_id, idx }) => {
             {first_name} {last_name}
           </div>
           <div class="UsernameBox">{username}</div>
-          <Button variant="outlined" onClick={friendRequest}>
-            Add Friend
-          </Button>
+          <div class="FriendButton">
+            <Button variant="outlined" onClick={friendRequest}>
+              Add Friend
+            </Button>
+          </div>
         </div>
       </div>
     </>
