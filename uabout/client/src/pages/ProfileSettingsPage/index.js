@@ -77,6 +77,7 @@ const ProfileSettingsPage = () => {
           <div className="bottom-section">
             <button id="logout-btn" onClick={logoutUser}>
               <FontAwesomeIcon
+                id="logoutIcon"
                 icon={faRightFromBracket}
                 size="5x"
               ></FontAwesomeIcon>

@@ -327,7 +327,27 @@ hr {
   position: absolute;
   top: 350px;
   cursor: pointer;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
+
+#logout-btn:hover{
+  cursor: pointer;
+  animation-play-state: paused;
+}
+
+#logoutIcon {
+  transition: all .2s ease-in-out;
+}
+
+
+#logoutIcon:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .friend-container {
   display: block;
   text-align: center;
