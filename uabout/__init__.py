@@ -73,7 +73,8 @@ class PostsSchema(ma.Schema):
                 "post_title",
                 "post_body",
                 "event_start", 
-                "event_end") 
+                "event_end",
+                "user_id") 
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
@@ -311,7 +312,9 @@ def add_friend():
                                           user_b_id=user_a_id,
                                           status="Requested")
 
-        db.session.add(requested_connection_a, requested_connection_b)
+        db.session.add(requested_connection_a)
+        db.session.add(requested_connection_b)
+
         db.session.commit()
 
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
@@ -395,7 +398,8 @@ def create_post():
 
         print(result)
 
-        return jsonify({"results": result})
+        return jsonify({"results": result,
+                        "poster_info": result.user_id})
 
 
 @app.route('/api/events/:id')

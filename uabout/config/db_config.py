@@ -94,6 +94,10 @@ class Posts(db.Model):
     # can use reactions.user.first_name, comments.comment for each post
     reactions = db.relationship('Reactions', backref='reactions')
 
+    # backref users
+    user_id = db.relationship("Users", foreign_keys=[user_id], backref="posting")
+
+    
 class Invites(db.Model):
     __tablename__ = 'invites'
     invite_id = db.Column(db.Integer, primary_key=True, autoincrement=True)

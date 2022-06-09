@@ -208,43 +208,38 @@ function EventForm({ setOpenModal }) {
                   onChange={privateCheck}
                 />
               </RadioGroup>
-
-              {eventsStatus === false && (
-                <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel id="select-friends-label">
-                    Select Friends
-                  </InputLabel>
-                  <Select
-                    labelId="select-friends-label"
-                    id="select-friends"
-                    label="Select Friends"
-                    multiple
-                    value={personName}
-                    onChange={handleChanges}
-                    input={
-                      <OutlinedInput id="select-multiple-chip" label="Chip" />
-                    }
-                    renderValue={(selected) => (
-                      <Box sx={{ display: "flex", flexqrap: "wrap", gap: 0.5 }}>
-                        {selected.map((value) => (
-                          <Chip key={value} label={value} />
-                        ))}
-                      </Box>
-                    )}
-                    MenuProps={MenuProps}
-                  >
-                    {names.map(({ first_name, user_id }, idx) => (
-                      <MenuItem
-                        key={idx}
-                        value={user_id}
-                        style={getStyles(first_name, personName, theme)}
-                      >
-                        {first_name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
+              <InputLabel id="select-friends-label">Select Friends</InputLabel>
+  
+              {eventsStatus === false
+                &&
+                <Select
+                  labelId="select-friends-label"
+                  id="select-friends"
+                  multiple
+                  value={personName}
+                  onChange={handleChanges}
+                  input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: "flex", flexqrap: "wrap", gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  {names.map(({first_name, user_id}, idx) => (
+                    <MenuItem
+                      key={idx}
+                      value={first_name}
+                      style={getStyles(first_name, personName, theme)}
+                    >
+                      {first_name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              }
+  
             </div>
             <TextField
               className="input-fields"
