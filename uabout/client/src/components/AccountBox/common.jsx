@@ -24,7 +24,7 @@ export const MutedLink = styled.a`
 
 export const BoldLink = styled.a`
   font-size: 11px;
-  color: black;
+  color: white;
   font-weight: 500;
   text-decoration: none;
   margin: 0 4px;
@@ -55,8 +55,10 @@ export const Input = styled.input`
 `;
 
 export const SubmitButton = styled.button`
-  width: 100%;
-  padding: 11px 40%;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5%; 
   color: #072A4B;
   font-size: 15px;
   font-weight: 600;
