@@ -154,9 +154,17 @@ function EventForm({ setOpenModal }) {
             : theme.typography.fontWeightMedium,
       };
     }
+  
+  
+    const handleChanges = (event) => {
+      const {
+        target: { value },
+      } = event;
+      console.log(value)
+      setPersonName(
+        value
+      );
 
-    const handleChanges = (e) => {
-      setPersonName(e.target.value);
     };
 
     console.log(event);
