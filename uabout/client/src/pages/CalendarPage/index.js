@@ -2,13 +2,27 @@ import React from "react";
 import { Footer, Navbar, EventCard, ReactCalendar } from "../../components";
 import { postsResult } from "../../reducers/mainSlice";
 import { useSelector } from "react-redux";
-import { Eventcalendar } from "@mobiscroll/react";
+import { Eventcalendar, getJson, toast } from '@mobiscroll/react';
 import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 
 const CalendarPage = () => {
   const searchPostStatus = useSelector((state) => state.main.status);
 
   const getPosts = useSelector(postsResult);
+
+  // NEW CALENDER
+  const view = React.useMemo(() => {
+    return {
+        calendar: { labels: true }
+    };
+}, []);
+
+  const onEventClick = React.useCallback((event) => {
+    toast({
+        message: event.event.title
+    });
+  }, []);
+  /////////////////////////
 
   if (searchPostStatus === "loading") {
     return <h1>Loading ...</h1>;
@@ -19,6 +33,7 @@ const CalendarPage = () => {
   }
 
   if (searchPostStatus === "succeeded") {
+
     return (
       <>
         {" "}
@@ -45,6 +60,8 @@ const CalendarPage = () => {
             <div className="homepage-section">
               <div className="calendar-parent-container">
                 <Eventcalendar
+                  onEventClick={onEventClick}
+                  view={view}
                   data={[{
                     start: new Date(),
                     title: 'Today\'s event'
