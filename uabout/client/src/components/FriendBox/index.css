@@ -63,3 +63,15 @@
 
 }
 
+.friend_list {
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.friend_list:hover {
+    cursor: pointer;
+    animation-play-state: paused;
+}
+
