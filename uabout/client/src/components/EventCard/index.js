@@ -48,6 +48,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
       alt=""
       /> */}
       <CardContent>
+        <Typography variant='h6'>Name: {first_name} {last_name}</Typography>
         <Typography>Start Date: {event_start.split(" ").slice(0, 4).join(" ")}</Typography>
         <Typography>End Date: {event_end.split(" ").slice(0, 4).join(" ")}</Typography>
       </CardContent>

@@ -103,11 +103,11 @@ export const mainSlice = createSlice({
     [checkLogin.fulfilled]: (state, action) => {
       state.status = "succeeded";
 
-      if (action.payload.response.status === 500 || action.payload.response.status === 401){
-        state.current_user = null
-      } else {
+      if (action.payload.status === 200) {
         state.current_user = action.payload.data
-      }
+      } else if (action.payload.response.status === 500 || action.payload.response.status === 401) {
+        state.current_user = null
+      } 
     },
     [checkLogin.rejected]: (state, action) => {
       state.status = "failed";
