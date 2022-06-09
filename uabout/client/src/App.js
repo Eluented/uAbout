@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   WelcomePage,
-  LandingPage,
   LoginPage,
   SearchFriendsPage,
   RegisterPage,
@@ -35,13 +34,14 @@ function App() {
     <Routes>
       <Route path="/" element={<WelcomePage />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/register" replace={true}  />} />
-      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/register" replace={true}  />} />
-      <Route path="/profile" element={loggedInCheck ? < ProfileSettingsPage/> : <Navigate to="/register" replace={true}  />} />
-
+      <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/profile" element={loggedInCheck ? < ProfileSettingsPage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/allfriends" element={loggedInCheck ? <FriendsPage/> : <Navigate to="/" replace={true}  />}  />
+      <Route path="/calendar" element={loggedInCheck ? <CalendarPage /> : <Navigate to="/" replace={true}  />} />
       <Route path="/search">
-        <Route path="/search" element={loggedInCheck ? < SearchFriendsPage/> : <Navigate to="/register" replace={true}  />} />
-        <Route path=":username" element={loggedInCheck ? < SearchResultsPage/> : <Navigate to="/register" replace={true}  />} />
+        <Route path="/search" element={loggedInCheck ? < SearchFriendsPage/> : <Navigate to="/" replace={true}  />} />
+        <Route path=":username" element={loggedInCheck ? < SearchResultsPage/> : <Navigate to="/" replace={true}  />} />
       </Route>
     </Routes>
   );

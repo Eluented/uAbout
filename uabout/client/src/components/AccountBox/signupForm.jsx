@@ -27,8 +27,8 @@ export function SignupForm(props) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const registerUser = async () => {
-
+  const registerUser = async (e) => {
+    e.preventDefault();
     try {
       const resp = await httpClient.post("https://uabout.herokuapp.com/api/register", formData)
       if (resp.data.error){
@@ -45,18 +45,17 @@ export function SignupForm(props) {
 
     return (
       <BoxContainer>
-        <form onSubmit={registerUser}>
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer onSubmit={registerUser}>
           <Input type="text" placeholder="First Name" label="First Name" name='first_name' onChange={(e) => setData(e)}/>
           <Input type="text" placeholder = "Last Name" label="Last Name" name='last_name' onChange={(e) => setData(e)} />
           <Input type="text" placeholder = "Username" label="Username"  name='username' required onChange={(e) => setData(e)} />
           <Input type="email" placeholder = "Email" label="Email" name='email' required onChange={(e) => setData(e)}/>
           <Input type="password" placeholder = "Password" label="Password" name='password' required onChange={(e) => setData(e)} />
           <Input type="number" placeholder = "Phone Number" label="Phone Number" name = "phone_number" onChange={(e) => setData(e)} />
-        </FormContainer>
+
         <Marginer direction="vertical" margin={10} />
         <SubmitButton type="submit" >Register</SubmitButton>
-        </form>
+        </FormContainer>
 
         <Marginer direction="vertical" margin="1em" />
         <MutedLink href="#">
