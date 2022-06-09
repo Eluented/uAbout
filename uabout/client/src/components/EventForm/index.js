@@ -157,6 +157,7 @@ function EventForm({ setOpenModal }) {
       const {
         target: { value },
       } = event;
+      console.log(value)
       setPersonName(
         value
       );
