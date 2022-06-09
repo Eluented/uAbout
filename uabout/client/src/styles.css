@@ -450,6 +450,17 @@ hr {
     padding: 0px;
     margin: 0px;
   }
+
+  #logout-btn {
+    animation-play-state: paused;
+  }
+
+  /*Responsive Friendbox stop floating in mobile view*/
+
+  .friend_list {
+    animation-play-state: paused;
+}
+  
   /* Footer Responsive */
   .Footer {
     width: 100%;
