@@ -1,16 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
 
 .friend_card {
-    min-width: 150px;
+    min-width: 400px;
     max-width: 400px;
     min-height: 200px;
     align-self: center;
     box-shadow: 2px 3px 3px -1px;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 1.5rem;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin: 1%;
     position: relative;
     background-color: rgba(118, 196, 205, 0.6);
     border-radius: 60px;

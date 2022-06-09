@@ -11,7 +11,7 @@ input:focus {
     box-shadow: 2px 2px 1px -2px;
     width: 70%;
     min-width: 30%;
-    background-color: rgba(7,42,72, 0.5);
+    background-color: rgba(7,42,72, 0.3);
     animation: fadein 1s;
 }
 
@@ -38,7 +38,7 @@ input:focus {
     border: none;
     font-size: 3vw;
     text-align: justify;
-    color: #072A48;
+    color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-bottom: 1px solid #072A48;
     -webkit-transition: width .35s ease-in-out;
@@ -49,6 +49,10 @@ input:focus {
 
 input[type=text]:focus{
     width: 70%
+}
+
+::placeholder{
+    color:rgba(255, 255, 255, 0.781);
 }
 
 .search-bar:hover {
@@ -63,14 +67,14 @@ input[type=text]:focus{
 }
 
 .main-app:hover {
-    background-color: rgba(7,42,72, 0.8);
+    background-color: rgba(7,42,72, 0.5);
     border-color: #072A48;
     border-style: 1px solid;
+    color:white;
 }
 
 /* If input is empty */
 input:placeholder-shown {
     min-width: 37%;
 }
-
 
