@@ -73,8 +73,9 @@ class PostsSchema(ma.Schema):
                 "post_title",
                 "post_body",
                 "event_start", 
-                "event_end",
-                "user_id") 
+                "event_end") 
+
+    posts = ma.Nested(UsersSchema, many=True)
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
@@ -182,8 +183,6 @@ def logout_user():
 
     # Gets rid of session
     del session["current_user"]
-
-    flash("You have successfully logged out.")
 
     return 200
 
@@ -387,19 +386,32 @@ def create_post():
         user_id = session["current_user"]["user_id"]
 
         # get shit from databse send it back
-        post_by_user_id = Posts.query.all()
+        all_post= Posts.query.all()
+
+        def serialize_post(post):
+            return {
+                "post_id": post.post_id,
+                "user_id":  post.user_id,
+                "post_title": post.post_title,
+                "post_body": post.post_body ,
+                "event_start": post.event_start ,
+                "event_end": post.event_end ,
+                "first_name": post.poster.first_name,
+                "last_name": post.poster.last_name
+            }
         
-        print(post_by_user_id)
+        print('ALL POSTS:', [serialize_post(p) for p in all_post])
+        
 
-        result = posts_schema.dump(post_by_user_id)
+        # result = posts_schema.dump(all_post)
 
-        if result == []:
-            return jsonify({ "error": "Couldn't find a user with that username"}), 204
+        # print(result)
+        # if result == []:
+        #     return jsonify({ "error": "Couldn't find a user with that username"}), 204
 
-        print(result)
+        # print(result)
 
-        return jsonify({"results": result,
-                        "poster_info": result.user_id})
+        return jsonify({ "results": [serialize_post(p) for p in all_post] })
 
 
 @app.route('/api/events/:id')

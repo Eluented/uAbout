@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
+function EventCard({ post_body, post_title, post_id, event_start, event_end, first_name, last_name }) {
   const [expanded, setExpanded] = useState(false);
 
   const [selected, setSelected] = useState(false);
@@ -37,7 +37,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
   return (
     <Card sx={{ maxWidth: 700, display: "block" }}>
       <CardHeader
-        avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} />}
+        avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} first_name={first_name} last_name={last_name}/>}
         titleTypographyProps={{variant:'h3' }}
         title={post_title}
       />
