@@ -2,6 +2,8 @@ import React from "react";
 import { Footer, Navbar, EventCard, ReactCalendar } from "../../components";
 import { postsResult } from "../../reducers/mainSlice";
 import { useSelector } from "react-redux";
+import { Eventcalendar } from "@mobiscroll/react";
+import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 
 const CalendarPage = () => {
   const searchPostStatus = useSelector((state) => state.main.status);
@@ -42,35 +44,16 @@ const CalendarPage = () => {
             <Navbar />
             <div className="homepage-section">
               <div className="calendar-parent-container">
-                <ReactCalendar />
-                <div className="my-events-container">
-                  <h1>My Events</h1>
-                  <div className="eventrender-container">
-                    {searchPostStatus === "succeeded" &&
-                      getPosts.map(
-                        (
-                          {
-                            post_body,
-                            post_title,
-                            post_id,
-                            event_start,
-                            event_end,
-                          },
-                          idx
-                        ) => (
-                          <EventCard
-                            className="event-cards"
-                            post_body={post_body}
-                            post_title={post_title}
-                            post_id={post_id}
-                            event_start={event_start}
-                            event_end={event_end}
-                            key={idx}
-                          />
-                        )
-                      )}
-                  </div>
-                </div>
+                <Eventcalendar
+                  data={[{
+                    start: new Date(),
+                    title: 'Today\'s event'
+                  }, {
+                    start: new Date(2020, 11, 18, 9, 0),
+                    end: new Date(2020, 11, 20, 13, 0),
+                    title: 'Multi day event'
+                  }]}
+                />
               </div>
               <div className="events-parent-container"></div>
             </div>
