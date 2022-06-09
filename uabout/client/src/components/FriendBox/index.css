@@ -61,6 +61,9 @@
 }
 
 .FriendButton{
-    margin: 80px;
+    position:absolute;
+    margin-left: 40%;
+    margin-top: 35%;
+
 }
 
