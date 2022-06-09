@@ -31,9 +31,13 @@ export function LoginForm(props) {
         "https://uabout.herokuapp.com/api/login",
         formData
       );
-      setUser(`${resp.data.username}`);
-      navigate("/landing");
-      console.log(resp.data);
+      if (resp.data.error){
+
+      } else {
+        navigate("/landing");
+      }
+      console.log(resp);
+      return resp
     } catch (e) {
       console.log(e);
     }
