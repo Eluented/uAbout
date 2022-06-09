@@ -23,10 +23,8 @@ const SearchResultsPage = () => {
   
   return (
     <>
-      <Container class="Container" maxWidth="md">
-        
+      <Container class="container" maxWidth="md">
       <Navbar />
-      
       <SearchBar />
 
         <div class="SearchTop" sx={{ pt: "1%", pb: "1%", mb: "5%" }}>
