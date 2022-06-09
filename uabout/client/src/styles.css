@@ -299,6 +299,13 @@ hr {
   top: 350px;
   cursor: pointer;
 }
+.friend-container {
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 50%;
+  margin: auto;
+}
 #avatar-container {
   display: flex;
   justify-content: space-evenly;
