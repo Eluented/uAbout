@@ -75,7 +75,7 @@ class PostsSchema(ma.Schema):
                 "event_start", 
                 "event_end") 
 
-        users = ma.Nested(UsersSchema, many=True)
+    users = ma.Nested(UsersSchema, many=True)
 
 post_schema = PostsSchema()
 posts_schema = PostsSchema(many=True)
@@ -389,6 +389,7 @@ def create_post():
 
         # get shit from databse send it back
         all_post= Posts.query.all()
+        
         
 
         print(all_post)
