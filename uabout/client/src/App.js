@@ -34,18 +34,14 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
-      <Route path="/landing" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/allfriends" element={<FriendsPage />} />
-      <Route path="/calendar" element={<CalendarPage />} />
+      <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/register" replace={true}  />} />
       <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/register" replace={true}  />} />
-      <Route path="/profile" element={<ProfileSettingsPage />} />
+      <Route path="/profile" element={loggedInCheck ? < ProfileSettingsPage/> : <Navigate to="/register" replace={true}  />} />
 
       <Route path="/search">
-        <Route path="/search" element={<SearchFriendsPage />} />
-        <Route path=":username" element={<SearchResultsPage />} />
+        <Route path="/search" element={loggedInCheck ? < SearchFriendsPage/> : <Navigate to="/register" replace={true}  />} />
+        <Route path=":username" element={loggedInCheck ? < SearchResultsPage/> : <Navigate to="/register" replace={true}  />} />
       </Route>
     </Routes>
   );
