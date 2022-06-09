@@ -102,7 +102,12 @@ export const mainSlice = createSlice({
     },
     [checkLogin.fulfilled]: (state, action) => {
       state.status = "succeeded";
-      state.current_user = action.payload.data
+      
+      if (action.payload.response.status === 500){
+        state.current_user = null
+      } else {
+        state.current_user = action.payload.data
+      }
     },
     [checkLogin.rejected]: (state, action) => {
       state.status = "failed";
