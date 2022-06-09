@@ -47,6 +47,7 @@ export function LoginForm(props) {
 
   return (
     <BoxContainer>
+      <form onSubmit={logInUser}>
       <FormContainer>
         <Input
           type="email"
@@ -68,9 +69,12 @@ export function LoginForm(props) {
       <Marginer direction="vertical" margin={10} />
       {/* <MutedLink href="#">Forget your password?</MutedLink> */}
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit" onClick={logInUser}>
+      <SubmitButton type="submit" >
         Log In
       </SubmitButton>
+      </form>
+
+
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Don't have an account?{" "}
