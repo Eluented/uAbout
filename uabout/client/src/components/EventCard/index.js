@@ -38,6 +38,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
     <Card sx={{ maxWidth: 700, display: "block" }}>
       <CardHeader
         avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} />}
+        titleTypographyProps={{variant:'h3' }}
         title={post_title}
       />
       {/* <CardMedia 
@@ -47,8 +48,8 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
       alt=""
       /> */}
       <CardContent>
-        <Typography>Start Date: {event_start}</Typography>
-        <Typography>End Date: {event_end}</Typography>
+        <Typography>Start Date: {event_start.split(" ").slice(0, 4).join(" ")}</Typography>
+        <Typography>End Date: {event_end.split(" ").slice(0, 4).join(" ")}</Typography>
       </CardContent>
       <CardActions disableSpacing>
         <div className="interaction-btns">
@@ -76,7 +77,6 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography>Location: </Typography>
           <Typography paragraph>{post_body}</Typography>
         </CardContent>
       </Collapse>

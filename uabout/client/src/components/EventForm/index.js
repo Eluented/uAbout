@@ -129,7 +129,7 @@ function EventForm({ setOpenModal }) {
       return setEventsStatus(true)
     }
   
-    const names = allFriends["friends"].map(props => props.first_name)
+    const names = allFriends["friends"]
 
 ////////////////////////////////////////// SELECT FRIENDS CHIP STYLES /////////////////////////////////////////
     const ITEM_HEIGHT = 48;
@@ -157,9 +157,9 @@ function EventForm({ setOpenModal }) {
       const {
         target: { value },
       } = event;
+      console.log(value)
       setPersonName(
-        // On autofill we get a stringified value.
-        typeof value === "string" ? value.split(",") : value
+        value
       );
     };
   
@@ -222,13 +222,13 @@ function EventForm({ setOpenModal }) {
                   )}
                   MenuProps={MenuProps}
                 >
-                  {names.map((name) => (
+                  {names.map(({first_name, user_id}, idx) => (
                     <MenuItem
-                      key={name}
-                      value={name}
-                      style={getStyles(name, personName, theme)}
+                      key={idx}
+                      value={user_id}
+                      style={getStyles(first_name, personName, theme)}
                     >
-                      {name}
+                      {first_name}
                     </MenuItem>
                   ))}
                 </Select>
