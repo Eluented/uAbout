@@ -225,7 +225,7 @@ function EventForm({ setOpenModal }) {
                   {names.map(({first_name, user_id}, idx) => (
                     <MenuItem
                       key={idx}
-                      value={user_id}
+                      value={first_name}
                       style={getStyles(first_name, personName, theme)}
                     >
                       {first_name}

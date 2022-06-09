@@ -311,7 +311,9 @@ def add_friend():
                                           user_b_id=user_a_id,
                                           status="Requested")
 
-        db.session.add(requested_connection_a, requested_connection_b)
+        db.session.add(requested_connection_a)
+        db.session.add(requested_connection_b)
+
         db.session.commit()
 
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })
@@ -377,7 +379,8 @@ def create_post():
                         "body": post_body, 
                         "start_date": post_start_date,
                         "end_date": post_end_date,
-                        "user_id": user_id })
+                        "user_id": user_id,
+                        "poster_info": new_post.poster })
     
     elif request.method == "GET":
 
