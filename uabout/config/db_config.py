@@ -40,7 +40,7 @@ class Users(db.Model):
     # Put name inside TSVectorType definition for it to be fulltext-indexed (searchable)
     search_vector = db.Column(TSVectorType('first_name', 'last_name', 'username'))
 
-    posts = db.relationship('Posts', backref='poster', lazy='dynamic')
+    posts = db.relationship('Posts', backref='poster', lazy='select')
 
 
 
