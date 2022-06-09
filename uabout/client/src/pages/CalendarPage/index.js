@@ -43,7 +43,7 @@ const CalendarPage = () => {
             <div className="homepage-section">
               <div className="calendar-parent-container">
                 <ReactCalendar />
-                <div>
+                <div className="my-events-container">
                   <h1>My Events</h1>
                   <div className="eventrender-container">
                     {searchPostStatus === "succeeded" &&

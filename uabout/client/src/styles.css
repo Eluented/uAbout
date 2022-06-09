@@ -271,7 +271,7 @@ hr {
 }
 /* Event component styling */
 .homepage-section {
-  display: block;
+  display: flex;
 }
 .eventrender-container {
   justify-content: center;
