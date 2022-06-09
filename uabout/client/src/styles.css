@@ -70,9 +70,29 @@ html {
   cursor: pointer;
 }
 /* Calendar component styling */
+.events-heading {
+  font-family: var(--font-primary);
+}
+
+.calendar-parent-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.calendarpage-event-container {
+  width: 30%;
+  overflow-y: auto;
+  position: absolute;
+  height: 650px;
+  position: absolute;
+  margin-left: 20%;
+}
+.calendarpage-event-container::-webkit-scrollbar {
+  display: none;
+}
+
 .calendar-container {
   display: flex;
-  margin-top: 12%;
+  margin-top: 10%;
   margin-left: 15%;
   position: fixed;
 }
@@ -271,7 +291,7 @@ hr {
 }
 /* Event component styling */
 .homepage-section {
-  display: block;
+  display: flex;
 }
 .eventrender-container {
   justify-content: center;
@@ -359,6 +379,17 @@ hr {
     width: 100%;
   }
   /* event form */
+  .events-heading {
+    position: relative;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .calendarpage-event-container {
+    position: relative;
+    width: 450px;
+    height: 300px;
+    top: 75%;
+  }
   .eventform-parent-container {
     background-color: rgba(241, 241, 241, 0.41);
     width: 80%;
@@ -374,11 +405,20 @@ hr {
     width: 80%;
     top: 100px;
   }
+  /* my event responsive styling */
+  .events-heading {
+    margin-top: 50%;
+  }
   /* Calendar Styling */
-  .calendar-container {
+  .calendar-parent-container {
     display: flex;
     justify-content: center;
-    margin-top: 13%;
+  }
+
+  .calendar-container {
+    justify-content: center;
+    display: flex;
+    margin-top: 25%;
     position: fixed;
     margin-left: 0;
   }
@@ -402,7 +442,7 @@ hr {
     padding: 1.5em 0.75em;
     font-family: var(--font-primary);
   }
-  .main-app{
-    margin-top: 10%
+  .main-app {
+    margin-top: 10%;
   }
 }

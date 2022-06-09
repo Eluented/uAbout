@@ -26,9 +26,9 @@ const CalendarPage = () => {
             <div className="homepage-section">
               <div className="calendar-parent-container">
                 <ReactCalendar />
-                <div id="my-event-container">
-                  <h1>My Events</h1>
-                  <div className="eventrender-container">
+                <div id="my-events-container">
+                  <h1 className="events-heading">My Events</h1>
+                  <div className="calendarpage-event-container">
                     <h1>You have no current events!</h1>
                   </div>
                 </div>
@@ -43,6 +43,34 @@ const CalendarPage = () => {
             <div className="homepage-section">
               <div className="calendar-parent-container">
                 <ReactCalendar />
+                <div className="my-events-container">
+                  <h1>My Events</h1>
+                  <div className="eventrender-container">
+                    {searchPostStatus === "succeeded" &&
+                      getPosts.map(
+                        (
+                          {
+                            post_body,
+                            post_title,
+                            post_id,
+                            event_start,
+                            event_end,
+                          },
+                          idx
+                        ) => (
+                          <EventCard
+                            className="event-cards"
+                            post_body={post_body}
+                            post_title={post_title}
+                            post_id={post_id}
+                            event_start={event_start}
+                            event_end={event_end}
+                            key={idx}
+                          />
+                        )
+                      )}
+                  </div>
+                </div>
               </div>
               <div className="events-parent-container"></div>
             </div>
