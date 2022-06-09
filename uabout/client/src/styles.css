@@ -70,9 +70,29 @@ html {
   cursor: pointer;
 }
 /* Calendar component styling */
+.events-heading {
+  font-family: var(--font-primary);
+}
+
+.calendar-parent-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.calendarpage-event-container {
+  width: 30%;
+  overflow-y: auto;
+  position: absolute;
+  height: 650px;
+  position: absolute;
+  margin-left: 20%;
+}
+.calendarpage-event-container::-webkit-scrollbar {
+  display: none;
+}
+
 .calendar-container {
   display: flex;
-  margin-top: 12%;
+  margin-top: 10%;
   margin-left: 15%;
   position: fixed;
 }
@@ -375,31 +395,13 @@ hr {
     top: 100px;
   }
   /* Calendar Styling */
-  .events-heading {
-    font-family: var(--font-primary);
-  }
-
-  .calendar-parent-container {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .calendarpage-event-container {
-    width: 30%;
-    overflow-y: auto;
-    position: absolute;
-    height: 650px;
-    position: absolute;
-    margin-left: 20%;
-  }
-  .calendarpage-event-container::-webkit-scrollbar {
-    display: none;
-  }
 
   .calendar-container {
+    justify-content: center;
     display: flex;
     margin-top: 10%;
     position: fixed;
-    margin-left: 15%;
+    margin-left: 0;
   }
   .react-calendar {
     max-width: 80%;
