@@ -28,6 +28,10 @@ class Users(db.Model):
                   unique=True, 
                   default=get_uuid)
 
+    post_id = db.Column(db.String(32), 
+                       db.ForeignKey('users.user_id', ondelete='CASCADE', onupdate='CASCADE'), 
+                       nullable=False)
+
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(200), nullable=False)
@@ -39,8 +43,6 @@ class Users(db.Model):
 
     # Put name inside TSVectorType definition for it to be fulltext-indexed (searchable)
     search_vector = db.Column(TSVectorType('first_name', 'last_name', 'username'))
-
-    posts = db.relationship('Posts', backref='poster')
 
 
 
@@ -95,7 +97,7 @@ class Posts(db.Model):
     reactions = db.relationship('Reactions', backref='reactions')
 
     # backref users
-    user_id = db.relationship("Users", foreign_keys=[user_id], backref="posting")
+    user = db.relationship("Users", backref="posting")
 
     
 class Invites(db.Model):

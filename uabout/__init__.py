@@ -387,19 +387,20 @@ def create_post():
         user_id = session["current_user"]["user_id"]
 
         # get shit from databse send it back
-        post_by_user_id = Posts.query.all()
+        all_post= Posts.query.all()
         
-        print(post_by_user_id)
+        user_who_posted = Users.query.filter_by(user_id=all_post.user_id)
 
-        result = posts_schema.dump(post_by_user_id)
+        print(all_post)
+
+        result = posts_schema.dump(all_post)
 
         if result == []:
             return jsonify({ "error": "Couldn't find a user with that username"}), 204
 
         print(result)
 
-        return jsonify({"results": result,
-                        "poster_info": result.user_id})
+        return jsonify({ "results": result })
 
 
 @app.route('/api/events/:id')
