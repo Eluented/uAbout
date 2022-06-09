@@ -47,8 +47,8 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end }) {
       alt=""
       /> */}
       <CardContent>
-        <Typography>Start Date: {event_start.split(" ").slice(0, 5).join(" ")}</Typography>
-        <Typography>End Date: {event_end.split(" ").slice(0, 5).join(" ")}</Typography>
+        <Typography>Start Date: {event_start.split(" ").slice(0, 4).join(" ")}</Typography>
+        <Typography>End Date: {event_end.split(" ").slice(0, 4).join(" ")}</Typography>
       </CardContent>
       <CardActions disableSpacing>
         <div className="interaction-btns">
