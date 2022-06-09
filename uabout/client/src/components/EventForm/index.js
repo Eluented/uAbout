@@ -59,7 +59,7 @@ function EventForm({ setOpenModal }) {
     body: formData.post_body,
     start_date: startDate.toString(),
     end_date: endDate.toString(),
-    invitees: [],
+    invitees: personName,
   };
 
   const ITEM_HEIGHT = 48;
@@ -85,14 +85,11 @@ function EventForm({ setOpenModal }) {
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
 
+  console.log(personName);
+  
   const allFriends = useSelector(friends)
 
   const names = allFriends["friends"].map(props => props.first_name)
-
-  console.log(allFriends);
-
-  console.log(names);
-
 
   const handleChanges = (event) => {
     const {

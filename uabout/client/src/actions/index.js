@@ -17,7 +17,6 @@ const getPosts = async () => {
   try {
     const resp = await httpClient.get("https://uabout.herokuapp.com/api/posts");
 
-    console.log(resp);
 
     return resp;
   } catch (e) {

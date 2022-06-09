@@ -3,7 +3,7 @@ import { searchFriends, logoutUser, postEvent, getPosts, checkLoggedIn, getFrien
 import Cookies from 'js-cookie'
 
 const cookie = Cookies.get('session')
-console.log(cookie)
+
 ////////////////////////////////////////// SEND POST ////////////////////////////////////////////////
 export const eventPost = createAsyncThunk(
   "reducers/eventPost",
