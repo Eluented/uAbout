@@ -303,10 +303,15 @@ def add_friend():
     elif is_pending:
         return "Your friend request is pending."
     else:
-        requested_connection = Connection(user_a_id=user_a_id,
+        requested_connection_a = Connection(user_a_id=user_a_id,
                                           user_b_id=user_b_id,
                                           status="Requested")
-        db.session.add(requested_connection)
+
+        requested_connection_b = Connection(user_a_id=user_b_id,
+                                          user_b_id=user_a_id,
+                                          status="Requested")
+
+        db.session.add(requested_connection_a, requested_connection_b)
         db.session.commit()
 
         return jsonify({ "results": f"{user_a_id} has sent a friend request to {user_b_id}" })

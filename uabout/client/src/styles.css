@@ -234,7 +234,6 @@ html {
   margin: 10px;
   text-align: center;
   position: relative;
-  z-index: 2;
 }
 
 #post-btn {
@@ -307,8 +306,6 @@ hr {
 }
 
 .eventrender-container {
-  z-index: 1;
-  display: flex;
   justify-content: center;
   position: relative;
   top: 80px;
