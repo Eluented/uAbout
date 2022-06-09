@@ -32,8 +32,9 @@ export function LoginForm(props) {
         formData
       );
       if (resp.data.error){
-
-      } else {
+        navigate("/");
+      } 
+      if (resp.status === 200) {
         navigate("/home");
       }
       console.log(resp);

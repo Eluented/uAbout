@@ -8,7 +8,7 @@ from .config.friends_config import is_friends_or_pending, get_friend_requests, g
 from .config.redis_config import RedisConfig
 
 # Flask Imports
-from flask import Flask, jsonify, flash, request, session
+from flask import Flask, jsonify, request, session
 from flask.helpers import send_from_directory
 from sqlalchemy_searchable import search
 from flask_cors import CORS
@@ -136,8 +136,6 @@ def register_user():
         "num_total_requests": 0
     }
 
-    flash("You have succesfully signed up for an account, and you are now logged in.", "success")
-
     return jsonify({
         "id": new_user.user_id,
         "username": new_user.username
@@ -184,7 +182,7 @@ def logout_user():
     # Gets rid of session
     del session["current_user"]
 
-    return 200
+    return "Logged out successfully", 200
 
 # if you're logged in it will return info - current logged in user
 @app.route('/api/@me')
