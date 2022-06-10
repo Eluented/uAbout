@@ -15,7 +15,7 @@ const SearchBar = () => {
     const searchResult = useSelector(userSearchResult);
 
     const [formData, setFormData] = useState({});
-
+    
     // when user types sets form data based on name
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value.trim() });

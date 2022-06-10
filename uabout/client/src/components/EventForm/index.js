@@ -47,7 +47,8 @@ function EventForm({ setOpenModal }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    return dispatch(eventPost(event));
+    dispatch(eventPost(event));
+    return window.location.reload();
   };
 
   const event = {
