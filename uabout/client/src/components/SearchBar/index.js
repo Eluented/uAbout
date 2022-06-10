@@ -15,7 +15,7 @@ const SearchBar = () => {
     const searchResult = useSelector(userSearchResult);
 
     const [formData, setFormData] = useState({});
-    
+
     // when user types sets form data based on name
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
@@ -26,15 +26,11 @@ const SearchBar = () => {
         e.preventDefault();
         console.log("This is visible");
         dispatch(fetchUsers(formData));
-    }
 
-    useEffect(() => {
-        // if the search function is completed
-        console.log(searchResult)
         if (searchResult) {
-            navigate(`/search/${formData.username}`);
+            return navigate(`/search/${formData.username}`);
         }
-    }, [searchResult]);
+    }
 
     return (
         <div class="main-app">
