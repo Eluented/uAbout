@@ -12,7 +12,7 @@ const HomePage = () => {
   const userInfo = useSelector(currentUser);
 
   const getPosts = useSelector(postsResult);
-
+  getPosts.reverse()
   if (searchPostStatus === "loading") {
     return <h1>Loading ...</h1>;
   }
@@ -64,7 +64,7 @@ const HomePage = () => {
               :
               <div className="eventrender-container">
                 {searchPostStatus === "succeeded" &&
-                  getPosts.reverse().map(
+                  getPosts.map(
                     (
                       {
                         post_body,
