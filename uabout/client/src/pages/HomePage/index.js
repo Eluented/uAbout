@@ -11,8 +11,8 @@ const HomePage = () => {
   const searchPostStatus = useSelector((state) => state.main.status);
   const userInfo = useSelector(currentUser);
 
-  const getPosts = useSelector(postsResult);
-  getPosts.reverse()
+  const posts = useSelector(postsResult);
+  const getPosts = posts.slice().sort((a, b) => b - a)
   if (searchPostStatus === "loading") {
     return <h1>Loading ...</h1>;
   }
