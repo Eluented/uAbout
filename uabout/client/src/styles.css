@@ -325,11 +325,6 @@ hr {
 }
 /* Event component styling */
 
-.MuiPaper-root {
-  border-radius: 7%;
-  background-color: rgba(241, 241, 241, 0.41);
-}
-
 .text-container {
   display: flex;
   flex-direction: column-reverse;
@@ -371,6 +366,8 @@ hr {
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+  display: flex;
+  margin-left: 100vh;
 }
 
 #logout-btn:hover {

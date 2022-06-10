@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -25,7 +25,16 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function EventCard({ post_body, post_title, post_id, event_start, event_end, first_name, last_name, phone_number }) {
+function EventCard({
+  post_body,
+  post_title,
+  post_id,
+  event_start,
+  event_end,
+  first_name,
+  last_name,
+  phone_number,
+}) {
   const [expanded, setExpanded] = useState(false);
 
   const [selected, setSelected] = useState(false);
@@ -37,8 +46,14 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
   return (
     <Card sx={{ maxWidth: 700, display: "block" }}>
       <CardHeader
-        avatar={<BackgroundLetterAvatars sx={{ width: 50, height: 50 }} first_name={first_name} last_name={last_name}/>}
-        titleTypographyProps={{variant:'h3' }}
+        avatar={
+          <BackgroundLetterAvatars
+            sx={{ width: 50, height: 50 }}
+            first_name={first_name}
+            last_name={last_name}
+          />
+        }
+        titleTypographyProps={{ variant: "h3" }}
         title={post_title}
       />
       {/* <CardMedia 
@@ -48,9 +63,15 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
       alt=""
       /> */}
       <CardContent>
-        <Typography variant='h6'>Name: {first_name} {last_name}</Typography>
-        <Typography>Start Date: {event_start.split(" ").slice(0, 4).join(" ")}</Typography>
-        <Typography>End Date: {event_end.split(" ").slice(0, 4).join(" ")}</Typography>
+        <Typography variant="h6">
+          Name: {first_name} {last_name}
+        </Typography>
+        <Typography>
+          Start Date: {event_start.split(" ").slice(0, 4).join(" ")}
+        </Typography>
+        <Typography>
+          End Date: {event_end.split(" ").slice(0, 4).join(" ")}
+        </Typography>
         <Typography>{phone_number}</Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -62,10 +83,10 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
               setSelected(!selected);
             }}
           >
-            <CheckIcon sx={{ "&:hover": { color: "green" } }}/>
+            <CheckIcon sx={{ "&:hover": { color: "green" } }} />
           </ToggleButton>
           <IconButton aria-label="Comments">
-            <FavoriteIcon sx={{ "&:hover": { color: "red" } }}/>
+            <FavoriteIcon sx={{ "&:hover": { color: "red" } }} />
           </IconButton>
         </div>
         <ExpandMore
