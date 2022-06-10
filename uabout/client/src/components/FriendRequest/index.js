@@ -1,6 +1,8 @@
 import React from "react";
 import httpClient from "../../httpClient";
 import './index.css'
+import BackgroundLetterAvatars from "../AvatarIcon";
+import { Button } from "@mui/material";
 
 function FriendRequest({ first_name, last_name, user_id, username, status, idx }) {
 
@@ -43,7 +45,9 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
       <div key={idx} className="request_list">
         <div className="request_card">
           <div class="Avatar">
-            <BackgroundLetterAvatars />
+            <BackgroundLetterAvatars 
+            first_name={first_name}
+            last_name={last_name}/>
           </div>
           <div class="RequestName">
             {first_name} {last_name}
