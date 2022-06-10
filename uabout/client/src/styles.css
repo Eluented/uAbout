@@ -401,6 +401,19 @@ hr {
   margin-left: -60px;
 }
 
+.my-eventrender-container {
+  position: relative;
+  text-align: center;
+  width: 30vw;
+  height: 75vh;
+  overflow-y: auto;
+  margin-top: 5%;
+  margin-left: 90%;
+}
+.my-eventrender-container::-webkit-scrollbar {
+  overflow: hidden;
+}
+
 .friend-container {
   display: block;
   text-align: center;
@@ -477,18 +490,6 @@ hr {
     position: relative;
     text-align: center;
     margin-top: 70px;
-  }
-  .my-eventrender-container {
-    position: relative;
-    text-align: center;
-    width: 30vw;
-    height: 75vh;
-    overflow-y: auto;
-    margin-top: 5%;
-    margin-left: 90%;
-  }
-  .my-eventrender-container::-webkit-scrollbar {
-    overflow: hidden;
   }
 
   .calendarpage-event-container {
