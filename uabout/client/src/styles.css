@@ -339,14 +339,14 @@ hr {
 }
 
 .eventrender-container {
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   display: block;
   position: relative;
   top: 10vh;
   width: 35%;
   margin: auto;
-  margin-left: 15%;
+  /* margin-left: 15%; */
   text-align: center;
   height: 60vh;
   overflow-y: scroll;
