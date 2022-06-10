@@ -19,6 +19,12 @@ html {
     var(--background-secondary) 100%
   );
 }
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
 /* Navbar component styling */
 .Navbar {
   position: fixed;
@@ -371,7 +377,6 @@ hr {
 .tooltip {
   position: relative;
   display: inline-block;
-  
 }
 .tooltip .tooltiptext {
   visibility: hidden;
@@ -390,10 +395,6 @@ hr {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-
-
-
-
 
 .friend-container {
   display: block;
@@ -460,8 +461,8 @@ hr {
 
   .friend_list {
     animation-play-state: paused;
-}
-  
+  }
+
   /* Footer Responsive */
   .Footer {
     width: 100%;
@@ -472,6 +473,19 @@ hr {
     text-align: center;
     margin-top: 70px;
   }
+  .my-eventrender-container {
+    position: relative;
+    text-align: center;
+    width: 30vw;
+    height: 65%;
+    overflow-y: auto;
+    margin-top: 5%;
+    margin-left: 90%;
+  }
+  .my-eventrender-container::-webkit-scrollbar {
+    overflow: hidden;
+  }
+
   .calendarpage-event-container {
     position: relative;
     width: 450px;
