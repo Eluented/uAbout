@@ -62,7 +62,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
               setSelected(!selected);
             }}
           >
-            <CheckIcon />
+            <CheckIcon sx={{ "&:hover": { color: "green" } }}/>
           </ToggleButton>
           <IconButton aria-label="Comments">
             <FavoriteIcon sx={{ "&:hover": { color: "red" } }}/>
