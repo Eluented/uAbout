@@ -107,6 +107,7 @@ const ProfileSettingsPage = () => {
             id="logoutIcon"
             icon={faRightFromBracket}
             size="5x"
+            onClick={logoutUser}
           ></FontAwesomeIcon>
         </div></button>
           </div>
