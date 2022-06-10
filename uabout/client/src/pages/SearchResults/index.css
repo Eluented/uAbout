@@ -13,7 +13,12 @@
   align-items: center;
   flex-direction: column;
   overflow: scroll;
+  height: 100%;
 
+}
+
+.SearchEntry::-webkit-scrollbar{
+  overflow:hidden;
 }
 
 .SearchTop{
