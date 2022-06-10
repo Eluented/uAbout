@@ -32,7 +32,7 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
           <div class="RequestName">
             {first_name} {last_name}
           </div>
-          <div class="UsernameRequest">{username}<p>{status}</p></div>
+          <div class="UsernameRequest">{username}{status}</div>
         </div>
       </div>
     </>
@@ -51,7 +51,7 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
           <div class="RequestName">
             {first_name} {last_name}
           </div>
-          <div class="UsernameRequest">{username}<p>{status}</p></div>
+          <div class="UsernameRequest">{username}{status}</div>
           <div class="AcceptButton">
             <Button variant="outlined" onClick={acceptFriendRequest}>
               Accept
@@ -80,7 +80,7 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
           <div class="RequestName">
             {first_name} {last_name}
           </div>
-          <div class="UsernameRequest">{username} <p>{status}</p></div>
+          <div class="UsernameRequest">{username} {status}</div>
         </div>
       </div>
     </>
