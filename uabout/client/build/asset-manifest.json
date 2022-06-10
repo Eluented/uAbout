@@ -1,26 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.9070f3eb.css",
-<<<<<<< HEAD
-    "main.js": "/static/js/main.5bc41abd.js",
+    "main.css": "/static/css/main.099ab153.css",
+    "main.js": "/static/js/main.c86b9d54.js",
     "static/media/UAbout2.png": "/static/media/UAbout2.2a333cec1067a6d771ff.png",
     "index.html": "/index.html",
-    "main.9070f3eb.css.map": "/static/css/main.9070f3eb.css.map",
-    "main.5bc41abd.js.map": "/static/js/main.5bc41abd.js.map"
+    "main.099ab153.css.map": "/static/css/main.099ab153.css.map",
+    "main.c86b9d54.js.map": "/static/js/main.c86b9d54.js.map"
   },
   "entrypoints": [
-    "static/css/main.9070f3eb.css",
-    "static/js/main.5bc41abd.js"
-=======
-    "main.js": "/static/js/main.fadafca2.js",
-    "static/media/UAbout2.png": "/static/media/UAbout2.2a333cec1067a6d771ff.png",
-    "index.html": "/index.html",
-    "main.9070f3eb.css.map": "/static/css/main.9070f3eb.css.map",
-    "main.fadafca2.js.map": "/static/js/main.fadafca2.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.9070f3eb.css",
-    "static/js/main.fadafca2.js"
->>>>>>> 580676ee2a2aed75efd738e30293b27d0948aea3
+    "static/css/main.099ab153.css",
+    "static/js/main.c86b9d54.js"
   ]
 }
