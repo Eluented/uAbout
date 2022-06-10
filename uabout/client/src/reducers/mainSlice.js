@@ -61,6 +61,7 @@ export const mainSlice = createSlice({
     current_user: cookie ? cookie : null,
     posts: [],
     status: null,
+    searchQuery: null,
 
     // Errors
     searchError: null,
@@ -139,5 +140,7 @@ export const postsResult = state => state.main.posts;
 export const currentUser = state => state.main.current_user;
 
 export const friends = state => state.main.friends;
+
+export const search = state => state.main.searchQuery;
 
 export default mainSlice.reducer;
