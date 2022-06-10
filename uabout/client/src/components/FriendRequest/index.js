@@ -21,22 +21,52 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
 
   if (status === "Friend"){
     return (
-      <span key={idx} >
-      <p>{first_name} {last_name} {username} </p>
-      <p>{status}</p>
-      <button onClick={acceptFriendRequest}>Accept</button>
-      <button>Decline</button>
-    </span>
+      <>
+      <div key={idx} className="request_list">
+        <div className="request_card">
+          <div class="Avatar">
+            <BackgroundLetterAvatars 
+            first_name={first_name}
+            last_name={last_name}/>
+          </div>
+          <div class="RequestName">
+            {first_name} {last_name}
+          </div>
+          <p>{status}</p>
+          <div class="UsernameRequest">{username}</div>
+        </div>
+      </div>
+    </>
     )
   }
   if (status === "Pending Friend Requests"){
     return (
-      <span key={idx} >
-      <p>{first_name} {last_name} {username} </p>
-      <p>{status}</p>
-      <button onClick={acceptFriendRequest}>Accept</button>
-      <button>Decline</button>
-    </span>
+      <>
+      <div key={idx} className="request_list">
+        <div className="request_card">
+          <div class="Avatar">
+            <BackgroundLetterAvatars 
+            first_name={first_name}
+            last_name={last_name}/>
+          </div>
+          <div class="RequestName">
+            {first_name} {last_name}
+          </div>
+          <p>{status}</p>
+          <div class="UsernameRequest">{username}</div>
+          <div class="AcceptButton">
+            <Button variant="outlined" onClick={acceptFriendRequest}>
+              Accept
+            </Button>
+          </div>
+          <div class="DeclineButton">
+            <Button variant="outlined">
+              Decline
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
     )
   }
   if (status === "Sent Friend Requests"){
@@ -52,17 +82,8 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
           <div class="RequestName">
             {first_name} {last_name}
           </div>
+          <p>{status}</p>
           <div class="UsernameRequest">{username}</div>
-          <div class="AcceptButton">
-            <Button variant="outlined" onClick={acceptFriendRequest}>
-              Accept
-            </Button>
-          </div>
-          <div class="DeclineButton">
-            <Button variant="outlined">
-              Decline
-            </Button>
-          </div>
         </div>
       </div>
     </>
