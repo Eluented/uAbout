@@ -398,7 +398,7 @@ hr {
   width: 120px;
   bottom: 100%;
   left: 50%;
-  margin-left: -60px; 
+  margin-left: -60px;
 }
 
 .friend-container {
@@ -482,7 +482,7 @@ hr {
     position: relative;
     text-align: center;
     width: 30vw;
-    height: 65%;
+    height: 75vh;
     overflow-y: auto;
     margin-top: 5%;
     margin-left: 90%;
