@@ -60,9 +60,11 @@ const HomePage = () => {
                 </button>
                 {modalOpen && <EventForm setOpenModal={setModalOpen} />}
               </div>
+              {modalOpen ? <></>
+              :
               <div className="eventrender-container">
                 {searchPostStatus === "succeeded" &&
-                  getPosts.map(
+                  getPosts.reverse().map(
                     (
                       {
                         post_body,
@@ -91,6 +93,7 @@ const HomePage = () => {
                     )
                   )}
               </div>
+              }
             </div>
             <Footer />
           </div>
