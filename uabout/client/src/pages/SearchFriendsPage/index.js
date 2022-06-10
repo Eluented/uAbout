@@ -12,17 +12,7 @@ const SearchFriendsPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const searchResult = useSelector(userSearchResult);
 
-  // const [formData, setFormData] = useState({});
-
-  // when user types sets form data based on name
-  // const setData = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
-  // };
-
-  // status of the search function
-  const searchFriendsStatus = useSelector((state) => state.main.status);
 
   // when form is submitted...
   // function handleSubmit(e) {
