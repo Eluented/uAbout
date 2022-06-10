@@ -31,8 +31,10 @@ export function LoginForm(props) {
         "https://uabout.herokuapp.com/api/login",
         formData
       );
-      if (resp.status === 200) {
-        return navigate("/home");
+      if (resp.data.error){
+
+      } else {
+        navigate("/home");
       }
       console.log(resp);
       return resp
