@@ -327,10 +327,16 @@ hr {
 
 .MuiPaper-root {
   border-radius: 7%;
-  background-color: rgba(241, 241, 241, 0.41));
+  background-color: rgba(241, 241, 241, 0.41);
 }
 
-
+.text-container {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+  margin-bottom: 5%;
+  margin-right: 5%;
+}
 
 .eventrender-container {
   margin-left: auto;
