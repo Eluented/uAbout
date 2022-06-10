@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function EventCard({ post_body, post_title, post_id, event_start, event_end, first_name, last_name }) {
+function EventCard({ post_body, post_title, post_id, event_start, event_end, first_name, last_name, phone_number }) {
   const [expanded, setExpanded] = useState(false);
 
   const [selected, setSelected] = useState(false);
@@ -51,6 +51,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
         <Typography variant='h6'>Name: {first_name} {last_name}</Typography>
         <Typography>Start Date: {event_start.split(" ").slice(0, 4).join(" ")}</Typography>
         <Typography>End Date: {event_end.split(" ").slice(0, 4).join(" ")}</Typography>
+        <Typography>{phone_number}</Typography>
       </CardContent>
       <CardActions disableSpacing>
         <div className="interaction-btns">
@@ -64,7 +65,7 @@ function EventCard({ post_body, post_title, post_id, event_start, event_end, fir
             <CheckIcon />
           </ToggleButton>
           <IconButton aria-label="Comments">
-            <FavoriteIcon />
+            <FavoriteIcon sx={{ "&:hover": { color: "red" } }}/>
           </IconButton>
         </div>
         <ExpandMore

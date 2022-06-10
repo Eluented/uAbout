@@ -71,7 +71,8 @@ const HomePage = () => {
                         event_start,
                         event_end,
                         first_name,
-                        last_name
+                        last_name,
+                        phone_number
                       },
                       idx
                     ) => (
@@ -85,6 +86,7 @@ const HomePage = () => {
                         event_start={event_start}
                         event_end={event_end}
                         key={idx}
+                        phone_number={phone_number}
                       />
                     )
                   )}
