@@ -32,7 +32,7 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
           <div class="RequestName">
             {first_name} {last_name}
           </div>
-          <div class="UsernameRequest">{username} </div>
+          <div class="UsernameRequest">{username} {status}</div>
         </div>
       </div>
     </>
@@ -80,7 +80,7 @@ function FriendRequest({ first_name, last_name, user_id, username, status, idx }
           <div class="RequestName">
             {first_name} {last_name}
           </div>
-          <div class="UsernameRequest">{username} </div>
+          <div class="UsernameRequest">{username} {status}</div>
         </div>
       </div>
     </>
