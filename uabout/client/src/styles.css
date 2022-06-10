@@ -325,6 +325,11 @@ hr {
 }
 /* Event component styling */
 
+.MuiPaper-root {
+  border-radius: 7%;
+  background-color: rgba(241, 241, 241, 0.41));
+}
+
 .eventrender-container {
   margin-left: auto;
   margin-right: auto;
@@ -332,7 +337,6 @@ hr {
   position: relative;
   top: 10vh;
   width: 35%;
-  padding: 30px;
   margin: auto;
   margin-left: 15%;
   text-align: center;
