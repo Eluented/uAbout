@@ -21,9 +21,6 @@ const SearchBar = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
     };
 
-    // status of the search function
-    const searchFriendsStatus = useSelector((state) => state.main.status);
-
     // when form is submitted...
     function handleSubmit(e) {
         e.preventDefault();
@@ -33,6 +30,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         // if the search function is completed
+        console.log(searchResult)
         if (searchResult) {
             navigate(`/search/${formData.username}`);
         }
