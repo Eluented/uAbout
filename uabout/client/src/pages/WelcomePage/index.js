@@ -18,22 +18,16 @@ const WelcomePage = () => {
           <img src={logo} style={{ marginBottom: "-1.5%" }} width="60%" />
           <br></br>
           <ul style={{ "list-style-type": "none" }}>
+            
             <li>
-              <FontAwesomeIcon icon={faAnglesRight} size="1x" />
-              __ All your friends using different communication platforms?
+              <FontAwesomeIcon icon={faAnglesRight} size="1x" />     Sick of organising social events with your friends?
             </li>
             <br></br>
             <li>
-              <FontAwesomeIcon icon={faAnglesRight} size="1x" />
-              __ Tired of rounding them up for a get-together?
-            </li>
-            <br></br>
-            <li>
-              <FontAwesomeIcon icon={faAnglesRight} size="1x" />
-              __ Fed-up having to message every single person individually?
+              <FontAwesomeIcon icon={faAnglesRight} size="1x" />     Messaging every single person individually across dozens of communication platforms?
             </li>
           </ul>
-          <h4
+          <h3
             style={{
               fontWeight: "normal",
               marginBottom: "-1%",
@@ -41,19 +35,19 @@ const WelcomePage = () => {
               textDecoration: "underline",
             }}
           >
-            That's where we come in
-          </h4>
+            Get them all in one place
+          </h3>
           <p style={{ marginBottom: "-1%" }}>
-            <FontAwesomeIcon icon={faSearch} size="1x" /> Search for your
-            friends by their name or username
+            <FontAwesomeIcon icon={faSearch} size="2x" /> Search for your
+            friends, or send friend requests to other users
           </p>
           <p style={{ marginBottom: "-1%" }}>
-            <FontAwesomeIcon icon={faUserPlus} size="1x" /> Create an event and
-            invite all of your uAbout friends...or just the ones you{" "}
-            <em>really</em> like!
+            <FontAwesomeIcon icon={faUserPlus} size="2x" /> Post an event and
+            invite all your uAbout friends...(or just the ones you{" "}
+            <em>really</em> like!)
           </p>
           <p style={{ marginBottom: "-1%" }}>
-            <FontAwesomeIcon icon={faCalendarDays} size="1x" /> Keep up to date
+            <FontAwesomeIcon icon={faCalendarDays} size="2x" /> Keep up to date
             with your social calendar &amp; enjoy making plans again!
           </p>
         </div>
