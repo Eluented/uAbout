@@ -44,8 +44,8 @@ const CalendarPage = () => {
               <div className="calendar-parent-container">
                 <ReactCalendar />
                 <div>
-                  <h1>My Events</h1>
                   <div className="my-eventrender-container">
+                    <h1>My Events</h1>
                     {searchPostStatus === "succeeded" &&
                       getPosts.map(
                         (
