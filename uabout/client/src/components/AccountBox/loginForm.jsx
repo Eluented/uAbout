@@ -25,14 +25,12 @@ export function LoginForm(props) {
 
   const logInUser = async (e) => {
     e.preventDefault()
-    console.log(formData);
+    navigate("/home");
     try {
       const resp = await httpClient.post(
         "https://uabout.herokuapp.com/api/login",
         formData
       );
-      navigate("/home");
-
       console.log(resp);
       return resp
     } catch (e) {

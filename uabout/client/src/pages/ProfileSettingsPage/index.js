@@ -101,13 +101,13 @@ const ProfileSettingsPage = () => {
             </div>
           </div>
           <div className="bottom-section">
-          <button id="logout-btn"><div class="tooltip">
+          <button onClick={logoutUser} id="logout-btn"><div class="tooltip">
             <span class="tooltiptext">Logout</span>
           <FontAwesomeIcon
             id="logoutIcon"
             icon={faRightFromBracket}
             size="5x"
-            onClick={logoutUser}
+
           ></FontAwesomeIcon>
         </div></button>
           </div>
