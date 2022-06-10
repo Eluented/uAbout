@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import BackgroundLetterAvatars from "../AvatarIcon";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { currentUser } from "../../reducers/mainSlice";
 
 const Footer = () => {
@@ -11,17 +11,19 @@ const Footer = () => {
   const letterOne = userInfo.first_name;
   const letterTwo = userInfo.last_name;
 
-
   return (
     <div className="footer-container">
       <footer className="Footer">
-        <h2>uAbout?</h2>
         <div className="triangle">
-          <h3 className="username">Hello {userInfo.first_name}</h3>
+          <div className="text-container">
+            <h3 className="username">Hello {userInfo.first_name}</h3>
+            <h2>uAbout?</h2>
+          </div>
+
           <button className="avatar-icon" onClick={() => navigate("/profile")}>
-            <BackgroundLetterAvatars 
-            first_name={letterOne}
-            last_name={letterOne}
+            <BackgroundLetterAvatars
+              first_name={letterOne}
+              last_name={letterOne}
             />
           </button>
         </div>
