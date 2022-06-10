@@ -15,11 +15,17 @@
     color: #f1f1f1;
 }
 
+
+
 .Container {
     overflow: scroll;
     background-color: rgb(241, 241, 241);
 }
 
+.Avatar{
+    top: 0;
+    left: 1px;
+}
 
 .RequestAvatar {
     position: absolute;
@@ -83,6 +89,9 @@
 
 
 .request_list {
+    margin-top: 10vh;
+    justify-content: center;
+    margin-left: 15vh;
     animation-name: floating;
     animation-duration: 3s;
     animation-iteration-count: infinite;
