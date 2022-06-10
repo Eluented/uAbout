@@ -57,16 +57,14 @@ const ProfileSettingsPage = () => {
             </div>
           </div>
           <div className="bottom-section">
-          <div class="tooltip">
+          <button id="logout-btn"><div class="tooltip">
             <span class="tooltiptext">Logout</span>
-            <button id="logout-btn" onClick={logoutUser}>
-              <FontAwesomeIcon
-              id="#logoutIcon"
-                icon={faRightFromBracket}
-                size="5x"
-              ></FontAwesomeIcon>
-            </button>
-            </div>
+          <FontAwesomeIcon
+            id="logoutIcon"
+            icon={faRightFromBracket}
+            size="5x"
+          ></FontAwesomeIcon>
+        </div></button>
           </div>
         </div>
         <Footer />
@@ -103,16 +101,14 @@ const ProfileSettingsPage = () => {
             </div>
           </div>
           <div className="bottom-section">
-          <div class="tooltip">
+          <button id="logout-btn"><div class="tooltip">
             <span class="tooltiptext">Logout</span>
-            <button id="logout-btn" onClick={logoutUser}>
-              <FontAwesomeIcon
-              id="#logoutIcon"
-                icon={faRightFromBracket}
-                size="5x"
-              ></FontAwesomeIcon>
-            </button>
-            </div>
+          <FontAwesomeIcon
+            id="logoutIcon"
+            icon={faRightFromBracket}
+            size="5x"
+          ></FontAwesomeIcon>
+        </div></button>
           </div>
         </div>
         <div className="friend-container">
