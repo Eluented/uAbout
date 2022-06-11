@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+
+.container {
+    
+    align-items: center;  
+}
+
+.SearchEntry{
+  background-color: rgb(241, 241, 241, 0.1);
+  display: flex;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: scroll;
+  height: 100%;
+
+}
+
+.SearchEntry::-webkit-scrollbar{
+  overflow:hidden;
+}
+
+.SearchTop{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: rgb(241, 241, 241, 0.3);
+    text-align: center;
+    border-radius: 50px;
+}
+
+@media (max-width: 600px){
+    .SearchEntry {
+        margin-top: 8rem;
+      }
+}
+
+
+
+
+

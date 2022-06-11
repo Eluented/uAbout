@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+
+.ParentContainer {
+  display: flex;
+  width: 90%;
+  height: 100vh;
+  top: 10%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat;
+  background-size: cover;
+}
+
+.WelcomeContainer {
+  min-width: 45vh;
+  width: 40%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  border-radius: 30px;
+  padding: 1%;
+  justify-content: center;
+  background-color: rgba(7, 42, 72, 0.1);
+  background-size: cover;
+  font-size-adjust: 5;
+  color: #f1f1f1;
+}
+
+.FormContainer {
+  width: 40%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: none;
+  background-size: cover;
+}

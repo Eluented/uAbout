@@ -1,0 +1,48 @@
+button:focus, input:focus{
+    outline: none;
+ }
+ 
+ 
+ .submit{
+    margin-left: 2%;
+    background: transparent;
+    border: none;
+    font-size: 5vw;
+    transition: .5s ease-in-out;
+    color: cadetblue;
+    min-width: 5%;
+ }
+  
+ .search-bar{
+    background: transparent;
+    width: 0%;
+    margin-left: 2%;
+    height: 4vh;
+    border: none;
+    font-size: 3vw;
+    text-align: justify;
+    color: #072A48;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom: 1px solid aliceblue;
+    
+    transition-delay: 0.5s;
+    transition: width .5s ease-in-out, 
+    padding .2s ease-in-out;
+ }
+
+
+.search-bar:hover{
+    width: 70%;
+    padding: 20px;
+}
+
+.submit:hover{
+    color: aliceblue;
+    cursor:pointer;
+    min-width: auto;
+}
+
+.main-app:hover{
+    
+    background-color: rgba(118,196,205, 0.8);
+}

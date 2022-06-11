@@ -1,0 +1,570 @@
+/***************************************************************************************/
+/* Generic */
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+:root {
+  --background-primary: #e1e3cd;
+  --background-secondary: #76c4cd;
+  --text-primary: #072a48;
+  --text-secondary: #072a48;
+  --triangle: #f1f1f1;
+  --font-primary: "Abril Fatface", cursive;
+}
+html {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-primary);
+  background: linear-gradient(
+    180deg,
+    var(--background-primary) 0%,
+    var(--background-secondary) 100%
+  );
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+/* Navbar component styling */
+.Navbar {
+  position: fixed;
+  top: 20%;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.Navbar li {
+  list-style: none;
+  padding: 30px 0px;
+  transition: all 0.2s ease-in-out;
+}
+
+.Navbar:hover {
+  cursor: pointer;
+  animation-play-state: paused;
+}
+
+.Navbar li:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+
+  50% {
+    transform: translate(0, 10px);
+  }
+
+  100% {
+    transform: translate(0, -0px);
+  }
+}
+
+/* Footer component styling */
+.footer-container {
+  display: flex;
+}
+.Footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+.Footer h2 {
+  font-size: 36px;
+  display: flex;
+  margin: 0%;
+  position: relative;
+  left: 10%;
+  top: 90px;
+}
+.triangle {
+  width: 100%;
+  height: 20vh;
+  background-color: var(--triangle);
+  clip-path: polygon(100% 0%, 100% 100%, -10% 100%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.triangle h3 {
+  margin: 5%;
+}
+.username {
+  color: var(--text-secondary);
+}
+.avatar-icon {
+  border-style: none;
+}
+.avatar-icon:hover {
+  cursor: pointer;
+}
+/* Calendar component styling */
+.events-heading {
+  font-family: var(--font-primary);
+}
+
+.calendar-parent-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.calendarpage-event-container {
+  width: 30%;
+  overflow-y: auto;
+  position: absolute;
+  height: 650px;
+  position: absolute;
+  margin-left: 20%;
+}
+.calendarpage-event-container::-webkit-scrollbar {
+  display: none;
+}
+
+.calendar-container {
+  display: flex;
+  margin-top: 10%;
+  margin-left: 15%;
+  position: fixed;
+}
+.react-calendar {
+  min-width: 50%;
+  max-width: 50%;
+  height: 500px;
+  background: var(--background-secondary);
+  border: 1px solid var(--triangle);
+  line-height: 1.125em;
+  box-shadow: 5px 10px 8px var(--text-primary);
+}
+.react-calendar--doubleView {
+  width: 700px;
+}
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
+}
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
+}
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 1em;
+  font-family: var(--font-primary);
+}
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  font-family: var(--font-primary);
+  font-size: 20px;
+}
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: var(--background-primary);
+}
+.react-calendar__navigation button[disabled] {
+  background-color: var(--background-primary);
+}
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75em;
+}
+.react-calendar__month-view__weekdays__weekday {
+  padding: 1em;
+  background: rgba(217, 217, 217, 0.4);
+}
+.react-calendar__month-view__weekNumbers {
+  font-weight: bold;
+}
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  padding: calc(1.75em / 1.75em) calc(1.5em / 1.75);
+  font-family: var(--font-primary);
+}
+.react-calendar__month-view__days__day--weekend {
+  color: var(--text-secondary);
+}
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: var(--background-secondary);
+}
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 1.25em;
+  font-family: var(--font-primary);
+}
+.react-calendar__tile {
+  max-width: 100%;
+  text-align: center;
+  padding: 1.5em 2em;
+  background: none;
+  font-family: var(--font-primary);
+}
+.react-calendar__tile:disabled {
+  background-color: var(--background-primary);
+}
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: var(--background-primary);
+}
+.react-calendar__tile--now {
+  background: var(--background-primary);
+}
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #ffffa9;
+}
+.react-calendar__tile--hasActive {
+  background: var(--text-primary);
+  color: var(--background-primary);
+}
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: var(--text-primary);
+}
+.react-calendar__tile--active {
+  background: var(--text-primary);
+  color: var(--background-primary);
+}
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: var(--text-primary);
+}
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #e6e6e6;
+}
+/* Post form Styling */
+.eventform-parent-container {
+  background-color: rgba(241, 241, 241, 0.41);
+  width: 70%;
+  padding: 30px;
+  position: relative;
+  top: 50px;
+  margin: auto;
+  text-align: center;
+}
+#event-form {
+  margin: 10px;
+  text-align: center;
+  position: relative;
+}
+#post-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: var(--text-primary);
+}
+.date-input-field {
+  text-align: center;
+  background: none;
+  border-width: thin;
+  border-color: var(--text-primary);
+}
+.openModalBtn {
+  padding: px;
+  font-family: var(--font-primary);
+  width: 80%;
+  font-size: 28px;
+  border-radius: 25px;
+  background-color: lightgrey;
+  border-style: none;
+  color: darkslategrey;
+  margin-bottom: 10px;
+}
+.openModalBtn:hover {
+  cursor: pointer;
+}
+.modalCloseBtn {
+  background: none;
+  border-style: none;
+  font-size: large;
+  font-weight: 300;
+}
+.modalCloseBtn:hover {
+  cursor: pointer;
+}
+hr {
+  margin-top: 10px;
+  color: grey;
+}
+.date-container {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding: 10px 0px;
+  justify-content: center;
+}
+.form-container {
+  display: block;
+  top: 10px;
+}
+/* Event component styling */
+
+.text-container {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+  margin-bottom: 5%;
+  margin-right: 5%;
+}
+
+.eventrender-container {
+  /* margin-left: auto;
+  margin-right: auto; */
+  display: block;
+  position: relative;
+  top: 10vh;
+  width: 35%;
+  margin: auto;
+  /* margin-left: 15%; */
+  text-align: center;
+  height: 60vh;
+  overflow-y: scroll;
+  align-items: center;
+  justify-content: center;
+}
+.eventrender-container::-webkit-scrollbar {
+  display: none;
+}
+.MuiPaper-root {
+  width: 100%;
+  margin: 5px;
+}
+/* Profile Settings page */
+#logout-btn {
+  background: none;
+  border-style: none;
+  position: absolute;
+  top: 350px;
+  cursor: pointer;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  display: flex;
+  margin-left: 100vh;
+}
+
+#logout-btn:hover {
+  cursor: pointer;
+  animation-play-state: paused;
+}
+
+#logoutIcon {
+  transition: all 0.2s ease-in-out;
+}
+
+#logoutIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/*ToolTip for creating the small popup messages on hover */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  visibility: visible;
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.my-eventrender-container {
+  position: relative;
+  text-align: center;
+  width: 30vw;
+  height: 75vh;
+  overflow-y: auto;
+  margin-top: 5%;
+  margin-left: 90%;
+}
+.my-eventrender-container::-webkit-scrollbar {
+  overflow: hidden;
+}
+
+.friend-container {
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 50%;
+  margin: auto;
+  overflow: auto;
+}
+.friend-container::-webkit-scrollbar {
+  display: none;
+}
+#avatar-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+#profile-details {
+  display: flexbox;
+  width: 50%;
+}
+#profile-details li {
+  list-style: none;
+  margin: 0%;
+  /* position: absolute; */
+}
+.profile-section {
+  display: block;
+  justify-content: center;
+}
+.bottom-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#invite-options {
+  display: flex;
+  justify-content: center;
+}
+/* All responsive styling */
+@media (max-width: 600px) {
+  /* Navbar Responsive */
+  .Navbar {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    animation-play-state: paused;
+  }
+  .Navbar ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+  .Navbar li {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  #logout-btn {
+    animation-play-state: paused;
+  }
+
+  /*Responsive Friendbox stop floating in mobile view*/
+
+  .friend_list {
+    animation-play-state: paused;
+  }
+
+  /* Footer Responsive */
+  .Footer {
+    width: 100%;
+  }
+  /* event form */
+  .events-heading {
+    position: relative;
+    text-align: center;
+    margin-top: 70px;
+  }
+
+  .calendarpage-event-container {
+    position: relative;
+    width: 450px;
+    height: 300px;
+    top: 75%;
+  }
+  .eventform-parent-container {
+    background-color: rgba(241, 241, 241, 0.41);
+    width: 80%;
+    top: 80px;
+    text-align: center;
+  }
+  .openModalBtn {
+    font-size: 20px;
+    padding: 10px 5px;
+  }
+  .eventrender-container {
+    width: 80%;
+    top: 100px;
+  }
+  /* my event responsive styling */
+  .events-heading {
+    margin-top: 50%;
+  }
+  /* Calendar Styling */
+  .calendar-parent-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .calendar-container {
+    justify-content: center;
+    display: flex;
+    margin-top: 25%;
+    position: fixed;
+    margin-left: 0;
+  }
+  .react-calendar {
+    max-width: 80%;
+    height: 300px;
+  }
+  .react-calendar__navigation button {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .react-calendar__tile {
+    padding: 0.75em 0.5em;
+  }
+  .react-calendar__month-view__weekdays__weekday {
+    padding: 0.75em;
+  }
+  .react-calendar__year-view .react-calendar__tile,
+  .react-calendar__decade-view .react-calendar__tile,
+  .react-calendar__century-view .react-calendar__tile {
+    padding: 1.5em 0.75em;
+    font-family: var(--font-primary);
+  }
+  .main-app {
+    margin-top: 10%;
+  }
+
+  .WelcomeContainer {
+    display: none;
+  }
+}

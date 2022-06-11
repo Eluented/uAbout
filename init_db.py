@@ -1,18 +1,58 @@
-from uabout import db
-from uabout.models.schema import User, Friendship
+from uabout.config.db_config import db, Users
 
 # Clear it all out
 
 db.drop_all()
 
+
+# Configure mappers before creating tables in order for search trigger in
+# SQLAlchemy-Searchable to work properly
+
+db.configure_mappers()
+
+
 # Set it back up
 
 db.create_all()
 
-# Seed data
 
-u = User(first_name="Jeff", last_name="Adonis", email="jeff@outlook.com", 
-password="bruh123", phone ="051232130123")
+########################################## Seeding Dummy Data ########################################
 
-db.session.add(u)
-db.session.commit(u)
+
+Robyn = Users(first_name = "Robyn",
+                last_name = "Shortland",
+                username = "robbyn",
+                email = "robyn@outlook.com",
+                password = "seededpassword",
+                phone_number = "07127901245")
+
+Andrew = Users(first_name = "Andrew",
+                last_name = "Kennedy",
+                username = "robinhood",
+                email = "andrewken@outlook.com",
+                password = "seededpassword",
+                phone_number = "07151426323")
+
+Libby = Users(first_name = "Liberty",
+                last_name = "Sprackling",
+                username = "robby",
+                email = "libby@outlook.com",
+                password = "seededpassword",
+                phone_number = "071221388723")
+
+Onur = Users(first_name = "Onur",
+                last_name = "Belek",
+                username = "robster",
+                email = "onur@outlook.com",
+                password = "seededpassword",
+                phone_number = "075013298232")
+
+David = Users(first_name = "David",
+                last_name = "Quigley",
+                username = "robbin",
+                email = "david@outlook.com",
+                password = "seededpassword",
+                phone_number = "071292130923")
+
+db.session.add_all([Robyn, Andrew, Libby, Onur, David])
+db.session.commit()
