@@ -16,6 +16,7 @@ from flask_session import Session
 from flask_bcrypt import Bcrypt
 from flask_marshmallow import Marshmallow
 from uuid import uuid4
+
 from werkzeug import exceptions
 
 # ----------------------------------- Load environment variables -----------------------------------
