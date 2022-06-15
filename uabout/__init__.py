@@ -239,8 +239,10 @@ def all_users():
 def show_friends_and_requests():
     """ Show friend requests and list of all friends """
 
+    user_session = session.get("current_user")
+    
     # This returns User objects for current user's friend requests
-    received_friend_requests, sent_friend_requests = get_friend_requests(session["current_user"]["user_id"])
+    received_friend_requests, sent_friend_requests = get_friend_requests(user_session["user_id"])
 
     # This returns a query for current user's friends (not User objects), but adding .all() to the end gets list of User objects
     friends = get_friends(session["current_user"]["user_id"]).all()
@@ -380,8 +382,9 @@ def create_post():
                         "user_id": user_id })
     
     elif request.method == "GET":
+        user_session = session.get("current_user")
 
-        user_id = session["current_user"]["user_id"]
+        user_id = user_session["user_id"]
 
         # get shit from databse send it back
         all_post= Posts.query.all()
