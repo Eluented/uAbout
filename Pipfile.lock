@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8d7d38b5dbb668d669851c453e315946b2ceae7805217aa47949b864a70bce65"
+            "sha256": "3388b55e01682d0bada6866ad7c601cf2956f71de386eabe606a8e191fa8b852"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -59,11 +59,11 @@
         },
         "cachelib": {
             "hashes": [
-                "sha256:80fa73dda398672329dab6c8e9e9bad03fd36dc4da40d911d7de308c91e8481e",
-                "sha256:df254f3b900dc8684d8ebdd146c731ddb45edc6233a6cf7e3e834c949f360726"
+                "sha256:e358f6f82cf633891f0dbd3996e300b4657716ac44b301df33b9cb2cfd6eea6d",
+                "sha256:efb94456a4cf91669c4b6e82833b43d20c45e3c2ba8384841854c79cc7175565"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==0.7.0"
+            "version": "==0.8.0"
         },
         "cffi": {
             "hashes": [
@@ -249,6 +249,13 @@
             ],
             "index": "pypi",
             "version": "==2.5.1"
+        },
+        "flask-sqlalchemy-session": {
+            "hashes": [
+                "sha256:0fbc520d587c891c2a0d58aa7952bc37edd73660f10006ff4732a72aa16d8157"
+            ],
+            "index": "pypi",
+            "version": "==1.1"
         },
         "greenlet": {
             "hashes": [
@@ -494,11 +501,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:68e45d17c9281ba25dc0104eadd2647172b3472d9e01f911efa57965e8d51a36",
-                "sha256:a43bdedf853c670e5fed28e5623403bad2f73cf02f9a2774e91def6bda8265a7"
+                "sha256:5a844ad6e190dccc67d6d7411d119c5152ce01f7c76be4d8a1eaa314501bba77",
+                "sha256:bf8a748ac98b09d32c9a64a995a6b25921c96cc5743c1efa82763ba80ff54e91"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==62.3.2"
+            "version": "==62.4.0"
         },
         "six": {
             "hashes": [
@@ -519,6 +526,7 @@
                 "sha256:3197441772dc3b1c6419f13304402f2418a18d7fe78000aa5a026e7100836739",
                 "sha256:3688f92c62db6c5df268e2264891078f17ecb91e3141b400f2e28d0f75796dea",
                 "sha256:3862a069a24f354145e01a76c7c720c263d62405fe5bed038c46a7ce900f5dd6",
+                "sha256:4a17c1a1152ca4c29d992714aa9df3054da3af1598e02134f2e7314a32ef69d8",
                 "sha256:4c1d9fb3931e27d59166bb5c4dcc911400fee51082cfba66ceb19ac954ade068",
                 "sha256:4e8706919829d455a9fa687c6bbd1b048e36fec3919a59f2d366247c2bfdbd9c",
                 "sha256:50c8eaf44c3fed5ba6758d375de25f163e46137c39fda3a72b9ee1d1bb327dfc",

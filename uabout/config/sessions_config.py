@@ -9,11 +9,10 @@ class SQLAlchemySessionsConfig:
     SECRET_KEY = environ["SECRET_KEY"]
     SESSION_USE_SIGNER = True # uses a secret key
     SESSION_SQLALCHEMY_TABLE = 'sessions' # makes table called sessions
-
     SESSION_SQLALCHEMY = db
 
+    SESSION_PERMANENT = False
     SESSION_COOKIE_HTTPONLY = False
     SESSION_TYPE = "sqlalchemy"
     SESSION_COOKIE_SECURE = False
 
-    PERMANENT_SESSION_LIFETIME = timedelta(hours=1)
