@@ -9,7 +9,7 @@ load_dotenv()
 class SQLAlchemySessionsConfig:
     SECRET_KEY = environ["SECRET_KEY"]
     SESSION_USE_SIGNER = True # uses a secret key
-    SESSION_REDIS=redis.from_url(environ["REDIS_URL"])
+    SESSION_REDIS = redis.from_url(environ["REDIS_URL"] or "redis://127.0.0.1:6379")
 
     SESSION_PERMANENT = False
     SESSION_COOKIE_HTTPONLY = False
