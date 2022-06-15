@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# 4About-Practice-Flask
+bash _scripts/dev.sh
+=======
 # Lap-4-Project
 
 # uAbout
@@ -64,3 +68,4 @@ create and share posts about meetups and events to go to.
 - [ROBYN SHORTLAND](https://github.com/rsho-create)
 - [ANDREW KENNEDY](https://github.com/akennedy205)
 - [LIBERTY SPRACKLING](https://github.com/LibertySprackling)
+>>>>>>> 78bad86f631b4d27c72fe0588cdd713c14987686
