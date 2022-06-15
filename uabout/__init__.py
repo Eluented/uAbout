@@ -5,7 +5,7 @@ from os import environ
 # Database Imports
 from .config.db_config import db, Users, Posts, Comments, Reactions, Connection, Invites
 from .config.friends_config import is_friends_or_pending, get_friend_requests, get_friends
-from .config.redis_config import RedisConfig
+from .config.sessions_config import SQLAlchemySessionsConfig
 
 # Flask Imports
 from flask import Flask, jsonify, request, session
@@ -41,7 +41,7 @@ app.config.update(
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 )
 
-app.config.from_object(RedisConfig)
+app.config.from_object(SQLAlchemySessionsConfig)
 
 db.app = app
 db.init_app(app)
