@@ -35,6 +35,7 @@ export function LoginForm(props) {
         navigate('/home')
         window.location.reload();
       }
+
       return resp
     } catch (e) {
       console.log(e);

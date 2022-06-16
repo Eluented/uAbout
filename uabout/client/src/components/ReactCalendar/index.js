@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { Calendar } from "react-calendar";
+
+import FullCalendar from '@fullcalendar/react' // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 
 const ReactCalendar = () => {
-  const [date, setDate] = useState(new Date());
 
-  const onChange = (date) => {
-    setDate(date);
-    console.log(date);
-  };
   return (
-    <div className="calendar-container">
-      <Calendar onChange={onChange} value={date} />
-    </div>
+    <FullCalendar
+    plugins={[ dayGridPlugin ]}
+    initialView="dayGridMonth"
+  />
   );
 };
 

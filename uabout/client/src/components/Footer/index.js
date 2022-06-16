@@ -10,7 +10,7 @@ const Footer = () => {
 
   const letterOne = userInfo.first_name;
   const letterTwo = userInfo.last_name;
-
+  
   return (
     <div className="footer-container">
       <footer className="Footer">
