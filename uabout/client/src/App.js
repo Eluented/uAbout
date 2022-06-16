@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   WelcomePage,
-  
   SearchFriendsPage,
-  
   NotFoundPage,
   FriendsPage,
   SearchResultsPage,
