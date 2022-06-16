@@ -31,11 +31,7 @@ export function SignupForm(props) {
     e.preventDefault();
     try {
       const resp = await httpClient.post("https://uabout.herokuapp.com/api/register", formData)
-      if (resp.data.error){
-
-      } else {
-        navigate("/home");
-      }
+      
       console.log(resp.data)
     } catch (e) {
       console.log(e)

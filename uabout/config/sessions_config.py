@@ -15,4 +15,4 @@ class SQLAlchemySessionsConfig:
     SESSION_COOKIE_HTTPONLY = False
     SESSION_TYPE = "redis"
     SESSION_COOKIE_SECURE = False
-    PERMANENT_SESSION_LIFETIME = timedelta(days=14)
+    PERMANENT_SESSION_LIFETIME = timedelta(hours=1)

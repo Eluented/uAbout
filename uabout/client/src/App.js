@@ -32,7 +32,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<WelcomePage />} />
+      <Route path="/" element={loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true} />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/" replace={true}  />} />
       <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true}  />} />
