@@ -27,12 +27,12 @@ function App() {
     dispatch(allFriends());
   }, []);
 
-
+  // <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/" replace={true}  />} />
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/calendar" element={loggedInCheck ? < CalendarPage/> : <Navigate to="/" replace={true}  />} />
+      <Route path="/calendar" element={< CalendarPage/> } />
       <Route path="/home" element={ loggedInCheck ? < HomePage/> : <Navigate to="/" replace={true}  />} />
       <Route path="/profile" element={loggedInCheck ? < ProfileSettingsPage/> : <Navigate to="/" replace={true}  />} />
       <Route path="/allfriends" element={loggedInCheck ? <FriendsPage/> : <Navigate to="/" replace={true}  />}  />
