@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const ReactCalendar = () => {
   const posts = useSelector(postsResult);
 
-  const filteredEvents = posts.map( ({ event_end, event_start, post_title }) => ( { start:event_end, end:event_start, title:post_title } ) )
+  const filteredEvents = posts.map( ({ event_end, event_start, post_title }) => ( { start:event_start, end:event_end, title:post_title } ) )
 
   console.log(filteredEvents);
 
