@@ -8,8 +8,8 @@ const Footer = () => {
   const navigate = useNavigate();
   const userInfo = useSelector(currentUser);
 
-  const letterOne = userInfo.first_name;
-  const letterTwo = userInfo.last_name;
+  const letterOne = userInfo.first_name[0];
+  const letterTwo = userInfo.last_name[0];
   
   return (
     <div className="footer-container">
@@ -23,7 +23,7 @@ const Footer = () => {
           <button className="avatar-icon" onClick={() => navigate("/profile")}>
             <BackgroundLetterAvatars
               first_name={letterOne}
-              last_name={letterOne}
+              last_name={letterTwo}
             />
           </button>
         </div>

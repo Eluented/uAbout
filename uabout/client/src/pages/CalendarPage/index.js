@@ -60,8 +60,6 @@ const CalendarPage = () => {
 
         <ReactCalendar />
 
-        <Footer />
-
       </div>
 
     </>
