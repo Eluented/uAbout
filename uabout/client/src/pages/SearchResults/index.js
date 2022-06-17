@@ -5,15 +5,10 @@ import { userSearchResult } from "../../reducers/mainSlice.js";
 import "./index.css";
 import { FriendBox, Navbar, SearchBar } from "../../components";
 import {
-  FormControl,
-  Button,
-  Typography,
-  TextField,
-  Container,
+  Container
 } from "@mui/material";
 
 const SearchResultsPage = () => {
-  const dispatch = useDispatch();
   const { username } = useParams();
 
   const searchResult = useSelector(userSearchResult);

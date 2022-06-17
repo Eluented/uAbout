@@ -67,10 +67,10 @@ function EventCard({
           Name: {first_name} {last_name}
         </Typography>
         <Typography>
-          Start Date: {event_start.split(" ").slice(0, 4).join(" ")}
+          Start Date: {event_start}
         </Typography>
         <Typography>
-          End Date: {event_end.split(" ").slice(0, 4).join(" ")}
+          End Date: {event_end}
         </Typography>
         <Typography>{phone_number}</Typography>
       </CardContent>
