@@ -12,7 +12,6 @@ import {
 const CalendarPage = () => {
   const navigate = useNavigate();
 
-
   return (
     <>
       <div className="homepage-container">

@@ -43,14 +43,17 @@ function EventCard({
     setExpanded(!expanded);
   };
 
+  const letterOne = first_name[0];
+  const letterTwo = last_name[0];
+  
   return (
     <Card sx={{ maxWidth: 700, display: "block" }}>
       <CardHeader
         avatar={
           <BackgroundLetterAvatars
             sx={{ width: 50, height: 50 }}
-            first_name={first_name}
-            last_name={last_name}
+            first_name={letterOne}
+            last_name={letterTwo}
           />
         }
         titleTypographyProps={{ variant: "h3" }}
