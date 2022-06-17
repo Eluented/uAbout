@@ -9,17 +9,15 @@ import { useSelector } from "react-redux";
 const ReactCalendar = () => {
   const posts = useSelector(postsResult);
 
-  const filteredEvents = posts.map( ({ event_end, event_start, post_title }, idx) => ( {event_end, event_start, post_title, idx} ) )
-  
+  const filteredEvents = posts.map( ({ event_end, event_start, post_title }) => ( { start:event_end, end:event_start, title:post_title } ) )
+
   console.log(filteredEvents);
 
   return (
     <FullCalendar
     plugins={[ dayGridPlugin ]}
     initialView="dayGridMonth"
-    events={[
-      {title: 'Pub With the Boys', start: '2022-06-15', end: '2022-06-18'}
-    ]}
+    events={filteredEvents}
   />
   );
 };
